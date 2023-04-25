@@ -20,6 +20,7 @@ SetList SetInitFromArray(const SetType *array, size_t size, int length) {
 }
 
 int SetContains(SetList set, SetType value, size_t size) {
+    // problema con la size
     while (!NodeIsEmpty(set)) {
         if (set->info == value) return 1;
         set = set->next;
