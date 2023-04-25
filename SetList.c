@@ -2,8 +2,6 @@
 // Created by andre on 4/21/2023.
 //
 
-// in progress
-
 #include "SetList.h"
 
 SetList SetInitFromArray(const SetType *array, size_t size, int length) {
