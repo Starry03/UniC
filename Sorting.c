@@ -5,7 +5,6 @@
 #include "Sorting.h"
 
 #include <time.h>
-
 #include "Utils.h"
 
 void BubbleSort(int *array, int size) {

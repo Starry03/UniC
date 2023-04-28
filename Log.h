@@ -7,6 +7,6 @@
 
 #endif //STARRY_LOG_H
 
-void Log(char* message);
+void Log(char *message);
 
-void Error_Log(const char* message);
+void Error_Log(const char *message);

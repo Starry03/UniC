@@ -3,7 +3,6 @@
 //
 
 #include "Log.h"
-
 #include <stdio.h>
 
 void Error_Log(const char* message) {

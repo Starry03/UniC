@@ -4,8 +4,8 @@
 
 #include "Vector.h"
 
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
 
 Vector2 AllocateVector2() {

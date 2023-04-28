@@ -6,6 +6,9 @@
 
 #include "LinkedList.h"
 
+#include <stdio.h>
+#include "Utils.h"
+
 P_Node InitNode(NodeType info, size_t size) {
     P_Node newNode = (P_Node) malloc(NODE_SIZE);
     newNode->info = malloc(size);
@@ -14,7 +17,7 @@ P_Node InitNode(NodeType info, size_t size) {
     return newNode;
 }
 
-int NodeIsEmpty(P_Node node) {
+bool NodeIsEmpty(P_Node node) {
     return node == NULL;
 }
 
@@ -155,7 +158,7 @@ void ListPrint(P_Node list) {
     int count = 0;
 
     printf("\nList:\n");
-    while (!NodeIsEmpty(currentNode)) { ;
+    while (!NodeIsEmpty(currentNode)) {
         NodePrint(count);
         currentNode = currentNode->next;
         count++;

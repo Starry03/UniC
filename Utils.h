@@ -7,9 +7,7 @@
 
 #endif //STARRY_UTILS_H
 
-#include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
 #include <stdbool.h>
 
 // arrays
@@ -24,4 +22,4 @@ void Swap(int* n, int* n2);
 
 void CopyData(void* dest, size_t size, void* src);
 
-int ByteEquals()
+bool BytesEqual(void* var, void* other, size_t size);

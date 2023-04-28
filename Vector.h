@@ -7,8 +7,6 @@
 
 #endif //STARRY_VECTOR_H
 
-#include <stdio.h>
-
 typedef struct Vector_2 {
     double x;
     double y;

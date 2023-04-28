@@ -7,10 +7,8 @@
 
 #endif //STARRY_LINKEDLIST_H
 
-#include <stdio.h>
+#include <stdbool.h>
 #include <stdlib.h>
-
-#include "Utils.h"
 
 typedef void *NodeType;
 
@@ -25,7 +23,7 @@ typedef Node *P_Node;
 
 P_Node InitNode(NodeType info, size_t size);
 
-int NodeIsEmpty(P_Node node);
+bool NodeIsEmpty(P_Node node);
 
 int ListLength(P_Node list);
 
