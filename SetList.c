@@ -3,6 +3,7 @@
 //
 
 #include "SetList.h"
+#include "Utils.h"
 
 SetList SetInitFromArray(SetType *array, size_t size, int length) {
     SetList list = InitNode(array[0], size);
@@ -19,7 +20,7 @@ SetList SetInitFromArray(SetType *array, size_t size, int length) {
 
 bool SetContains(SetList set, SetType value, size_t size) {
     while (!NodeIsEmpty(set)) {
-        if (BytesEqual(value, set, size)) return true;
+        if (BytesEqual(value, set->info, size)) return true;
         set = set->next;
     }
     return false;
