@@ -30,14 +30,13 @@ void ListPush(LinkedList *list, NodeType info) {
 }
 
 void ListAppend(LinkedList *list, NodeType value) {
-    LinkedList currentNode = *list;
-    if (NodeIsEmpty(currentNode)) {
-        currentNode = NewNode(value);
-        *list = currentNode;
+    if (NodeIsEmpty(*list)) {
+        *list = NewNode(value);
         return;
     }
-    while (!NodeIsEmpty((currentNode->next))) currentNode = currentNode->next;
-    currentNode->next = NewNode(value);
+    LinkedList current = *list;
+    while (!NodeIsEmpty(current->next)) current = current->next;
+    current->next = NewNode(value);
 }
 
 void ListConcat(LinkedList newList, LinkedList startingNode) {
@@ -103,6 +102,15 @@ void ListReplaceAll(LinkedList list, NodeType target, NodeType newValue) {
         list->info = (list->info == target) ? newValue : list->info;
         list = list->next;
     }
+}
+
+void ListInsert(LinkedList *list, NodeType value, int pos) {
+    while (pos-- > 0) { list = &((*list)->next); }
+
+    LinkedList temp = *list;
+    LinkedList newNode = NewNode(value);
+    *list = newNode;
+    newNode->next = temp;
 }
 
 void ListReverse(LinkedList *list) {

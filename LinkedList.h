@@ -19,7 +19,7 @@ int ListLength(LinkedList list);
 
 void ListPush(LinkedList *list, NodeType info);
 
-void ListAppend(LinkedList *list, NodeType value);
+void ListAppend(LinkedList* list, NodeType value);
 
 void ListConcat(LinkedList newList, LinkedList startingNode);
 
@@ -42,6 +42,8 @@ void DeleteList(LinkedList list);
 void ListReplace(LinkedList list, NodeType old, NodeType newValue);
 
 void ListReplaceAll(LinkedList list, NodeType target, NodeType newValue);
+
+void ListInsert(LinkedList *list, NodeType value, int pos);
 
 void ListReverse(LinkedList *list);
 
