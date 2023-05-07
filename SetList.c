@@ -3,43 +3,41 @@
 //
 
 #include "SetList.h"
-#include "Utils.h"
 
-SetList SetInitFromArray(SetType *array, size_t size, int length) {
-    SetList list = InitNode(array[0], size);
-    SetList start = list;
-    for (int i = 1; i < length; i++) {
-        if (!SetContains(start, array[i], size)) {
-            SetList nextNode = InitNode(array[i], size);
-            list->next = nextNode;
-            list = nextNode;
-        }
-    }
-    return start;
-}
+#include "Utils.h"
 
 bool SetContains(SetList set, SetType value, size_t size) {
     while (!NodeIsEmpty(set)) {
-        if (BytesEqual(value, set->info, size)) return true;
+        if (BytesEqual(value, set->info, size, set->size))
+            return true;
         set = set->next;
     }
     return false;
 }
 
-void SetAdd(SetList* set, SetType value, size_t size) {
-    if (!SetContains(*set, value, size)) ListPush(set, value, size);
-}
-
-void SetRemove(SetList set, SetType value) {
-    while (!NodeIsEmpty(set)) {
-        if (set->info == value) {
-            ListRemove(set, value);
-            return;
-        }
-        set = set->next;
+void SetAdd(SetList *set, SetType value, size_t size) {
+    if (!SetContains(*set, value, size)) {
+        SizedNode *node = InitSizedNode(value, size);
+        node->next = *set;
+        *set = node;
     }
 }
 
-void SetPrint(SetList set) {
-    ListPrint(set);
+#include <stdio.h>
+void SetRemove(SetList* set, SetType value, size_t size) {
+    while (!NodeIsEmpty(*set)) {
+        if (BytesEqual(value, (*set)->info, size, (*set)->size)) {
+            SetList temp = *set;
+            *set = (*set)->next;
+            free(temp);
+            break;
+        }
+        set = &((*set)->next);
+    }
+}
+
+int SetLength(SetList set) {
+    int count = 0;
+    while (!NodeIsEmpty(set)) { count++; set = set->next;}
+    return count;
 }

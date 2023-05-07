@@ -6,7 +6,7 @@
 
 unsigned int String_Length(const char *string) {
     unsigned int count = 0;
-    while (string[count] != '\0') count++;
+    while (string[count++] != '\0');
     return count;
 }
 

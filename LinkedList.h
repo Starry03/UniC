@@ -7,59 +7,48 @@
 
 #endif //STARRY_LINKEDLIST_H
 
+#include "Nodes.h"
+
 #include <stdbool.h>
-#include <stdlib.h>
 
-typedef void *NodeType;
+typedef Node *LinkedList;
 
-typedef struct Node {
-    NodeType info;
-    struct Node *next;
-} Node;
+LinkedList NewNode(NodeType info);
 
-#define NODE_SIZE 16
+int ListLength(LinkedList list);
 
-typedef Node *P_Node;
+void ListPush(LinkedList *list, NodeType info);
 
-P_Node InitNode(NodeType info, size_t size);
+void ListAppend(LinkedList *list, NodeType value);
 
-bool NodeIsEmpty(P_Node node);
+void ListConcat(LinkedList newList, LinkedList startingNode);
 
-int ListLength(P_Node list);
+void RemoveNode(LinkedList *node);
 
-void ListPush(P_Node *list, NodeType info, size_t size);
+NodeType ListGet(LinkedList list, int pos);
 
-void ListAppend(P_Node *list, NodeType value, size_t size);
-
-void ListConcat(P_Node newList, P_Node startingNode);
-
-void RemoveNode(P_Node *node);
-
-NodeType ListGet(P_Node list, int pos);
-
-P_Node LastNode(P_Node *list);
+LinkedList LastNode(LinkedList *list);
 
 // Removes all nodes of info 'value'
-void ListRemove(P_Node list, NodeType value);
+void ListRemove(LinkedList list, NodeType value);
 
-void ListRemoveLast(P_Node list);
+void ListRemoveLast(LinkedList *list);
 
-void ListRemoveFirst(P_Node list);
+void ListRemoveFirst(LinkedList list);
 
 // Frees every node
-void DeleteList(P_Node list);
+void DeleteList(LinkedList list);
 
-void ListReplace(P_Node list, NodeType old, NodeType newValue);
+void ListReplace(LinkedList list, NodeType old, NodeType newValue);
 
-void ListReplaceAll(P_Node list, NodeType target, NodeType newValue);
+void ListReplaceAll(LinkedList list, NodeType target, NodeType newValue);
 
-void ListReverse(P_Node *list);
+void ListReverse(LinkedList *list);
 
-// Use this function to create every list, other functions don't call free
-P_Node ListCreate(int length, NodeType init, size_t size);
+LinkedList ListCreate(int length, NodeType init);
 
-P_Node ListCreateFromArray(const NodeType *array, const int length, size_t size);
+LinkedList ListCreateFromArray(const NodeType *array, const int length);
 
-void NodePrint(int pos);
+void NodePrint(int i);
 
-void ListPrint(P_Node list);
+void ListPrint(LinkedList list);

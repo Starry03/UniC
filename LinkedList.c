@@ -9,20 +9,12 @@
 #include <stdio.h>
 #include "Utils.h"
 
-P_Node InitNode(NodeType info, size_t size) {
-    P_Node newNode = (P_Node) malloc(NODE_SIZE);
-    newNode->info = malloc(size);
-    CopyData(newNode->info, size, info);
-    newNode->next = NULL;
-    return newNode;
+LinkedList NewNode(NodeType info) {
+    return (LinkedList) InitNode(info);
 }
 
-bool NodeIsEmpty(P_Node node) {
-    return node == NULL;
-}
-
-int ListLength(P_Node list) {
-    P_Node start = list;
+int ListLength(LinkedList list) {
+    LinkedList start = list;
     int count = 0;
     while (!NodeIsEmpty(start)) {
         count++;
@@ -31,24 +23,24 @@ int ListLength(P_Node list) {
     return count;
 }
 
-void ListPush(P_Node *list, NodeType info, size_t size) {
-    P_Node newNode = InitNode(info, size);
+void ListPush(LinkedList *list, NodeType info) {
+    LinkedList newNode = NewNode(info);
     newNode->next = *list;
     *list = newNode;
 }
 
-void ListAppend(P_Node *list, NodeType value, size_t size) {
-    P_Node currentNode = *list;
+void ListAppend(LinkedList *list, NodeType value) {
+    LinkedList currentNode = *list;
     if (NodeIsEmpty(currentNode)) {
-        currentNode = InitNode(value, size);
+        currentNode = NewNode(value);
         *list = currentNode;
         return;
     }
     while (!NodeIsEmpty((currentNode->next))) currentNode = currentNode->next;
-    currentNode->next = InitNode(value, size);
+    currentNode->next = NewNode(value);
 }
 
-void ListConcat(P_Node newList, P_Node startingNode) {
+void ListConcat(LinkedList newList, LinkedList startingNode) {
     while (!NodeIsEmpty(newList)) {
         startingNode->next = newList;
         startingNode = startingNode->next;
@@ -56,69 +48,66 @@ void ListConcat(P_Node newList, P_Node startingNode) {
     }
 }
 
-void RemoveNode(P_Node *node) {
-    P_Node temp = *node;
+void RemoveNode(LinkedList *node) {
+    LinkedList temp = *node;
     *node = (*node)->next;
     free(temp);
 }
 
-void ListRemove(P_Node list, NodeType value) {
+void ListRemove(LinkedList list, NodeType value) {
     while (!NodeIsEmpty(list)) {
         if (list->info == value) RemoveNode(&list);
         list = list->next;
     }
 }
 
-NodeType ListGet(P_Node list, int pos) {
-    NodeType value;
-    P_Node start = list;
-    for (int i = 0; i < pos; i++) {
-        start = start->next;
-    }
-    value = InitNode(start->info, sizeof(start->info));
-    return value;
+NodeType ListGet(LinkedList list, int pos) {
+    for (int i = 0; i < pos; i++)
+        list = list->next;
+    return list->info;
 }
 
-P_Node LastNode(P_Node *list) {
-    P_Node currentNode = *list;
+LinkedList LastNode(LinkedList *list) {
+    LinkedList currentNode = *list;
     if (NodeIsEmpty(currentNode)) return NULL;
     while (!NodeIsEmpty(currentNode->next))
         currentNode = currentNode->next;
     return currentNode;
 }
 
-void ListRemoveLast(P_Node list) {
-
+void ListRemoveLast(LinkedList *list) {
+    LinkedList lastNode = LastNode(list);
+    RemoveNode(&lastNode);
 }
 
-void ListRemoveFirst(P_Node list) {
+void ListRemoveFirst(LinkedList list) {
     RemoveNode(&list);
 }
 
-void DeleteList(P_Node list) {
+void DeleteList(LinkedList list) {
     while (!NodeIsEmpty(list)) {
         RemoveNode(&list);
         list = list->next;
     }
 }
 
-void ListReplace(P_Node list, NodeType old, NodeType newValue) {
+void ListReplace(LinkedList list, NodeType old, NodeType newValue) {
     while (!NodeIsEmpty(list)) {
         list->info = (list->info == old) ? newValue : list->info;
         return;
     }
 }
 
-void ListReplaceAll(P_Node list, NodeType target, NodeType newValue) {
+void ListReplaceAll(LinkedList list, NodeType target, NodeType newValue) {
     while (!NodeIsEmpty(list)) {
         list->info = (list->info == target) ? newValue : list->info;
         list = list->next;
     }
 }
 
-void ListReverse(P_Node *list) {
-    P_Node prev = NULL;
-    P_Node nextNode;
+void ListReverse(LinkedList *list) {
+    LinkedList prev = NULL;
+    LinkedList nextNode;
     while (!NodeIsEmpty(*list)) {
         nextNode = *list;
         *list = (*list)->next;
@@ -128,33 +117,29 @@ void ListReverse(P_Node *list) {
     *list = prev;
 }
 
-P_Node ListCreate(int length, NodeType init, size_t size) {
-    P_Node start = NULL;
-    for (int i = 0; i < length; i++) {
-        ListPush(&start, init, size);
-    }
-    free(init);
-    return start;
+LinkedList ListCreate(int length, NodeType init) {
+    // To do
+    return NULL;
 }
 
-P_Node ListCreateFromArray(const NodeType *array, const int length, size_t size) {
+LinkedList ListCreateFromArray(const NodeType *array, const int length) {
     if (length == 0) return NULL;
-    P_Node list = InitNode(array[0], size);
-    P_Node start = list;
+    LinkedList list = NewNode(array[0]);
+    LinkedList start = list;
     for (int i = 1; i < length; i++) {
-        P_Node nextNode = InitNode(array[i], size);
+        LinkedList nextNode = NewNode(array[i]);
         list->next = nextNode;
         list = nextNode;
     }
     return start;
 }
 
-void NodePrint(int pos) {
-    printf("Node[%d] { Generic } -> ", pos);
+void NodePrint(int i) {
+    printf("Node[%d] { Generic } -> ", i);
 }
 
-void ListPrint(P_Node list) {
-    P_Node currentNode = list;
+void ListPrint(LinkedList list) {
+    LinkedList currentNode = list;
     int count = 0;
 
     printf("\nList:\n");
@@ -163,5 +148,6 @@ void ListPrint(P_Node list) {
         currentNode = currentNode->next;
         count++;
     }
-    printf("\n");
+
+    printf("End\n");
 }

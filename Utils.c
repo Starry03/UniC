@@ -5,6 +5,7 @@
 #include "Utils.h"
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <time.h>
 
 int *SortedIntArray(int size) {
@@ -39,10 +40,10 @@ void CopyData(void *dest, size_t size, void *src) {
     }
 }
 
-bool BytesEqual(void *var, void *other, size_t size) {
-    for (int i = 0; i < size; i++) {
+bool BytesEqual(void *var, void *other, size_t size, size_t size_other) {
+    if (size != size_other) return false;
+    for (int i = 0; i < size; i++)
         if (*((char *) (var + i)) != *((char *) (other + i)))
             return false;
-    }
     return true;
 }

@@ -7,18 +7,16 @@
 
 #endif //STARRY_SETLIST_H
 
-#include "LinkedList.h"
+#include "Nodes.h"
 #include "stdbool.h"
 
 typedef NodeType SetType;
-typedef P_Node SetList;
-
-SetList SetInitFromArray(SetType* array, size_t size, int length);
+typedef SizedNode *SetList;
 
 bool SetContains(SetList set, SetType value, size_t size);
 
-void SetAdd(SetList* set, SetType value, size_t size);
+void SetAdd(SetList *set, SetType value, size_t size);
 
-void SetRemove(SetList set, SetType value);
+void SetRemove(SetList* set, SetType value, size_t size);
 
-void SetPrint(SetList set);
+int SetLength(SetList set);
