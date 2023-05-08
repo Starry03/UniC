@@ -12,6 +12,8 @@
 
 // arrays
 
+int* AllocateArray(int len, size_t size);
+
 int *SortedIntArray(int size);
 
 int *RandomIntArray(int size, int range);

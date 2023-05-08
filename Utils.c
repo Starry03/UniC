@@ -5,18 +5,21 @@
 #include "Utils.h"
 
 #include <stdio.h>
-#include <stdlib.h>
 #include <time.h>
 
+int *AllocateArray(int len, size_t size) {
+    return malloc(len * size);
+}
+
 int *SortedIntArray(int size) {
-    int *arr = (int *) malloc(size * sizeof(int));
+    int *arr = AllocateArray(size, sizeof(int));
     for (int i = 0; i < size; i++) arr[i] = i;
     return arr;
 }
 
 int *RandomIntArray(int size, int range) {
     srand(time(NULL));
-    int *arr = (int *) malloc(size * sizeof(int));
+    int *arr = AllocateArray(size, sizeof(int));
     for (int i = 0; i < size; i++) arr[i] = rand() % range;
     return arr;
 }

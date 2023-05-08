@@ -147,13 +147,12 @@ void NodePrint(int i) {
 }
 
 void ListPrint(LinkedList list) {
-    LinkedList currentNode = list;
     int count = 0;
 
     printf("\nList:\n");
-    while (!NodeIsEmpty(currentNode)) {
+    while (!NodeIsEmpty(list)) {
         NodePrint(count);
-        currentNode = currentNode->next;
+        list = list->next;
         count++;
     }
 
