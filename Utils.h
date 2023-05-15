@@ -10,19 +10,8 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-// arrays
-
-int* AllocateArray(int len, size_t size);
-
-int *SortedIntArray(int size);
-
-int *RandomIntArray(int size, int range);
-
-void PrintArray(int* arr, int size);
-
-void Swap(int* n, int* n2);
-
 // data management
+void Swap(int* n, int* n2);
 
 void CopyData(void* dest, size_t size, void* src);
 

@@ -14,7 +14,7 @@ typedef struct Matrix {
     int rows;
 } Matrix;
 
-int *InitRow(int size);
+int *InitRow(int len);
 
 Mat_type **InitTable(int y, int x);
 

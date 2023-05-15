@@ -58,4 +58,4 @@ bool HasTwoNodes(BinaryTree tree);
 bool BinaryTree_DeleteTreeNode(BinaryTree *tree, TreeType value);
 
 // study purpose
-// void BinaryTree_PrintLevel(BinaryTree tree, int level);
+void BinaryTree_PrintLevel(BinaryTree tree, int level);
