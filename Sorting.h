@@ -13,9 +13,8 @@ void MergeSort(int *array, int size);              // O(n log n)
 void MergeSort_rec(int *arr, int low, int high);   // O(log n)
 void Merge(int *arr, int low, int mid, int high);  // O(n)
 void QuickSort_rec(int *arr, int low, int high);   // O(log n)
-void QuickSort(int *array, int size);
-
+void QuickSort(int *array, int size);              // O(n log n)
 
 void TimSort(int *array, int size);
 
-double SortTimer(int arrSize, int loops, void (*func)(const int *, int, int));
+double SortTimer(int arrSize, int loops, void (*func)(const int *, int));

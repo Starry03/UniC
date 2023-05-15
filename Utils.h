@@ -22,6 +22,8 @@ void PrintArray(int* arr, int size);
 
 void Swap(int* n, int* n2);
 
+// data management
+
 void CopyData(void* dest, size_t size, void* src);
 
 bool BytesEqual(void *var, void *other, size_t size, size_t size_other);
