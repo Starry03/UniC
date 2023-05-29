@@ -27,6 +27,20 @@ Matrix *MatrixInit(int y, int x) {
     return matrix;
 }
 
+Matrix *identity_matrix(int x) {
+    Matrix *matrix = MatrixInit(x, x);
+    for (int i = 0; i < x; i++) {
+        for (int j = 0; j < x; j++) {
+            MatrixSetValue(matrix, KroneckerDelta(i, j), i, j);
+        }
+    }
+    return matrix;
+}
+
+bool KroneckerDelta(int i, int j) {
+    return i == j;
+}
+
 void MatrixSetValue(Matrix *matrix, Mat_type value, int y, int x) {
     matrix->table[y][x] = value;
 }
@@ -57,6 +71,16 @@ Matrix *MatrixSum(Matrix *mat, Matrix *mat2) {
     return newMatrix;
 }
 
+Matrix* Matrix_ScalarProduct(Matrix* mat, Mat_type scalar) {
+    Matrix* newMatrix = MatrixInit(mat->rows, mat->cols);
+    for (int y = 0; y < mat->rows; y++) {
+        for (int x = 0; x < mat->cols; x++) {
+            MatrixSetValue(newMatrix, mat->table[y][x] * scalar, y, x);
+        }
+    }
+    return newMatrix;
+}
+
 Matrix *MatrixProduct(Matrix *mat, Matrix *mat2) {
     Matrix *newMatrix = MatrixInit(mat->rows, mat2->cols);
     if (mat->cols != mat2->rows) {
@@ -72,6 +96,53 @@ Matrix *MatrixProduct(Matrix *mat, Matrix *mat2) {
     }
     return newMatrix;
 }
+
+// y: index, length: mat->rows
+// x: index, length: mat->cols
+Matrix *Matrix_Suppressed(Matrix *mat, int y, int x) {
+    // error handling
+    if (mat->rows < 2 && mat->cols < 2) {
+        Error_Log("Matrix cannot be modified (insufficient size)");
+        return mat;
+    }
+
+    if (y >= mat->rows || x >= mat->cols) {
+        Error_Log("Matrix cannot be modified (out of bounds)");
+        return mat;
+    }
+
+    const int new_y = mat->rows - 1;
+    const int new_x = mat->cols - 1;
+    int x_count = 0, y_count = 0;
+    Matrix *subMatrix = MatrixInit(new_y, new_x);
+    for (int i = 0; i < mat->rows && y_count < new_y; i++) {
+        for (int j = 0; j < mat->cols; j++) {
+            if (i != y && j != x) {
+                MatrixSetValue(subMatrix,
+                               mat->table[i][j],
+                               y_count,
+                               x_count++);
+                // reset x_count
+                if (x_count >= new_x) {
+                    x_count = 0;
+                    y_count++;
+                }
+            }
+        }
+    }
+    return subMatrix;
+}
+
+void Matrix_Fill(Matrix *matrix, Mat_type value, int y0, int x0) {
+    while (y0 < matrix->rows) {
+        while (x0 < matrix->cols) {
+            MatrixSetValue(matrix, value, y0, x0);
+            x0++;
+        }
+        y0++;
+    }
+}
+
 
 void MatrixPrint(Matrix *matrix) {
     printf("Matrix:\n");
