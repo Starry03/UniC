@@ -1,5 +1,23 @@
 # Starry_CLibrary
 
-## Version 1.0
+## Version 1.1
+
+## Data structures
+1. Array
+2. Binary tree
+3. Linked list
+4. Matrix
+5. Node
+6. Queue
+7. Stack
+8. String
+9. Vector
+
+## Algorithms
+1. Search
+2. Sort
+
+## Utils
+1. Log
 
 Forza inter
