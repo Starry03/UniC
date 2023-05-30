@@ -15,6 +15,8 @@ int *SortedIntArray(size_t size);
 
 int *RandomIntArray(size_t size, int range);
 
+double* RandomDoubleArray(size_t len, int range, double offset);
+
 int *IntArray_Zeros(size_t len);
 
 void PrintArray(int *arr, int size);

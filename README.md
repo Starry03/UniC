@@ -6,7 +6,7 @@
 1. Array
 2. Binary tree
 3. Linked list
-4. Matrix
+4. Mat
 5. Node
 6. Queue
 7. Stack

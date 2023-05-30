@@ -9,37 +9,43 @@
 
 #include <stdbool.h>
 
-typedef int Mat_type;
-typedef struct Matrix {
+typedef double Mat_type;
+typedef struct {
     Mat_type **table;
     int cols;
     int rows;
-} Matrix;
+} Mat;
 
-int *InitRow(int len);
+typedef Mat *Matrix;
+
+Mat_type *InitRow(int len);
 
 Mat_type **InitTable(int y, int x);
 
-Matrix *MatrixInit(int y, int x);
+Matrix MatrixInit(int y, int x);
 
-Matrix* identity_matrix(int x);
+Matrix identity_matrix(int x);
 
 bool KroneckerDelta(int i, int j);
 
-void MatrixSetValue(Matrix *matrix, Mat_type value, int y, int x);
+void MatrixSetValue(Matrix matrix, Mat_type value, int y, int x);
 
-Mat_type *Matrix_Column(Matrix *matrix, int n);
+Mat_type *Matrix_GetColumn(Matrix matrix, int n);
 
-Mat_type *Matrix_Row(Matrix *matrix, int n);
+Mat_type *Matrix_GetRow(Matrix matrix, int n);
 
-Matrix* MatrixSum(Matrix* mat, Matrix* mat2);
+Matrix MatrixSum(Matrix mat, Matrix mat2);
 
-Matrix* Matrix_ScalarProduct(Matrix* mat, Mat_type scalar);
+Matrix Matrix_ScalarProduct(Matrix mat, Mat_type scalar);
 
-Matrix* MatrixProduct(Matrix* mat, Matrix* mat2);
+Matrix MatrixProduct(Matrix mat, Matrix mat2);
 
-Matrix* Matrix_Suppressed(Matrix* mat, int y, int x);
+Matrix Matrix_Suppressed(Matrix mat, int y, int x);
 
-void Matrix_Fill(Matrix* matrix, Mat_type value, int y0, int x0);
+Matrix Matrix_Transpose(Matrix mat);
 
-void MatrixPrint(Matrix *matrix);
+Matrix RandomMatrix(int y, int x, int range, double offset);
+
+void Matrix_Fill(Matrix matrix, Mat_type value, int y0, int x0);
+
+void MatrixPrint(Matrix matrix);

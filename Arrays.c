@@ -28,6 +28,15 @@ int *RandomIntArray(size_t len, int range)
     return arr;
 }
 
+double* RandomDoubleArray(size_t len, int range, double offset)
+{
+    srand(time(NULL));
+    double *arr = (double *)AllocateArray(len, sizeof(double));
+    for (int i = 0; i < len; i++)
+        arr[i] = rand() % range - offset;
+    return arr;
+}
+
 int *IntArray_Zeros(size_t len)
 {
     return (int *)calloc(len, sizeof(int));
