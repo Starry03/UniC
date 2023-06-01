@@ -1,10 +1,11 @@
-# include "Matrix.h"
+#include "NeuralNetwork/CSV.h"
 
 int main() {
-    const int width = 41000;
-    const int height = 800;
-    Mat *mat = RandomDoubleMatrix(width, height, 1, 0);
-    MatrixPrint(mat);
+
+    CSV csv = CreateCSV(sizeof(int));
+    CSV_ReadFile(csv, fopen("test.csv", "r"), false);
+
+
 
     return 0;
 }
