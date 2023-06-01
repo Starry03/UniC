@@ -44,7 +44,7 @@ Matrix Matrix_Suppressed(Matrix mat, int y, int x);
 
 Matrix Matrix_Transpose(Matrix mat);
 
-Matrix RandomMatrix(int y, int x, int range, double offset);
+Matrix RandomDoubleMatrix(int y, int x, int range, double offset);
 
 void Matrix_Fill(Matrix matrix, Mat_type value, int y0, int x0);
 

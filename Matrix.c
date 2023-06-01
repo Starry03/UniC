@@ -135,14 +135,14 @@ Matrix Matrix_Suppressed(Matrix mat, int y, int x) {
 
 Matrix Matrix_Transpose(Matrix mat) {
     Matrix newMatrix = MatrixInit(mat->cols, mat->rows);
-    for (int y = 0; y < mat->rows; y++) {
-        for (int x = 0; x < mat->cols; x++)
-            MatrixSetValue(newMatrix, mat->table[y][x], x, y);
+    for (int row = 0; row < mat->rows; row++) {
+        for (int col = 0; col < mat->cols; col++)
+            MatrixSetValue(newMatrix, mat->table[row][col], col, row);
     }
     return newMatrix;
 }
 
-Matrix RandomMatrix(int y, int x, int range, double offset) {
+Matrix RandomDoubleMatrix(int y, int x, int range, double offset) {
     Matrix matrix = MatrixInit(y, x);
     for (int row = 0; row < matrix->rows; row++) {
         matrix->table[row] = RandomDoubleArray(x, range, offset);
