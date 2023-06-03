@@ -4,10 +4,18 @@
 
 #include "DataHolder.h"
 #include <stdio.h>
+#include <stdlib.h>
 
-void Dataholder_Print(DataHolder dataHolder) {
+DataHolder NewDataHolder(void *info, int type) {
+    DataHolder dataHolder = (DataHolder) malloc(DATA_HOLDER_SIZE);
+    dataHolder->info = info;
+    dataHolder->type = type;
+    return dataHolder;
+}
+
+void DataHolder_Print(DataHolder dataHolder) {
     switch (dataHolder->type) {
-        case Data_integer:
+        case Data_int:
             printf("%d", *((int *) dataHolder->info));
             break;
 

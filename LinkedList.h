@@ -9,17 +9,15 @@
 
 #include "Nodes.h"
 
-#include <stdbool.h>
+typedef Node LinkedList;
 
-typedef Node *LinkedList;
-
-LinkedList NewNode(NodeType info);
+LinkedList NewNode(NodeType info, DataType datatype);
 
 int ListLength(LinkedList list);
 
-void ListPush(LinkedList *list, NodeType info);
+void ListPush(LinkedList *list, NodeType info, DataType datatype);
 
-void ListAppend(LinkedList* list, NodeType value);
+void ListAppend(LinkedList *list, NodeType value, DataType datatype);
 
 void ListConcat(LinkedList newList, LinkedList startingNode);
 

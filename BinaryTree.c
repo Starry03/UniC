@@ -52,7 +52,7 @@ int BinaryTree_Depth(BinaryTree tree) {
 }
 
 int BinaryTree_MaxNodesNumber(int depth) {
-    return pow(2, depth) - 1;
+    return (int) pow(2, depth) - 1;
 }
 
 TreeType BinaryTree_Value(BinaryTree tree) {

@@ -9,26 +9,19 @@
 
 #include <stdlib.h>
 #include <stdbool.h>
+#include "DataHolder.h"
 
 typedef void *NodeType;
 
-typedef struct Node {
-    NodeType info;
-    struct Node *next;
-} Node;
+typedef struct Node_{
+    DataHolder data;
+    struct Node_ *next;
+} Node_;
+
+typedef Node_ *Node;
 
 #define NODE_SIZE 16
 
-typedef struct SizedNode {
-    NodeType info;
-    struct SizedNode *next;
-    size_t size;
-} SizedNode;
+bool NodeIsEmpty(Node node);
 
-#define SIZED_NODE_SIZE 24
-
-bool NodeIsEmpty(void *node);
-
-Node *InitNode(NodeType info);
-
-SizedNode *InitSizedNode(NodeType info, size_t size);
+Node InitNode(NodeType info, int datatype);

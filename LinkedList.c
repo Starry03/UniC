@@ -9,8 +9,8 @@
 #include <stdio.h>
 #include "Utils.h"
 
-LinkedList NewNode(NodeType info) {
-    return (LinkedList) InitNode(info);
+LinkedList NewNode(NodeType info, DataType datatype) {
+    return (LinkedList) InitNode(info, datatype);
 }
 
 int ListLength(LinkedList list) {
@@ -23,20 +23,20 @@ int ListLength(LinkedList list) {
     return count;
 }
 
-void ListPush(LinkedList *list, NodeType info) {
-    LinkedList newNode = NewNode(info);
+void ListPush(LinkedList *list, NodeType info, DataType datatype) {
+    LinkedList newNode = NewNode(info, datatype);
     newNode->next = *list;
     *list = newNode;
 }
 
-void ListAppend(LinkedList *list, NodeType value) {
+void ListAppend(LinkedList *list, NodeType value, DataType datatype) {
     if (NodeIsEmpty(*list)) {
-        *list = NewNode(value);
+        *list = NewNode(value, datatype);
         return;
     }
     LinkedList current = *list;
     while (!NodeIsEmpty(current->next)) current = current->next;
-    current->next = NewNode(value);
+    current->next = NewNode(value, datatype);
 }
 
 void ListConcat(LinkedList newList, LinkedList startingNode) {
@@ -55,7 +55,7 @@ void RemoveNode(LinkedList *node) {
 
 void ListRemove(LinkedList list, NodeType value) {
     while (!NodeIsEmpty(list)) {
-        if (list->info == value) RemoveNode(&list);
+        if (list->data->info == value) RemoveNode(&list);
         list = list->next;
     }
 }

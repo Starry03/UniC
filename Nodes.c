@@ -3,21 +3,13 @@
 //
 #include "Nodes.h"
 
-bool NodeIsEmpty(void *node) {
+bool NodeIsEmpty(Node node) {
     return node == NULL;
 }
 
-Node *InitNode(NodeType info) {
-    Node *newNode = (Node *) malloc(NODE_SIZE);
-    newNode->info = info;
-    newNode->next = NULL;
-    return newNode;
-}
-
-SizedNode * InitSizedNode(NodeType info, size_t size) {
-    SizedNode *newNode = (SizedNode *) malloc(SIZED_NODE_SIZE);
-    newNode->info = info;
-    newNode->next = NULL;
-    newNode->size = size;
-    return newNode;
+Node InitNode(NodeType info, int datatype) {
+    Node node = (Node) malloc(NODE_SIZE);
+    node->data = NewDataHolder(info, datatype);
+    node->next = NULL;
+    return node;
 }

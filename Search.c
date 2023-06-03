@@ -4,6 +4,7 @@
 
 #include <time.h>
 #include "Utils.h"
+#include "Arrays.h"
 
 int LinearSearch(const int *arr, int length, int target) {
     int count = 0;
