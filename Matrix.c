@@ -7,7 +7,7 @@
 #include "Arrays.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "Log.h"
+#include <math.h>
 
 Mat_type *InitRow(int len) {
     return (Mat_type *) AllocateArray(len, sizeof(Mat_type));
@@ -20,17 +20,17 @@ Mat_type **InitTable(int y, int x) {
 }
 
 Matrix MatrixInit(int y, int x) {
-    Matrix matrix = (Matrix ) malloc(sizeof(Mat));
+    Matrix matrix = (Matrix) malloc(sizeof(Mat));
     matrix->table = InitTable(y, x);
     matrix->cols = x;
     matrix->rows = y;
     return matrix;
 }
 
-Matrix identity_matrix(int x) {
-    Matrix matrix = MatrixInit(x, x);
-    for (int i = 0; i < x; i++) {
-        for (int j = 0; j < x; j++) {
+Matrix Identity_matrix(int length, Mat_type value) {
+    Matrix matrix = MatrixInit(length, length);
+    for (int i = 0; i < length; i++) {
+        for (int j = 0; j < length; j++) {
             MatrixSetValue(matrix, KroneckerDelta(i, j), i, j);
         }
     }
@@ -60,7 +60,7 @@ Mat_type *Matrix_GetColumn(Matrix matrix, int n) {
 Matrix MatrixSum(Matrix mat, Matrix mat2) {
     Matrix newMatrix = MatrixInit(mat->rows, mat->cols);
     if ((mat->rows != mat2->rows) || (mat->cols != mat2->cols)) {
-        Error_Log("cannot be summed");
+        printf("cannot be summed");
         return newMatrix;
     }
     for (int y = 0; y < mat->rows; y++) {
@@ -84,7 +84,7 @@ Matrix Matrix_ScalarProduct(Matrix mat, Mat_type scalar) {
 Matrix MatrixProduct(Matrix mat, Matrix mat2) {
     Matrix newMatrix = MatrixInit(mat->rows, mat2->cols);
     if (mat->cols != mat2->rows) {
-        Error_Log("Cannot be multiplied, incompatible dimensions");
+        printf("Cannot be multiplied, incompatible dimensions");
         return newMatrix;
     }
     for (int y = 0; y < mat->rows; y++) {
@@ -102,12 +102,12 @@ Matrix MatrixProduct(Matrix mat, Matrix mat2) {
 Matrix Matrix_Suppressed(Matrix mat, int y, int x) {
     // error handling
     if (mat->rows < 2 && mat->cols < 2) {
-        Error_Log("Mat cannot be modified (insufficient size)");
+        printf("Mat cannot be modified (insufficient size)");
         return mat;
     }
 
     if (y >= mat->rows || x >= mat->cols) {
-        Error_Log("Mat cannot be modified (out of bounds)");
+        printf("Mat cannot be modified (out of bounds)");
         return mat;
     }
 
@@ -150,6 +150,26 @@ Matrix RandomDoubleMatrix(int y, int x, int range, double offset) {
     return matrix;
 }
 
+Mat_type Matrix_Det(Matrix mat) {
+    // laplace method
+    // calculates over the first row
+
+    if (mat->rows != mat->cols) { printf("Mat dimension error (not squared)");return 0; }
+    const int row = 0;
+    Mat_type out = 0;
+    for (int x = 0; x < mat->cols; x++) {
+        if (mat->table[row][x] == 0) continue;
+        if (mat->rows == 2 && mat->cols == 2) {
+            double mainDiagonal = mat->table[0][0] * mat->table[1][1];
+            double secondaryDiagonal = mat->table[0][1] * mat->table[1][0];
+            return mainDiagonal - secondaryDiagonal;
+        }
+        Matrix subMatrix = Matrix_Suppressed(mat, row, x);
+        out += pow(-1, row + x) * mat->table[row][x] * Matrix_Det(subMatrix);
+    }
+    return out;
+}
+
 void Matrix_Fill(Matrix matrix, Mat_type value, int y0, int x0) {
     while (y0 < matrix->rows) {
         while (x0 < matrix->cols) {
@@ -159,7 +179,6 @@ void Matrix_Fill(Matrix matrix, Mat_type value, int y0, int x0) {
         y0++;
     }
 }
-
 
 void MatrixPrint(Matrix matrix) {
     printf("Mat:\n");

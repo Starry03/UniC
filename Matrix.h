@@ -24,7 +24,7 @@ Mat_type **InitTable(int y, int x);
 
 Matrix MatrixInit(int y, int x);
 
-Matrix identity_matrix(int x);
+Matrix Identity_matrix(int length, Mat_type value);
 
 bool KroneckerDelta(int i, int j);
 
@@ -45,6 +45,8 @@ Matrix Matrix_Suppressed(Matrix mat, int y, int x);
 Matrix Matrix_Transpose(Matrix mat);
 
 Matrix RandomDoubleMatrix(int y, int x, int range, double offset);
+
+Mat_type Matrix_Det(Matrix mat);
 
 void Matrix_Fill(Matrix matrix, Mat_type value, int y0, int x0);
 
