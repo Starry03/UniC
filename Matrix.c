@@ -31,7 +31,7 @@ Matrix Identity_matrix(int length, Mat_type value) {
     Matrix matrix = MatrixInit(length, length);
     for (int i = 0; i < length; i++) {
         for (int j = 0; j < length; j++) {
-            MatrixSetValue(matrix, KroneckerDelta(i, j), i, j);
+            MatrixSetValue(matrix, KroneckerDelta(i, j) * value, i, j);
         }
     }
     return matrix;
@@ -154,7 +154,10 @@ Mat_type Matrix_Det(Matrix mat) {
     // laplace method
     // calculates over the first row
 
-    if (mat->rows != mat->cols) { printf("Mat dimension error (not squared)");return 0; }
+    if (mat->rows != mat->cols) {
+        printf("Mat dimension error (not squared)");
+        return 0;
+    }
     const int row = 0;
     Mat_type out = 0;
     for (int x = 0; x < mat->cols; x++) {
