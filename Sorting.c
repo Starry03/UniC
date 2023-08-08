@@ -95,10 +95,3 @@ void QuickSort_rec(int *arr, int low, int high) {
 void QuickSort(int *array, int size) {
     QuickSort_rec(array, 0, size - 1);
 }
-
-double SortTimer(int arrSize, int loops, void (*func)(const int *, int)) {
-    clock_t t = clock();
-    for (int c = 0; c < loops; c++) func(RandomIntArray(arrSize, 1000), arrSize);
-    t = clock() - t;
-    return (double) t / CLOCKS_PER_SEC;
-}

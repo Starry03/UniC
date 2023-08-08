@@ -1,11 +1,11 @@
-#include "Matrix.h"
+#include "Queue.h"
 #include <stdio.h>
 
 int main() {
+    Queue queue = Queue_Init(104);
+    Queue_Add(queue, 105);
 
-    Matrix matrix = Identity_matrix(3, 2);
-    MatrixPrint(matrix);
-    printf("det: %lf\n", Matrix_Det(matrix));
+    Queue_Print(queue);
 
     return 0;
 }

@@ -46,6 +46,8 @@ Matrix Matrix_Transpose(Matrix mat);
 
 Matrix RandomDoubleMatrix(int y, int x, int range, double offset);
 
+Mat_type Matrix_SquareDet(Matrix mat);
+
 Mat_type Matrix_Det(Matrix mat);
 
 void Matrix_Fill(Matrix matrix, Mat_type value, int y0, int x0);

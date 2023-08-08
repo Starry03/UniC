@@ -33,7 +33,7 @@ double* RandomDoubleArray(size_t len, int range, double offset)
     srand(time(NULL));
     double *arr = (double *)AllocateArray(len, sizeof(double));
     for (int i = 0; i < len; i++)
-        arr[i] = rand() % range - offset;
+        arr[i] = (rand() % range) - offset;
     return arr;
 }
 

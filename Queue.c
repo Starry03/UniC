@@ -4,23 +4,37 @@
 
 #include "Queue.h"
 
+#include <stdio.h>
+#include <stdlib.h>
+
 Queue EmptyQueue() {
     return NULL;
 }
 
-void AddToQueue(Queue queue, NodeType info) {
-    while (queue->next != NULL)
+Queue Queue_Init(QueueType info) {
+    Queue queue = (Queue) malloc(sizeof(Node));
+    queue->info = info;
+    queue->next = NULL;
+    return queue;
+}
+
+void Queue_Add(Queue queue, QueueType info) {
+    if (queue == NULL) { return; }
+    while (queue->next != NULL) {
         queue = queue->next;
-    Node *newNode = InitNode(info);
-    queue->next = newNode;
+    }
+    queue->next = Queue_Init(info);
 }
 
-void RemoveFromQueue(Queue* queue) {
-    Queue temp = *queue;
-    *queue = (*queue)->next;
-    free(temp);
-}
-
-NodeType FirstInQueue(Queue queue) {
+QueueType Queue_GetFirst(Queue queue) {
     return queue->info;
+}
+
+void Queue_Print(Queue queue) {
+    int i = 0;
+    while (queue != NULL) {
+        printf("Queue [%d]: %lf\n", i, queue->info);
+        queue = queue->next;
+        i++;
+    }
 }

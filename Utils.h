@@ -14,5 +14,3 @@
 void Swap(int* n, int* n2);
 
 void CopyData(void* dest, size_t size, void* src);
-
-bool BytesEqual(void *var, void *other, size_t size, size_t size_other);

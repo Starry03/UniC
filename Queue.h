@@ -9,9 +9,15 @@
 
 #include "Nodes.h"
 
-typedef Node* Queue;
+typedef Node Queue;
+typedef NodeType QueueType;
 
 Queue EmptyQueue();
-void AddToQueue(Queue queue, NodeType info);
-void RemoveFromQueue(Queue* queue);
-NodeType FirstInQueue(Queue queue);
+
+Queue Queue_Init(QueueType info);
+
+void Queue_Add(Queue queue, QueueType info);
+
+NodeType Queue_GetFirst(Queue queue);
+
+void Queue_Print(Queue queue);

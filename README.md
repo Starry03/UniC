@@ -18,7 +18,4 @@
 
 1. Search
 2. Sort
-
-## In progress
-
-1 Linked list python version
+3. 

@@ -1,15 +1,22 @@
 //
-// Created by andre on 5/6/2023.
+// Created by andre on 8/8/2023.
 //
+
 #include "Nodes.h"
 
-bool NodeIsEmpty(Node node) {
-    return node == NULL;
+#include <stdlib.h>
+
+Node EmptyNode() {
+    return (Node) NULL;
 }
 
-Node InitNode(NodeType info, int datatype) {
-    Node node = (Node) malloc(NODE_SIZE);
-    node->data = NewDataHolder(info, datatype);
-    node->next = NULL;
+Node Node_Allocate() {
+    return (Node) malloc(NODE_SIZE);
+}
+
+Node Node_Init(NodeType info) {
+    Node node = Node_Allocate();
+    node->info = info;
+    node->next = EmptyNode();
     return node;
 }

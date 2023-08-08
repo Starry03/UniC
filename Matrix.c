@@ -150,25 +150,32 @@ Matrix RandomDoubleMatrix(int y, int x, int range, double offset) {
     return matrix;
 }
 
-Mat_type Matrix_Det(Matrix mat) {
-    // laplace method
-    // calculates over the first row
+Mat_type Matrix_SquareDet(Matrix mat) {
+    const double mainDiagonal = mat->table[0][0] * mat->table[1][1];
+    const double secondaryDiagonal = mat->table[0][1] * mat->table[1][0];
+    return mainDiagonal - secondaryDiagonal;
+}
 
+// Recursive approach
+// Laplace method
+// Calculates over the first row
+Mat_type Matrix_Det(Matrix mat) {
     if (mat->rows != mat->cols) {
-        printf("Mat dimension error (not squared)");
+        printf("Mat dimension error (not squared)\n");
         return 0;
     }
     const int row = 0;
     Mat_type out = 0;
     for (int x = 0; x < mat->cols; x++) {
-        if (mat->table[row][x] == 0) continue;
+        const double root = mat->table[row][x];
+        if (root == 0) continue;
         if (mat->rows == 2 && mat->cols == 2) {
             double mainDiagonal = mat->table[0][0] * mat->table[1][1];
             double secondaryDiagonal = mat->table[0][1] * mat->table[1][0];
             return mainDiagonal - secondaryDiagonal;
         }
         Matrix subMatrix = Matrix_Suppressed(mat, row, x);
-        out += pow(-1, row + x) * mat->table[row][x] * Matrix_Det(subMatrix);
+        out += pow(-1, row + x) * root * Matrix_Det(subMatrix);
     }
     return out;
 }

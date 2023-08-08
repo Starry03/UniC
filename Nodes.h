@@ -1,27 +1,25 @@
 //
-// Created by andre on 5/5/2023.
+// Created by andre on 8/8/2023.
 //
 
-#ifndef STARRY_STRUCTURES_H
-#define STARRY_STRUCTURES_H
+#ifndef STARRY_CLIBRARY_NODES_H
+#define STARRY_CLIBRARY_NODES_H
 
-#endif //STARRY_STRUCTURES_H
+#endif //STARRY_CLIBRARY_NODES_H
 
-#include <stdlib.h>
-#include <stdbool.h>
-#include "DataHolder.h"
+typedef double NodeType;
 
-typedef void *NodeType;
-
-typedef struct Node_{
-    DataHolder data;
-    struct Node_ *next;
+typedef struct Node {
+    NodeType info;
+    struct Node *next;
 } Node_;
 
-typedef Node_ *Node;
+typedef Node_ * Node;
 
 #define NODE_SIZE 16
 
-bool NodeIsEmpty(Node node);
+Node EmptyNode();
 
-Node InitNode(NodeType info, int datatype);
+Node Node_Allocate();
+
+Node Node_Init(NodeType info);

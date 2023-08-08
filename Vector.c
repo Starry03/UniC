@@ -119,13 +119,13 @@ double Vector3_Module(Vector3 v) {
 }
 
 void Vector2_Normalize(Vector2 v) {
-    double module = Vector2_Module(v);
+    const double module = Vector2_Module(v);
     v->x /= module;
     v->y /= module;
 }
 
 void Vector3_Normalize(Vector3 v) {
-    double module = Vector3_Module(v);
+    const double module = Vector3_Module(v);
     v->x /= module;
     v->y /= module;
     v->z /= module;
