@@ -11,10 +11,10 @@ Node EmptyNode() {
 }
 
 Node Node_Allocate() {
-    return (Node) malloc(NODE_SIZE);
+    return (Node) malloc(sizeof(Node_));
 }
 
-Node Node_Init(NodeType info) {
+Node Node_Init(void *info) {
     Node node = Node_Allocate();
     node->info = info;
     node->next = EmptyNode();

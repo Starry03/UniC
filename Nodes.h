@@ -7,16 +7,14 @@
 
 #endif //STARRY_CLIBRARY_NODES_H
 
-typedef double NodeType;
+typedef void* NodeType;
 
-typedef struct Node {
+typedef struct Node_ {
     NodeType info;
-    struct Node *next;
+    struct Node_ *next;
 } Node_;
 
-typedef Node_ * Node;
-
-#define NODE_SIZE 16
+typedef Node_ *Node;
 
 Node EmptyNode();
 
