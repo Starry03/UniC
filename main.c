@@ -8,7 +8,6 @@ int main() {
     int p = 3;
     float pi = 3.14f;
 
-
     Dictionary dict = Dictionary_Create(10);
     Dictionary_Add(&dict, pippo, c, "str");
     Dictionary_Add(&dict, &p, &pi, "int");
