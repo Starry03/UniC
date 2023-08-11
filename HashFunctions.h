@@ -11,4 +11,6 @@
 
 size_t hashInt(void *key, size_t size);
 
+size_t hashFloat(void *key, size_t size);
+
 size_t hashString(void *key, size_t size);

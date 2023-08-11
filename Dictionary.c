@@ -9,11 +9,10 @@
 #include <string.h>
 #include <stdio.h>
 
-Dictionary Dictionary_Create(size_t size, size_t (*hash)(void *, size_t)) {
+Dictionary Dictionary_Create(size_t size) {
     Dictionary dict = malloc(sizeof(Dictionary_));
-    dict->size = SetDimension(size);
+    dict->size = GetDimension(size);
     dict->items_stored = 0;
-    dict->hash = hash;
     dict->table = AllocList(size);
     InitListsToNull(dict->table, size);
     return dict;
@@ -23,7 +22,7 @@ LinkedList **AllocList(size_t size) {
     return (LinkedList **) malloc(sizeof(LinkedList *) * size);
 }
 
-size_t SetDimension(size_t size) {
+size_t GetDimension(size_t size) {
     return (!size) ? DEFAULT_SIZE : size;
 }
 
@@ -39,8 +38,22 @@ DictObject DictObject_Create(void *key, void *value) {
     return dictObject;
 }
 
-void Dictionary_Add(Dictionary *dict, void *key, void *value) {
-    size_t index = (*dict)->hash(key, (*dict)->size);
+size_t Dictionary_GetIndex(void *key, const char *key_type, size_t dict_size) {
+    if (strcmp(key_type, "int") == 0) {
+        return hashInt(key, dict_size);
+    } else if (strcmp(key_type, "float") == 0) {
+        return hashFloat(key, dict_size);
+    } else if (strcmp(key_type, "str") == 0) {
+        return hashString(key, dict_size);
+    } else {
+        printf("Error: key_type not recognized\n");
+        exit(DICT_ERROR);
+    }
+}
+
+void Dictionary_Add(Dictionary *dict, void *key, void *value, char *key_type) {
+    size_t dict_size = (*dict)->size;
+    size_t index = Dictionary_GetIndex(key, key_type, dict_size);
     LinkedList *list = (*dict)->table[index];
     if (list == NULL) {
         (*dict)->table[index] = (LinkedList *) malloc(sizeof(LinkedList));
@@ -53,30 +66,46 @@ void Dictionary_Add(Dictionary *dict, void *key, void *value) {
     (*dict)->items_stored++;
 }
 
-void *Dictionary_Get(Dictionary dict, void *key, const char *key_type) {
-    const size_t index = dict->hash(key, dict->size);
-    LinkedList *listChose = dict->table[index];
-    while (*listChose != NULL) {
-        void *dict_key = ((DictObject) ((*listChose)->info))->key;
-        void *dict_value = ((DictObject) ((*listChose)->info))->value;
+bool CompareInt(void *a, void *b) {
+    return *(int *) a == *(int *) b;
+}
 
-        if (strcmp(key_type, "int") == 0) {
-            if (*(int *) dict_key == *(int *) key)
-                return dict_value;
-        } else if (strcmp(key_type, "float") == 0) {
-            if (*(float *) dict_key == *(float *) key)
-                return dict_value;
-        } else if (strcmp(key_type, "str") == 0) {
-            if (strcmp((char *) dict_key, (char *) key) == 0)
-                return dict_value;
-        } else {
-            printf("Error: key_type not recognized\n");
-            exit(DICT_ERROR);
+bool CompareFloat(void *a, void *b) {
+    return *(float *) a == *(float *) b;
+}
+
+bool CompareString(void *a, void *b) {
+    return strcmp((char *) a, (char *) b) == 0;
+}
+
+void *Dictionary_Get(Dictionary dict, void *key, const char *key_type) {
+    const size_t index = Dictionary_GetIndex(key, key_type, dict->size);
+    LinkedList *listChosen = dict->table[index];
+    bool (*compare)(void *, void *) = NULL;
+
+    if (strcmp(key_type, "int") == 0) {
+        compare = CompareInt;
+    } else if (strcmp(key_type, "float") == 0) {
+        compare = CompareFloat;
+    } else if (strcmp(key_type, "str") == 0) {
+        compare = CompareString;
+    } else {
+        printf("Error: key_type not recognized\n");
+        exit(DICT_ERROR);
+    }
+
+    while (*listChosen != NULL) {
+        void *dict_key = ((DictObject) ((*listChosen)->info))->key;
+        void *dict_value = ((DictObject) ((*listChosen)->info))->value;
+
+        if (compare(key, dict_key)) {
+            return dict_value;
         }
 
-        listChose = &((*listChose)->next);
+        listChosen = &((*listChosen)->next);
     }
-    return NULL;
+    printf("Error: key not in dictionary\n");
+    exit(DICT_ERROR);
 }
 
 int Dictionary_GetInt(void *result) {
@@ -97,4 +126,20 @@ void Dictionary_DebugTable(Dictionary dict) {
         LinkedList *addr = table[i];
         printf("addr%d: %p\n", i, addr);
     }
+}
+
+void Dictionary_Dealloc(Dictionary dict) {
+    LinkedList **table = dict->table;
+    for (int i = 0; i < dict->size; i++) {
+        LinkedList *list = table[i];
+        if (list == NULL) {
+            free(list);
+            continue;
+        }
+        LinkedList currentList = *list;
+        LinkedList_Dealloc(currentList);
+        free(list);
+    }
+    free(table);
+    free(dict);
 }

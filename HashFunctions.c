@@ -8,6 +8,10 @@ size_t hashInt(void *key, size_t size) {
     return *(int *) key % size;
 }
 
+size_t hashFloat(void *key, size_t size) {
+    return hashInt(key, size);
+}
+
 size_t hashString(void *key, size_t size) {
     int out = 0;
     int i = 0;

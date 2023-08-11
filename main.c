@@ -3,21 +3,20 @@
 #include <stdio.h>
 
 int main() {
-    int b = 104;
-    int c = 105;
-    int d = 106;
-    int e = 107;
+    char* pippo = "pippo";
+    char *c = "zio pera";
+    int p = 3;
+    float pi = 3.14f;
 
-    Dictionary dict = Dictionary_Create(10, &hashString);
-    Dictionary_Add(&dict, "ciao", &b);
-    Dictionary_Add(&dict, "pirla", &c);
-    Dictionary_Add(&dict, "sium", &d);
-    Dictionary_Add(&dict, &e, "ciao");
+    Dictionary dict = Dictionary_Create(10);
+    Dictionary_Add(&dict, pippo, c, "str");
+    Dictionary_Add(&dict, &p, &pi, "int");
 
-    void *res = Dictionary_Get(dict, &e, "int");
-    char* r = Dictionary_GetString(res);
+    char* ss = Dictionary_GetString(Dictionary_Get(dict, pippo, "str"));
+    float flo = Dictionary_GetFloat(Dictionary_Get(dict, &p, "float"));
 
-    printf("res: %s\n", r);
+    printf("%s\n", ss);
+    printf("%f\n", flo);
 
     return 0;
 }

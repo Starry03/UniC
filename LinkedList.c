@@ -58,3 +58,12 @@ LinkedList LinkedList_GetNext(LinkedList list) {
 LinkedListType LinkedList_GetInfo(LinkedList list) {
     return list->info;
 }
+
+void LinkedList_Dealloc(LinkedList head) {
+    while (head != NULL) {
+        LinkedList temp = head;
+        head = LinkedList_GetNext(head);
+        free(temp->info);
+        free(temp);
+    }
+}

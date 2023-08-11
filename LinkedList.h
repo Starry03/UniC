@@ -28,3 +28,5 @@ void LinkedList_Remove(LinkedList *list, LinkedListType value);
 LinkedList LinkedList_GetNext(LinkedList list);
 
 LinkedListType LinkedList_GetInfo(LinkedList list);
+
+void LinkedList_Dealloc(LinkedList head);
