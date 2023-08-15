@@ -13,6 +13,21 @@
 7. Vector
 8. Dictionary
 
+### Dictionaries
+
+Hold every type of values (int, custom structs etc.)
+example:
+
+```c
+Matrix matrix = MatrixInit(4, 4);
+Matrix_Fill(matrix, 1, 1, 1);
+
+Dictionary dict = Dictionary_Create(100);
+Dictionary_Add(&dict, matrix, CreateInt(5), "struct");
+int mat = Dictionary_GetInt(Dictionary_Get(dict, matrix, "struct"));
+printf("%d\n", mat);
+```
+
 ## Algorithms
 
 1. Search
