@@ -1,22 +1,18 @@
 #include "Dictionary.h"
 #include "HashFunctions.h"
+#include "Matrix.h"
+#include "Utils.h"
 #include <stdio.h>
 
+
 int main() {
-    char* pippo = "pippo";
-    char *c = "zio pera";
-    int p = 3;
-    float pi = 3.14f;
+    Matrix matrix = MatrixInit(4, 4);
+    Matrix_Fill(matrix, 1, 1, 1);
 
-    Dictionary dict = Dictionary_Create(10);
-    Dictionary_Add(&dict, pippo, c, "str");
-    Dictionary_Add(&dict, &p, &pi, "int");
-
-    char* ss = Dictionary_GetString(Dictionary_Get(dict, pippo, "str"));
-    float flo = Dictionary_GetFloat(Dictionary_Get(dict, &p, "float"));
-
-    printf("%s\n", ss);
-    printf("%f\n", flo);
+    Dictionary dict = Dictionary_Create(100);
+    Dictionary_Add(&dict, matrix, CreateInt(5), "struct");
+    int mat = Dictionary_GetInt(Dictionary_Get(dict, matrix, "struct"));
+    printf("%d\n", mat);
 
     return 0;
 }

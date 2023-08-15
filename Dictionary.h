@@ -24,6 +24,9 @@ typedef struct DictObject {
 
 typedef DictObject_ *DictObject;
 
+void* DictObject_GetKey(DictObject dictObject);
+void* DictObject_GetValue(DictObject dictObject);
+
 typedef struct Dictionary_ {
     size_t size;
     size_t items_stored;
@@ -38,7 +41,7 @@ LinkedList **AllocList(size_t size);
 
 size_t GetDimension(size_t size);
 
-DictObject DictObject_Create(void *key, void *value);
+DictObject DictObject_Create(void *key, char* keyType, void* value);
 
 void InitListsToNull(LinkedList **dest, size_t length);
 

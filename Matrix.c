@@ -181,12 +181,14 @@ Mat_type Matrix_Det(Matrix mat) {
 }
 
 void Matrix_Fill(Matrix matrix, Mat_type value, int y0, int x0) {
+    int x0_copy = x0;
     while (y0 < matrix->rows) {
         while (x0 < matrix->cols) {
             MatrixSetValue(matrix, value, y0, x0);
             x0++;
         }
         y0++;
+        x0 = x0_copy;
     }
 }
 

@@ -31,7 +31,7 @@ void InitListsToNull(LinkedList **dest, size_t length) {
         dest[i] = NULL;
 }
 
-DictObject DictObject_Create(void *key, void *value) {
+DictObject DictObject_Create(void *key, char *keyType, void *value) {
     DictObject dictObject = (DictObject) malloc(sizeof(DictObject_));
     dictObject->key = key;
     dictObject->value = value;
@@ -45,6 +45,10 @@ size_t Dictionary_GetIndex(void *key, const char *key_type, size_t dict_size) {
         return hashFloat(key, dict_size);
     } else if (strcmp(key_type, "str") == 0) {
         return hashString(key, dict_size);
+    } else if (strcmp(key_type, "struct") == 0) {
+        size_t a = hashAddress(key, dict_size);
+        printf("hash: %zu\n", a);
+        return a;
     } else {
         printf("Error: key_type not recognized\n");
         exit(DICT_ERROR);
@@ -57,11 +61,11 @@ void Dictionary_Add(Dictionary *dict, void *key, void *value, char *key_type) {
     LinkedList *list = (*dict)->table[index];
     if (list == NULL) {
         (*dict)->table[index] = (LinkedList *) malloc(sizeof(LinkedList));
-        DictObject dictObject = DictObject_Create(key, value);
+        DictObject dictObject = DictObject_Create(key, key_type, value);
         *(*dict)->table[index] = LinkedList_Init((void *) dictObject);
     } else {
         list = &((*list)->next);
-        LinkedList_Push(list, (void *) DictObject_Create(key, value));
+        LinkedList_Push(list, (void *) DictObject_Create(key, key_type, value));
     }
     (*dict)->items_stored++;
 }
@@ -78,10 +82,14 @@ bool CompareString(void *a, void *b) {
     return strcmp((char *) a, (char *) b) == 0;
 }
 
+bool CompareAddresses(void *a, void *b) {
+    return *(size_t *) a == *(size_t *) b;
+}
+
 void *Dictionary_Get(Dictionary dict, void *key, const char *key_type) {
-    const size_t index = Dictionary_GetIndex(key, key_type, dict->size);
+    size_t index = Dictionary_GetIndex(key, key_type, dict->size);
     LinkedList *listChosen = dict->table[index];
-    bool (*compare)(void *, void *) = NULL;
+    bool (*compare)(void *, void *);
 
     if (strcmp(key_type, "int") == 0) {
         compare = CompareInt;
@@ -89,21 +97,23 @@ void *Dictionary_Get(Dictionary dict, void *key, const char *key_type) {
         compare = CompareFloat;
     } else if (strcmp(key_type, "str") == 0) {
         compare = CompareString;
+    } else if (strcmp(key_type, "struct") == 0) {
+        compare = CompareAddresses;
     } else {
         printf("Error: key_type not recognized\n");
         exit(DICT_ERROR);
     }
 
     while (*listChosen != NULL) {
-        void *dict_key = ((DictObject) ((*listChosen)->info))->key;
-        void *dict_value = ((DictObject) ((*listChosen)->info))->value;
+        void *dict_key = DictObject_GetKey((DictObject) (LinkedList_GetInfo(*listChosen)));
+        void *dict_value = DictObject_GetValue((DictObject) (LinkedList_GetInfo(*listChosen)));
 
-        if (compare(key, dict_key)) {
+        if (compare(key, dict_key))
             return dict_value;
-        }
 
         listChosen = &((*listChosen)->next);
     }
+
     printf("Error: key not in dictionary\n");
     exit(DICT_ERROR);
 }
@@ -118,6 +128,14 @@ float Dictionary_GetFloat(void *result) {
 
 char *Dictionary_GetString(void *result) {
     return (char *) result;
+}
+
+void *DictObject_GetKey(DictObject dictObject) {
+    return dictObject->key;
+}
+
+void *DictObject_GetValue(DictObject dictObject) {
+    return dictObject->value;
 }
 
 void Dictionary_DebugTable(Dictionary dict) {
