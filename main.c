@@ -1,18 +1,13 @@
-#include "Dictionary.h"
-#include "HashFunctions.h"
-#include "Matrix.h"
-#include "Utils.h"
 #include <stdio.h>
+#include <limits.h>
 
+#include "Math.h"
+#include "Tests.h"
 
-int main() {
-    Matrix matrix = MatrixInit(4, 4);
-    Matrix_Fill(matrix, 1, 1, 1);
-
-    Dictionary dict = Dictionary_Create(100);
-    Dictionary_Add(&dict, matrix, CreateInt(5), "struct");
-    int mat = Dictionary_GetInt(Dictionary_Get(dict, matrix, "struct"));
-    printf("%d\n", mat);
-
+int main()
+{
+    int inputs[] = {1, 4, 8, 16, INT_MAX};
+    int expected[] = {1, 2, 0, 4, 0};
+    test_int_to_int(inputs, expected, sizeof(inputs) / 4, &Math_int_sqrt);
     return 0;
 }

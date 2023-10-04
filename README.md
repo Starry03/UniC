@@ -32,3 +32,17 @@ printf("%d\n", mat);
 
 1. Search
 2. Sort
+
+## Utilities
+
+1. Math
+
+## Testing
+
+1. int to int
+
+```c
+int inputs[] = {1, 4, 8, 16, INT_MAX};
+int expected[] = {1, 2, 0, 4, 0};
+test_int_to_int(inputs, expected, sizeof(inputs) / 4, &Math_int_sqrt);
+```

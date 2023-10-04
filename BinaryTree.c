@@ -129,11 +129,3 @@ bool BinaryTree_DeleteTreeNode(BinaryTree *tree, TreeType value) {
         return BinaryTree_DeleteTreeNode(&((*tree)->left), value) ||
                BinaryTree_DeleteTreeNode(&((*tree)->right), value);
 }
-
-void BinaryTree_PrintLevel(BinaryTree tree, int level) {
-    if (TreeIsEmpty(tree)) return;
-    if (level == 0) printf("%d\n", BinaryTree_Value(tree));
-    BinaryTree_PrintLevel(BinaryTree_Left(tree), level - 1);
-    BinaryTree_PrintLevel(BinaryTree_Right(tree), level - 1);
-}
-

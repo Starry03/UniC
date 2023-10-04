@@ -150,34 +150,44 @@ Matrix RandomDoubleMatrix(int y, int x, int range, double offset) {
     return matrix;
 }
 
-Mat_type Matrix_SquareDet(Matrix mat) {
+Mat_type Matrix_TwoByTwoDet(Matrix mat) {
+    if (mat->rows != 2 || mat->cols != 2) {
+        printf("%s \n", TwoByTwo_ERROR);
+        return 0;
+    }
     const double mainDiagonal = mat->table[0][0] * mat->table[1][1];
     const double secondaryDiagonal = mat->table[0][1] * mat->table[1][0];
     return mainDiagonal - secondaryDiagonal;
 }
 
-// Recursive approach
-// Laplace method
-// Calculates over the first row
-Mat_type Matrix_Det(Matrix mat) {
-    if (mat->rows != mat->cols) {
-        printf("Mat dimension error (not squared)\n");
+Mat_type Matrix_SarrusDet(Matrix mat) {
+    if (mat->rows != 3 || mat->cols != 3) {
+        printf("%s \n", Sarrus_ERROR);
         return 0;
     }
-    const int row = 0;
-    Mat_type out = 0;
-    for (int x = 0; x < mat->cols; x++) {
-        const double root = mat->table[row][x];
-        if (root == 0) continue;
-        if (mat->rows == 2 && mat->cols == 2) {
-            double mainDiagonal = mat->table[0][0] * mat->table[1][1];
-            double secondaryDiagonal = mat->table[0][1] * mat->table[1][0];
-            return mainDiagonal - secondaryDiagonal;
-        }
-        Matrix subMatrix = Matrix_Suppressed(mat, row, x);
-        out += pow(-1, row + x) * root * Matrix_Det(subMatrix);
+    const Mat_type mainDiagonal = mat->table[0][0] * mat->table[1][1] * mat->table[2][2];
+    const Mat_type secondaryDiagonal = mat->table[0][1] * mat->table[1][2] * mat->table[2][0];
+    const Mat_type tertiaryDiagonal = mat->table[0][2] * mat->table[1][0] * mat->table[2][1];
+    const Mat_type mainDiagonal2 = mat->table[0][2] * mat->table[1][1] * mat->table[2][0];
+    const Mat_type secondaryDiagonal2 = mat->table[0][0] * mat->table[1][2] * mat->table[2][1];
+    const Mat_type tertiaryDiagonal2 = mat->table[0][1] * mat->table[1][0] * mat->table[2][2];
+
+    return mainDiagonal + secondaryDiagonal + tertiaryDiagonal - mainDiagonal2 - secondaryDiagonal2 -
+           tertiaryDiagonal2;
+}
+
+Mat_type Matrix_LaplaceDet(Matrix mat) {
+    if (mat->rows != mat->cols) {
+        printf("%s \n", SQUARE_ERROR);
+        return 0;
     }
-    return out;
+    size_t result = 0;
+
+    for (size_t i=0; i<mat->cols; i++) {
+
+    }
+
+
 }
 
 void Matrix_Fill(Matrix matrix, Mat_type value, int y0, int x0) {
@@ -200,5 +210,9 @@ void MatrixPrint(Matrix matrix) {
         }
         printf("\n");
     }
+}
+
+Mat_type Matrix_GetValue(Matrix matrix, int y, int x) {
+    return matrix->table[y][x];
 }
 
