@@ -3,8 +3,9 @@
 //
 
 #include "Math.h"
-#include <stdio.h>
 
+// Binary search sqrt
+// O(log n)
 int Math_int_sqrt(int x) {
     // best case
     if (!x || x < 0)
@@ -29,4 +30,25 @@ int Math_int_sqrt(int x) {
             left = mid + 1;
     }
     return 0;
+}
+
+// O(1)
+int Math_int_sq(int x) {
+    return x * x;
+}
+
+// O(n)
+int Math_int_power(int x, int exp) {
+    // best case
+    if (x == 0 || exp < 0)
+        return 0;
+    if (exp == 0)
+        return 1;
+
+    int temp = x;
+    while (exp > 1) {
+        x *= temp;
+        exp--;
+    }
+    return x;
 }
