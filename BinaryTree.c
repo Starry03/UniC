@@ -37,8 +37,8 @@ BinaryTree BinaryTree_Right(BinaryTree tree) {
 BinaryTree GoTo(BinaryTree tree, char *direction) {
 
     direction = strlwr(direction);
-    if (strcmp(direction, "l")) return BinaryTree_Left(tree);
-    else if (strcmp(direction, "r")) return BinaryTree_Right(tree);
+    if (!strcmp(direction, "l")) return BinaryTree_Left(tree);
+    else if (!strcmp(direction, "r")) return BinaryTree_Right(tree);
     // invalid direction
     return tree;
 }

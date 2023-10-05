@@ -79,7 +79,7 @@ bool CompareFloat(void *a, void *b) {
 }
 
 bool CompareString(void *a, void *b) {
-    return strcmp((char *) a, (char *) b) == 0;
+    return !strcmp((char *) a, (char *) b);
 }
 
 bool CompareAddresses(void *a, void *b) {

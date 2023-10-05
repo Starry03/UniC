@@ -7,7 +7,7 @@
 #include "Arrays.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
+#include <MathUtils.h>
 
 Mat_type *InitRow(int len) {
     return (Mat_type *) AllocateArray(len, sizeof(Mat_type));

@@ -2,7 +2,7 @@
 // Created by andre on 10/4/2023.
 //
 
-#include "Math.h"
+#include "MathUtils.h"
 
 // Binary search sqrt
 // Handles from min int to max int

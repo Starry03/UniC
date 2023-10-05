@@ -6,7 +6,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
+#include <MathUtils.h>
 
 Vector2 AllocateVector2() {
     return (Vector2) malloc(VECTOR2_SIZE);
