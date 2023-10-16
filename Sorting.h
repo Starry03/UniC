@@ -5,13 +5,22 @@
 #ifndef STARRY_SORTING_H
 #define STARRY_SORTING_H
 
-#endif //STARRY_SORTING_H
+#include <stddef.h>
 
-void BubbleSort(int *array, int size);             // O(n^2)
-void InsertionSort(int *array, int size);          // O(n^2)
-void MergeSort(int *array, int size);              // O(n log n)
-void MergeSort_rec(int *arr, int low, int high);   // O(log n)
-void Merge(int *arr, int low, int mid, int high);  // O(n)
-void QuickSort_rec(int *arr, int low, int high);   // O(log n)
-void QuickSort(int *array, int size);              // O(n log n)
-void TimSort(int *array, int size);
+void BubbleSort(int *array, size_t size);
+
+void InsertionSort(int *array, size_t size);
+
+void MergeSort(int *array, size_t size);
+
+void MergeSort_rec(int *arr, size_t low, size_t high);
+
+void Merge(int *arr, size_t low, size_t mid, size_t high);
+
+void QuickSort_rec(int *arr, size_t low, size_t high);
+
+void QuickSort(int *array, size_t size);
+
+void TimSort(int *array, size_t size);
+
+#endif //STARRY_SORTING_H

@@ -5,7 +5,7 @@
 #ifndef STARRY_CLIBRARY_HASHFUNCTIONS_H
 #define STARRY_CLIBRARY_HASHFUNCTIONS_H
 
-#include <corecrt.h>
+#include <stddef.h>
 
 size_t normalize(size_t val, size_t size);
 

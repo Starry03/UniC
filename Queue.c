@@ -4,7 +4,6 @@
 
 #include "Queue.h"
 
-#include <stdio.h>
 #include <stdlib.h>
 
 Queue EmptyQueue() {
@@ -28,13 +27,4 @@ void Queue_Add(Queue queue, QueueType info) {
 
 QueueType Queue_GetFirst(Queue queue) {
     return queue->info;
-}
-
-void Queue_Print(Queue queue) {
-    int i = 0;
-    while (queue != NULL) {
-        printf("Queue [%d]: %lf\n", i, queue->info);
-        queue = queue->next;
-        i++;
-    }
 }

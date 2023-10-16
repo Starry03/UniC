@@ -5,18 +5,18 @@
 #ifndef STARRY_ARRAYS_H
 #define STARRY_ARRAYS_H
 
-#endif //STARRY_ARRAYS_H
-
-#include <stdlib.h>
+#include <stddef.h>
 
 void *AllocateArray(size_t len, size_t varSize);
 
 int *SortedIntArray(size_t size);
 
-int *RandomIntArray(size_t size, int range);
+int *RandomIntArray(size_t size, size_t range);
 
-double* RandomDoubleArray(size_t len, int range, double offset);
+double* RandomDoubleArray(size_t len, size_t range, double offset);
 
 int *IntArray_Zeros(size_t len);
 
 void PrintArray(int *arr, int size);
+
+#endif //STARRY_ARRAYS_H

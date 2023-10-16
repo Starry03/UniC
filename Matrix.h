@@ -5,40 +5,39 @@
 #ifndef STARRY_MATRIX_H
 #define STARRY_MATRIX_H
 
-#endif //STARRY_MATRIX_H
-
 #include <stdbool.h>
+#include <stddef.h>
 
 #define SQUARE_ERROR "Matrix is not square"
-#define TwoByTwo_ERROR "Matrix is not 2x2"
-#define Sarrus_ERROR "Matrix is not 3x3"
+#define TWOBTWO_ERROR "Matrix is not 2x2"
+#define SARRUS_ERROR "Matrix is not 3x3"
 
 typedef double Mat_type;
 typedef struct {
     Mat_type **table;
-    int cols;
-    int rows;
+    size_t cols;
+    size_t rows;
 } Mat;
 
 typedef Mat *Matrix;
 
-Mat_type *InitRow(int len);
+Mat_type *InitRow(size_t len);
 
-Mat_type **InitTable(int y, int x);
+Mat_type **InitTable(size_t y, size_t x);
 
-Matrix MatrixInit(int y, int x);
+Matrix MatrixInit(size_t y, size_t x);
 
-Matrix Identity_matrix(int length, Mat_type value);
+Matrix Identity_matrix(size_t length, Mat_type value);
 
-bool KroneckerDelta(int i, int j);
+bool KroneckerDelta(size_t i, size_t j);
 
-void MatrixSetValue(Matrix matrix, Mat_type value, int y, int x);
+void MatrixSetValue(Matrix matrix, Mat_type value, size_t y, size_t x);
 
-Mat_type Matrix_GetValue(Matrix matrix, int y, int x);
+Mat_type Matrix_GetValue(Matrix matrix, size_t y, size_t x);
 
-Mat_type *Matrix_GetColumn(Matrix matrix, int n);
+Mat_type *Matrix_GetColumn(Matrix matrix, size_t n);
 
-Mat_type *Matrix_GetRow(Matrix matrix, int n);
+Mat_type *Matrix_GetRow(Matrix matrix, size_t n);
 
 Matrix MatrixSum(Matrix mat, Matrix mat2);
 
@@ -46,11 +45,11 @@ Matrix Matrix_ScalarProduct(Matrix mat, Mat_type scalar);
 
 Matrix MatrixProduct(Matrix mat, Matrix mat2);
 
-Matrix Matrix_Suppressed(Matrix mat, int y, int x);
+Matrix Matrix_Suppressed(Matrix mat, size_t y, size_t x);
 
 Matrix Matrix_Transpose(Matrix mat);
 
-Matrix RandomDoubleMatrix(int y, int x, int range, double offset);
+Matrix RandomDoubleMatrix(size_t y, size_t x, size_t range, double offset);
 
 Mat_type Matrix_TwoByTwoDet(Matrix mat);
 
@@ -58,6 +57,8 @@ Mat_type Matrix_SarrusDet(Matrix mat);
 
 Mat_type Matrix_LaplaceDet(Matrix mat);
 
-void Matrix_Fill(Matrix matrix, Mat_type value, int y0, int x0);
+void Matrix_Fill(Matrix matrix, Mat_type value, size_t y0, size_t x0);
 
-void MatrixPrint(Matrix matrix);
+void MatrixPrsize_t(Matrix matrix);
+
+#endif //STARRY_MATRIX_H

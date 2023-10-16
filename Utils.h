@@ -10,6 +10,6 @@
 #include <stdlib.h>
 
 // data management
-void Swap(int* n, int* n2);
+void int_swap(int* n, int* n2);
 
-void CopyData(void* dest, size_t size, void* src);
+void bytes_copy(void* dest, size_t size, void* src);

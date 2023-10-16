@@ -5,8 +5,6 @@
 #ifndef STARRY_QUEUE_H
 #define STARRY_QUEUE_H
 
-#endif //STARRY_QUEUE_H
-
 #include "Nodes.h"
 
 typedef Node Queue;
@@ -20,4 +18,4 @@ void Queue_Add(Queue queue, QueueType info);
 
 NodeType Queue_GetFirst(Queue queue);
 
-void Queue_Print(Queue queue);
+#endif //STARRY_QUEUE_H

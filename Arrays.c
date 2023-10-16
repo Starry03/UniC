@@ -3,7 +3,7 @@
 //
 
 #include "Arrays.h"
-#include <stdio.h>
+#include <stdlib.h>
 #include <time.h>
 
 void *AllocateArray(size_t len, size_t varSize)
@@ -19,7 +19,7 @@ int *SortedIntArray(size_t len)
     return arr;
 }
 
-int *RandomIntArray(size_t len, int range)
+int *RandomIntArray(size_t len, size_t range)
 {
     srand(time(NULL));
     int *arr = (int *)AllocateArray(len, sizeof(int));
@@ -28,7 +28,7 @@ int *RandomIntArray(size_t len, int range)
     return arr;
 }
 
-double* RandomDoubleArray(size_t len, int range, double offset)
+double* RandomDoubleArray(size_t len, size_t range, double offset)
 {
     srand(time(NULL));
     double *arr = (double *)AllocateArray(len, sizeof(double));
@@ -40,13 +40,4 @@ double* RandomDoubleArray(size_t len, int range, double offset)
 int *IntArray_Zeros(size_t len)
 {
     return (int *)calloc(len, sizeof(int));
-}
-
-void PrintArray(int *arr, int size)
-{
-    for (int i = 0; i < size; i++)
-    {
-        printf("%d ", arr[i]);
-    }
-    printf("\n");
 }

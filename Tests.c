@@ -3,11 +3,12 @@
 //
 
 #include "Tests.h"
+
 #include <stdio.h>
 
-void test_int_to_int(int inputs[], int expected[], int n_test, int (func) (int)) {
-    int i = 0;
-    int passed = 0;
+void test_int_to_int(int inputs[], const int expected[], size_t n_test, int (func)(int)) {
+    size_t i = 0;
+    size_t passed = 0;
     int res;
     int expected_res;
     printf("%s", "TESTING\n");
@@ -18,12 +19,11 @@ void test_int_to_int(int inputs[], int expected[], int n_test, int (func) (int))
         if (res == expected_res) {
             printf("PASSED\n");
             passed++;
-        }
-        else
+        } else
             printf("FAILED\n");
         printf("Res: %d Expected: %d\n", res, expected_res);
         i++;
     }
-    printf("Passed: %d / %d\n", passed, n_test);
+    printf("Passed: %lld / %lld\n", passed, n_test);
     printf("%s", "END TEST\n\n");
 }

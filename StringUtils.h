@@ -6,7 +6,7 @@
 #ifndef STARRY_CLIBRARY_STRINGUTILS_H
 #define STARRY_CLIBRARY_STRINGUTILS_H
 
-#include <corecrt.h>
+#include <stddef.h>
 #include <stdbool.h>
 
 typedef char *String;

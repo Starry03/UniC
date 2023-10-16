@@ -113,7 +113,7 @@ void *Dictionary_Get(Dictionary dict, void *key, KeyType key_type) {
     }
     free(key);
     if (!res)
-        exit(EXIT_FAILURE);
+        exit(EXIT_FAILURE);  // nothing found
     return (res);
 }
 
