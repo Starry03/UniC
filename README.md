@@ -1,32 +1,50 @@
 # Starry_CLibrary
 
-## Version 1.2
+## Version 1.3
+
+## About
+
+This is a "library" with the purpose of storing univerity material and to experiment with C
+
+Feel free to use it, but please note that it is not optimized for performance.
 
 ## Data structures
 
 1. Arrays
 2. Binary tree
-3. Linked list
-4. Matrices
-5. Node
+3. Matrices
+4. Node
+5. Linked list
 6. Queue
 7. Vector
 8. Dictionary
 
 ### Dictionaries
 
-Hold every type of values (int, custom structs etc.)
+Handles native types
+
 example:
 
 ```c
-Matrix matrix = MatrixInit(4, 4);
-Matrix_Fill(matrix, 1, 1, 1);
+#include "Dictionary.h"
+#include <stdio.h>
 
-Dictionary dict = Dictionary_Create(100);
-Dictionary_Add(&dict, matrix, CreateInt(5), "struct");
-int mat = Dictionary_GetInt(Dictionary_Get(dict, matrix, "struct"));
-printf("%d\n", mat);
+int main() {
+    Dictionary dict = Dictionary_Create(10);
+    Dictionary_Add(
+            dict,
+            string("key"),
+            int_(1),
+            STRING
+    );
+    printf("%d\n", *(int *) Dictionary_Get(dict, string("key"), STRING));
+    Dictionary_Dealloc(dict);
+}
 ```
+
+##### Please note that the dictionary will not deallocate the memory of the values you put in it. You must do that yourself.
+
+###### Add & Get will ask for a malloc'd pointer, and will deallocate it in Get.
 
 ## Algorithms
 
@@ -35,7 +53,10 @@ printf("%d\n", mat);
 
 ## Utilities
 
+###### functions are implemented from scratch
+
 1. Math
+2. String
 
 ## Testing
 
