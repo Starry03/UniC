@@ -2,10 +2,8 @@
 // Created by andre on 5/14/2023.
 //
 
-#ifndef STARRY_BINARYTREE_H
-#define STARRY_BINARYTREE_H
-
-#endif //STARRY_BINARYTREE_H
+#ifndef BINARYTREE_H
+#define BINARYTREE_H
 
 #include <stdbool.h>
 
@@ -56,3 +54,5 @@ bool IsLeaf(BinaryTree tree);
 bool HasTwoNodes(BinaryTree tree);
 
 bool BinaryTree_DeleteTreeNode(BinaryTree *tree, TreeType value);
+
+#endif

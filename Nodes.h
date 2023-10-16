@@ -5,9 +5,7 @@
 #ifndef STARRY_CLIBRARY_NODES_H
 #define STARRY_CLIBRARY_NODES_H
 
-#endif //STARRY_CLIBRARY_NODES_H
-
-typedef void* NodeType;
+typedef void *NodeType;
 
 typedef struct Node_ {
     NodeType info;
@@ -16,8 +14,10 @@ typedef struct Node_ {
 
 typedef Node_ *Node;
 
-Node EmptyNode();
+static Node EmptyNode();
 
-Node Node_Allocate();
+static Node Node_Allocate();
 
 Node Node_Init(NodeType info);
+
+#endif //STARRY_CLIBRARY_NODES_H

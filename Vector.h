@@ -5,8 +5,6 @@
 #ifndef STARRY_VECTOR_H
 #define STARRY_VECTOR_H
 
-#endif //STARRY_VECTOR_H
-
 typedef struct Vector_2 {
     double x;
     double y;
@@ -80,3 +78,5 @@ void Vector3_Normalize(Vector3 v);
 void Vector2_Print(Vector2 v);
 
 void Vector3_Print(Vector3 v);
+
+#endif //STARRY_VECTOR_H

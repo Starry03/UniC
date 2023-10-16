@@ -2,73 +2,77 @@
 // Created by andre on 8/9/2023.
 //
 
-#ifndef STARRY_CLIBRARY_DICTIONARY_H
-#define STARRY_CLIBRARY_DICTIONARY_H
+#ifndef DICTIONARY_H
+#define DICTIONARY_H
 
-#endif //STARRY_CLIBRARY_DICTIONARY_H
+// forward declarations
 
-#define DEFAULT_SIZE 10
-#define SIZE_INCREMENT 10
-#define RESIZING_VALUE 10
-
-#define DICT_ERROR 104
-
-#include "LinkedList.h"
 #include <stdbool.h>
-#include <stdlib.h>
+#include <corecrt.h>
+#include "Nodes.h"
+#include "AllocationUtils.h"
+
+enum KeyType {
+    INT,
+    LONG,
+    FLOAT,
+    DOUBLE,
+    CHAR,
+    STRING,
+    STRUCT,
+};
+
+typedef enum KeyType KeyType;
+
+typedef char *String;
+typedef Node LinkedList;
+
+// end
 
 typedef struct DictObject {
     void *key;
     void *value;
+    KeyType key_type;
 } DictObject_;
 
 typedef DictObject_ *DictObject;
 
-void* DictObject_GetKey(DictObject dictObject);
-void* DictObject_GetValue(DictObject dictObject);
-
 typedef struct Dictionary_ {
     size_t size;
     size_t items_stored;
-    LinkedList **table;
+    LinkedList *table;
 } Dictionary_;
 
 typedef Dictionary_ *Dictionary;
 
 Dictionary Dictionary_Create(size_t size);
 
-LinkedList **AllocList(size_t size);
+static LinkedList *default_table(size_t size);
 
-size_t GetDimension(size_t size);
+static DictObject DictObj_Create(void *key, void *value, KeyType key_type);
 
-DictObject DictObject_Create(void *key, char* keyType, void* value);
+static size_t hash_key(void *key, KeyType key_type, size_t size);
 
-void InitListsToNull(LinkedList **dest, size_t length);
+void Dictionary_Add(Dictionary dict, void *key, void *value, KeyType key_type);
 
-void Dictionary_Add(Dictionary *dict, void *key, void *value, char *key_type);
+void Dictionary_AddStruct(Dictionary dict, void *key, void *value, size_t (*hash_fun)(void *));
 
-size_t Dictionary_GetIndex(void *key, const char *key_type, size_t dict_size);
+void *Dictionary_Get(Dictionary dict, void *key, KeyType key_type);
 
-void *Dictionary_Get(Dictionary dict, void *key, const char *key_type);
+static bool int_equals(int *x, int *y);
 
-// getters
+static bool long_equals(long *x, long *y);
 
-int Dictionary_GetInt(void *result);
+static bool float_equals(float *x, float *y);
 
-float Dictionary_GetFloat(void *result);
+static bool double_equals(double *x, double *y);
 
-char *Dictionary_GetString(void *result);
+static bool char_equals(char *x, char *y);
 
-bool CompareInt(void *a, void *b);
+static void *allocate_generic(void *value, size_t key_type);
 
-bool CompareFloat(void *a, void *b);
-
-bool CompareString(void *a, void *b);
-
-// dealloc
+static void DictObj_Dealloc(void *dictObject);
 
 void Dictionary_Dealloc(Dictionary dict);
 
-// debug
-
-void Dictionary_DebugTable(Dictionary dict);
+#endif

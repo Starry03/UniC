@@ -1,13 +1,13 @@
+#include "Dictionary.h"
 #include <stdio.h>
-#include <limits.h>
-
-#include "MathUtils.h"
-#include "Tests.h"
-
-int main()
-{
-    int inputs[] = {81, INT_MIN, INT_MAX, 9, 25, 143, 2500, 6241, 0, 1, -2};
-    int expected[] = {9, 0, 0, 3, 5, 0, 50, 79, 0, 1, 0};
-    test_int_to_int(inputs, expected, sizeof(inputs) / sizeof(int), &Math_int_sqrt);
-    return 0;
+int main() {
+    Dictionary dict = Dictionary_Create(10);
+    Dictionary_Add(
+            dict,
+            string("key"),
+            int_(1),
+            STRING
+    );
+    printf("%d\n", *(int *) Dictionary_Get(dict, string("key"), STRING));
+    Dictionary_Dealloc(dict);
 }

@@ -6,11 +6,11 @@
 
 #include <stdlib.h>
 
-Node EmptyNode() {
+static Node EmptyNode() {
     return (Node) NULL;
 }
 
-Node Node_Allocate() {
+static Node Node_Allocate() {
     return (Node) malloc(sizeof(Node_));
 }
 

@@ -15,15 +15,3 @@ void CopyData(void *dest, size_t size, void *src) {
         *((char *) (dest + i)) = *((char *) (src + i));
     }
 }
-
-int* CreateInt(int n) {
-    int* ptr = (int*) malloc(sizeof(int));
-    *ptr = n;
-    return ptr;
-}
-
-float* CreateFloat(float n) {
-    float* ptr = (float*) malloc(sizeof(float));
-    *ptr = n;
-    return ptr;
-}

@@ -8,15 +8,8 @@
 #endif //STARRY_UTILS_H
 
 #include <stdlib.h>
-#include <stdbool.h>
 
 // data management
 void Swap(int* n, int* n2);
 
 void CopyData(void* dest, size_t size, void* src);
-
-// data creation
-
-int* CreateInt(int n);
-
-float* CreateFloat(float n);

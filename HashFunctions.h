@@ -5,16 +5,23 @@
 #ifndef STARRY_CLIBRARY_HASHFUNCTIONS_H
 #define STARRY_CLIBRARY_HASHFUNCTIONS_H
 
-#endif //STARRY_CLIBRARY_HASHFUNCTIONS_H
-
-#include <stdlib.h>
+#include <corecrt.h>
 
 size_t normalize(size_t val, size_t size);
 
-size_t hashInt(void *key, size_t size);
+size_t hash_int(void *key, size_t size);
 
-size_t hashFloat(void *key, size_t size);
+size_t hash_long(void *key, size_t size);
 
-size_t hashString(void *key, size_t size);
+size_t hash_float(void *key, size_t size);
 
-size_t hashAddress(void* key, size_t size);
+size_t hash_double(void *key, size_t size);
+
+size_t hash_char(void *key, size_t size);
+
+size_t hash_string(void *key, size_t size);
+
+size_t hash_struct(void *key, size_t size, size_t struct_size);
+
+#endif //STARRY_CLIBRARY_HASHFUNCTIONS_H
+
