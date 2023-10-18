@@ -5,9 +5,9 @@
 #include <stdlib.h>
 
 #include "Dictionary.h"
-#include "LinkedList/LinkedList.h"
-#include "StringUtils/StringUtils.h"
-#include "Hashing/HashFunctions.h"
+#include "DataStructures/LinkedList/LinkedList.h"
+#include "Utils/StringUtils/StringUtils.h"
+#include "Utils/Hashing/HashFunctions.h"
 
 enum {
     DEFAULT_SIZE = 10,

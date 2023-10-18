@@ -4,7 +4,7 @@
 
 #include "Matrix.h"
 
-#include "Array/Arrays.h"
+#include "DataStructures/Array/Arrays.h"
 #include <stdio.h>
 #include <stdlib.h>
 

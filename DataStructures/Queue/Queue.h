@@ -5,7 +5,7 @@
 #ifndef STARRY_QUEUE_H
 #define STARRY_QUEUE_H
 
-#include "Nodes/Nodes.h"
+#include "../Nodes/Nodes.h"
 
 typedef Node Queue;
 typedef NodeType QueueType;

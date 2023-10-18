@@ -3,7 +3,7 @@
 //
 
 #include "AllocationUtils.h"
-#include "StringUtils/StringUtils.h"
+#include "Utils/StringUtils/StringUtils.h"
 
 #include <stdlib.h>
 

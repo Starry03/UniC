@@ -5,7 +5,7 @@
 #ifndef STARRY_CLIBRARY_LINKEDLIST_H
 #define STARRY_CLIBRARY_LINKEDLIST_H
 
-#include "Nodes/Nodes.h"
+#include "../Nodes/Nodes.h"
 
 typedef Node LinkedList;
 typedef NodeType Generic;

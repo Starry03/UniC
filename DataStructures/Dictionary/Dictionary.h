@@ -9,8 +9,8 @@
 
 #include <stdbool.h>
 #include <corecrt.h>
-#include "Nodes/Nodes.h"
-#include "AllocationUtils/AllocationUtils.h"
+#include "../Nodes/Nodes.h"
+#include "../../Utils/AllocationUtils/AllocationUtils.h"
 
 enum KeyType {
     INT,
