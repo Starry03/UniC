@@ -6,7 +6,10 @@
 
 This is a "library" with the purpose of storing univerity material and to experiment with C
 
-Feel free to use it, but please note that it is not optimized for performance.
+Feel free to use it, but please note:
+
+1. it's not optimized for performance
+2. it could be obviously improved
 
 ## Data structures
 
