@@ -4,7 +4,7 @@
 
 #include "Sorting.h"
 
-#include "Utils.h"
+#include "GenericUtils/GenericUtils.h"
 
 // O(n^2)
 void BubbleSort(int *array, size_t size) {

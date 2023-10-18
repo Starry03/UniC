@@ -4,13 +4,12 @@
 
 #include "Matrix.h"
 
-#include "Arrays.h"
+#include "Array/Arrays.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <MathUtils.h>
 
 Mat_type *InitRow(size_t len) {
-    return (Mat_type *) AllocateArray(len, sizeof(Mat_type));
+    return (Mat_type *) calloc(len, sizeof(Mat_type));
 }
 
 Mat_type **InitTable(size_t y, size_t x) {

@@ -1,6 +1,4 @@
-#include "Dictionary.h"
-#include <stdio.h>
-#include <stdlib.h>
+#include "DataStructures/Dictionary/dictionary.h"
 
 int main() {
 

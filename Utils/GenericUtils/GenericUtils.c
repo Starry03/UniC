@@ -2,7 +2,7 @@
 // Created by andre on 4/19/2023.
 //
 
-#include "Utils.h"
+#include "GenericUtils.h"
 
 void int_swap(int *n, int *n2) {
     int temp = *n2;

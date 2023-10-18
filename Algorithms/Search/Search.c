@@ -2,7 +2,7 @@
 // Created by andre on 4/18/2023.
 //
 
-#include "Utils.h"
+#include "GenericUtils/GenericUtils.h"
 
 // O(n)
 int LinearSearch(const int *arr, size_t length, size_t target) {
