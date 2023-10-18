@@ -9,7 +9,7 @@ char *string(char *string);
 
 int *int_(int int_);
 
-long *long_(long long_);
+long long *long_(long long long_);
 
 float *float_(float float_);
 

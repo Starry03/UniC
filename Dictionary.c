@@ -63,10 +63,19 @@ static size_t hash_key(void *key, KeyType key_type, size_t size) {
 }
 
 void Dictionary_Add(Dictionary dict, void *key, void *value, KeyType key_type) {
-    if (dict->items_stored == dict->size) {}
+    if (Dictionary_IsFull(dict)) {}
 
-    DictObject dictObject = DictObj_Create(key, value, key_type);
     const size_t index = hash_key(key, key_type, dict->size);
+    DictObject dictObject = DictObj_Create(key, value, key_type);
+    LinkedList_Append(dict->table + index, dictObject);
+    dict->items_stored++;
+}
+
+void Dictionary_AddGeneric(Dictionary dict, void *key, void *value, size_t (*hash_fun)(void *)) {
+    if (Dictionary_IsFull(dict)) {}
+
+    const size_t index = hash_fun(key);
+    DictObject dictObject = DictObj_Create(key, value, GENERIC);
     LinkedList_Append(dict->table + index, dictObject);
     dict->items_stored++;
 }
@@ -105,8 +114,6 @@ void *Dictionary_Get(Dictionary dict, void *key, KeyType key_type) {
             case STRING:
                 if (str_eq(buff->key, key))
                     res = buff->value;
-                break;
-            case STRUCT:
                 break;
         }
         bucket = LinkedList_GetNext(bucket);
@@ -149,4 +156,8 @@ void Dictionary_Dealloc(Dictionary dict) {
         LinkedList_Dealloc(dict->table[i], &DictObj_Dealloc);
     free(dict->table);
     free(dict);
+}
+
+bool Dictionary_IsFull(Dictionary dict) {
+    return (dict->size - dict->items_stored == 1);
 }

@@ -19,7 +19,7 @@ enum KeyType {
     DOUBLE,
     CHAR,
     STRING,
-    STRUCT,
+    GENERIC,
 };
 
 typedef enum KeyType KeyType;
@@ -51,13 +51,19 @@ static LinkedList *default_table(size_t size);
 
 static DictObject DictObj_Create(void *key, void *value, KeyType key_type);
 
+static void Dictionary_Rehash(Dictionary dict);
+
+static bool Dictionary_IsFull(Dictionary dict);
+
 static size_t hash_key(void *key, KeyType key_type, size_t size);
 
 void Dictionary_Add(Dictionary dict, void *key, void *value, KeyType key_type);
 
-void Dictionary_AddStruct(Dictionary dict, void *key, void *value, size_t (*hash_fun)(void *));
+void Dictionary_AddGeneric(Dictionary dict, void *key, void *value, size_t (*hash_fun)(void *));
 
 void *Dictionary_Get(Dictionary dict, void *key, KeyType key_type);
+
+void *Dictionary_GetGeneric(Dictionary dict, void *key, size_t (*hash_fun)(void *));
 
 static bool int_equals(int *x, int *y);
 

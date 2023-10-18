@@ -9,7 +9,7 @@ size_t normalize(size_t val, size_t size) {
 }
 
 size_t hash_int(void *key, size_t size) {
-    return normalize(*(size_t *) key, size);
+    return normalize(*(int *) key, size);
 }
 
 size_t hash_long(void *key, size_t size) {

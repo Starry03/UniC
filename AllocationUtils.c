@@ -7,7 +7,6 @@
 
 #include <stdlib.h>
 
-
 char *string(char *string) {
     char *new_string = (char *) malloc(str_len(string) * sizeof(char));
     str_cpy(new_string, string, true);
@@ -20,8 +19,8 @@ int *int_(int int_) {
     return (new_int);
 }
 
-long *long_(long long_) {
-    long *new_long = (long *) malloc(sizeof(long));
+long long *long_(long long long_) {
+    long long *new_long = (long long *) malloc(sizeof(long long));
     *new_long = long_;
     return (new_long);
 }

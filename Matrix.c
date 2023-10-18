@@ -60,7 +60,7 @@ Mat_type *Matrix_GetColumn(Matrix matrix, size_t n) {
 Matrix MatrixSum(Matrix mat, Matrix mat2) {
     Matrix newMatrix = MatrixInit(mat->rows, mat->cols);
     if ((mat->rows != mat2->rows) || (mat->cols != mat2->cols)) {
-        prsize_tf("cannot be summed");
+        printf("cannot be summed");
         return newMatrix;
     }
     for (size_t y = 0; y < mat->rows; y++) {
@@ -84,7 +84,7 @@ Matrix Matrix_ScalarProduct(Matrix mat, Mat_type scalar) {
 Matrix MatrixProduct(Matrix mat, Matrix mat2) {
     Matrix newMatrix = MatrixInit(mat->rows, mat2->cols);
     if (mat->cols != mat2->rows) {
-        prsize_tf("Cannot be multiplied, incompatible dimensions");
+        printf("Cannot be multiplied, incompatible dimensions");
         return newMatrix;
     }
     for (size_t y = 0; y < mat->rows; y++) {
@@ -102,12 +102,12 @@ Matrix MatrixProduct(Matrix mat, Matrix mat2) {
 Matrix Matrix_Suppressed(Matrix mat, size_t y, size_t x) {
     // error handling
     if (mat->rows < 2 && mat->cols < 2) {
-        prsize_tf("Mat cannot be modified (insufficient size)");
+        printf("Mat cannot be modified (insufficient size)");
         return mat;
     }
 
     if (y >= mat->rows || x >= mat->cols) {
-        prsize_tf("Mat cannot be modified (out of bounds)");
+        printf("Mat cannot be modified (out of bounds)");
         return mat;
     }
 
@@ -193,12 +193,12 @@ void Matrix_Fill(Matrix matrix, Mat_type value, size_t y0, size_t x0) {
 }
 
 void MatrixPrsize_t(Matrix matrix) {
-    prsize_tf("Mat:\n");
+    printf("Mat:\n");
     for (size_t y = 0; y < matrix->rows; y++) {
         for (size_t x = 0; x < matrix->cols; x++) {
-            prsize_tf("%lf ", matrix->table[y][x]);
+            printf("%lf ", matrix->table[y][x]);
         }
-        prsize_tf("\n");
+        printf("\n");
     }
 }
 
