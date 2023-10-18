@@ -45,9 +45,9 @@ int main() {
 }
 ```
 
-##### Please note that the dictionary will not deallocate the memory of the values you put in it. You must do that yourself.
+Note that dictionary must be deallocated
 
-###### Add & Get will ask for a malloc'd pointer, and will deallocate it in Get.
+Add & Get will ask for a malloc'd pointer, Add will not deallocate the key, but Get will
 
 ## Algorithms
 
