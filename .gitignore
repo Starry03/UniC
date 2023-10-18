@@ -1,6 +1,9 @@
+# folders
 cmake-build-debug
+.idea
+.vscode
+
+# files
 CMakeLists.txt
 *.xml
 *.iml
-.idea
-.vscode
