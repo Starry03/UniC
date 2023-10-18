@@ -2,3 +2,5 @@ cmake-build-debug
 CMakeLists.txt
 *.xml
 *.iml
+.idea
+.vscode
