@@ -8,11 +8,11 @@
 #include <stdlib.h>
 #include <math.h>
 
-Vector2 AllocateVector2() {
+static Vector2 AllocateVector2() {
     return (Vector2) malloc(VECTOR2_SIZE);
 }
 
-Vector3 AllocateVector3() {
+static Vector3 AllocateVector3() {
     return (Vector3) malloc(VECTOR3_SIZE);
 }
 
@@ -30,35 +30,6 @@ Vector3 InitVector3(double x, double y, double z) {
     vector->z = z;
     return vector;
 }
-
-Vector2 Vector_Up() {
-    return InitVector2(0, 0);
-}
-
-Vector2 Vector2_Right() {
-    return InitVector2(1, 0);
-}
-
-Vector3 Vector3_Up() {
-    return InitVector3(0, 1, 0);
-}
-
-Vector3 Vector3_Right() {
-    return InitVector3(1, 0, 0);
-}
-
-Vector3 Vector3_Forward() {
-    return InitVector3(0, 0, 1);
-}
-
-Vector3 Vector3_Zero() {
-    return InitVector3(0, 0, 0);
-}
-
-Vector3 Vector3_One() {
-    return InitVector3(1, 1, 1);
-}
-
 
 Vector2 Vector2_Sum(Vector2 v, Vector2 v2) {
     return InitVector2(
@@ -137,4 +108,12 @@ void Vector2_Print(Vector2 v) {
 
 void Vector3_Print(Vector3 v) {
     printf("Vector:\nx: %lf y: %lf z: %lf\n", v->x, v->y, v->z);
+}
+
+void Vector2_Free(Vector2 v) {
+    free(v);
+}
+
+void Vector3_Free(Vector3 v) {
+    free(v);
 }

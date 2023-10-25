@@ -12,9 +12,6 @@ typedef struct Vector_2 {
 
 typedef Vector_2 *Vector2;
 
-#define VECTOR2_UP {0, 1};
-#define VECTOR2_RIGHT {1, 0};
-
 typedef struct Vector_3 {
     double x;
     double y;
@@ -23,31 +20,20 @@ typedef struct Vector_3 {
 
 typedef Vector_3 *Vector3;
 
+// Constants
+
 #define VECTOR2_SIZE 16
 #define VECTOR3_SIZE 24
-#define VECTOR3_RIGHT {1, 0, 0};
-#define VECTOR3_UP {0, 1, 0};
-#define VECTOR3_FORWARD {0, 0, 1};
-#define VECTOR3_ZERO {0, 0, 0};
-#define VECTOR3_ONE {1, 1, 1};
+#define VECTOR2_UP InitVector2(0, 1)
+#define VECTOR2_RIGHT InitVector2(1, 0)
+#define VECTOR3_RIGHT InitVector3(1, 0, 0)
+#define VECTOR3_UP InitVector3(0, 1, 0)
+#define VECTOR3_FORWARD InitVector3(0, 0, 1)
+#define VECTOR3_ZERO InitVector3(0, 0, 0)
+#define VECTOR3_ONE InitVector3(1, 1, 1)
+static Vector2 AllocateVector2();
 
-Vector2 AllocateVector2();
-
-Vector3 AllocateVector3();
-
-Vector2 Vector_Up();
-
-Vector2 Vector2_Right();
-
-Vector3 Vector3_Up();
-
-Vector3 Vector3_Right();
-
-Vector3 Vector3_Forward();
-
-Vector3 Vector3_Zero();
-
-Vector3 Vector3_One();
+static Vector3 AllocateVector3();
 
 Vector2 InitVector2(double x, double y);
 
@@ -78,5 +64,9 @@ void Vector3_Normalize(Vector3 v);
 void Vector2_Print(Vector2 v);
 
 void Vector3_Print(Vector3 v);
+
+void Vector2_Free(Vector2 v);
+
+void Vector3_Free(Vector3 v);
 
 #endif //STARRY_VECTOR_H

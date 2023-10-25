@@ -13,7 +13,7 @@ void test_int_to_int(int inputs[], const int expected[], size_t n_test, int (fun
     int expected_res;
     printf("%s", "TESTING\n");
     while (i < n_test) {
-        printf("Test %d\nInput: %d\n", i, inputs[i]);
+        printf("Test %zu\nInput: %d\n", i, inputs[i]);
         res = func(inputs[i]);
         expected_res = expected[i];
         if (res == expected_res) {
