@@ -9,6 +9,8 @@ int Math_int_sqrt(int x);
 
 int Math_int_sq(int x);
 
-int Math_int_power(int x, int exp);
+int Math_int_pow(int x, int exp);
+
+float Math_float_pow(float x, float exp);
 
 #endif //STARRY_CLIBRARY_MATH_H

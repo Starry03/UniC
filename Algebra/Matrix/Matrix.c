@@ -217,6 +217,12 @@ void Matrix_Print(Matrix matrix) {
     }
 }
 
+void Matrix_Free(Matrix matrix) {
+    for (size_t i = 0; i < matrix->rows; i++) free(matrix->table[i]);
+    free(matrix->table);
+    free(matrix);
+}
+
 Mat_type Matrix_GetValue(Matrix matrix, size_t y, size_t x) {
     return (matrix->table[y][x]);
 }
