@@ -35,9 +35,9 @@ static Vector2 AllocateVector2();
 
 static Vector3 AllocateVector3();
 
-Vector2 InitVector2(double x, double y);
+Vector2 Vector2_init(double x, double y);
 
-Vector3 InitVector3(double x, double y, double z);
+Vector3 Vector3_init(double x, double y, double z);
 
 Vector2 Vector2_Sum(Vector2 v, Vector2 v2);
 

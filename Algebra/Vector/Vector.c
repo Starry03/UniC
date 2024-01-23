@@ -16,14 +16,14 @@ static Vector3 AllocateVector3() {
     return (Vector3) malloc(VECTOR3_SIZE);
 }
 
-Vector2 InitVector2(double x, double y) {
+Vector2 Vector2_init(double x, double y) {
     Vector2 vector = AllocateVector2();
     vector->x = x;
     vector->y = y;
     return vector;
 }
 
-Vector3 InitVector3(double x, double y, double z) {
+Vector3 Vector3_init(double x, double y, double z) {
     Vector3 vector = AllocateVector3();
     vector->x = x;
     vector->y = y;
@@ -32,14 +32,14 @@ Vector3 InitVector3(double x, double y, double z) {
 }
 
 Vector2 Vector2_Sum(Vector2 v, Vector2 v2) {
-    return InitVector2(
+    return Vector2_init(
             v->x + v2->x,
             v->y + v2->y
     );
 }
 
 Vector3 Vector3_Sum(Vector3 v, Vector3 v2) {
-    return InitVector3(
+    return Vector3_init(
             v->x + v2->x,
             v->y + v2->y,
             v->z + v2->z
@@ -47,14 +47,14 @@ Vector3 Vector3_Sum(Vector3 v, Vector3 v2) {
 }
 
 Vector2 Vector2_Mul(double num, Vector2 v) {
-    return InitVector2(
+    return Vector2_init(
             num * (v->x),
             num * (v->y)
     );
 }
 
 Vector3 Vector3_Mul(double num, Vector3 v) {
-    return InitVector3(
+    return Vector3_init(
             v->x *= num,
             v->y *= num,
             v->z *= num
@@ -70,7 +70,7 @@ double Vector3_ScalarProduct(Vector3 v, Vector3 v2) {
 }
 
 Vector3 Vector3_VectorialProduct(Vector3 v, Vector3 v2) {
-    return InitVector3(
+    return Vector3_init(
             v->y * v2->z + v->z * v2->y,
             v->z * v2->x + v->x * v2->z,
             v->x * v2->y + v->y * v2->x
