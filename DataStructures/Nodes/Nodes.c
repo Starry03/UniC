@@ -16,6 +16,8 @@ static Node Node_Allocate() {
 
 Node Node_Init(void *info) {
     Node node = Node_Allocate();
+	if (!node)
+		return EmptyNode();
     node->info = info;
     node->next = EmptyNode();
     return node;

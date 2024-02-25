@@ -7,24 +7,36 @@
 #include <stdlib.h>
 
 Queue EmptyQueue() {
-    return NULL;
+    return (Queue)NULL;
 }
 
-Queue Queue_Init(QueueType info) {
+Queue Queue_Init(Generic info) {
     Queue queue = (Queue) malloc(sizeof(Node));
+	if (!queue)
+		return EmptyQueue();
     queue->info = info;
     queue->next = NULL;
     return queue;
 }
 
-void Queue_Add(Queue queue, QueueType info) {
-    if (queue == NULL) { return; }
+void Queue_Add(Queue queue, Generic info) {
+	Queue node;
+    if (queue == NULL)
+		return;
     while (queue->next != NULL) {
         queue = queue->next;
     }
-    queue->next = Queue_Init(info);
+	node = Queue_Init(info);
+	if (!node)
+		return;
+    queue->next = node;
 }
 
-QueueType Queue_GetFirst(Queue queue) {
-    return queue->info;
+Generic Queue_Get(Queue *queue) {
+	Queue node;
+	if (!queue || !*queue)
+		return (Generic)NULL;
+	node = *queue;
+    *queue = node->next;
+	return node->info;
 }

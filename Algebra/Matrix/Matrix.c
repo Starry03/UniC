@@ -4,7 +4,6 @@
 
 #include "Matrix.h"
 
-#include "DataStructures/Array/Arrays.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -24,6 +23,8 @@ static Mat_type **InitTable(size_t y, size_t x) {
 
 Matrix Matrix_Init(size_t y, size_t x) {
     Matrix matrix = (Matrix) malloc(sizeof(Mat));
+	if (!matrix)
+		return NULL;
     matrix->table = InitTable(y, x);
     matrix->cols = x;
     matrix->rows = y;
@@ -140,14 +141,6 @@ Matrix Matrix_Transpose(Matrix mat) {
     return (newMatrix);
 }
 
-Matrix RandomDoubleMatrix(size_t y, size_t x, size_t range, double offset) {
-    Matrix matrix = Matrix_Init(y, x);
-    for (size_t row = 0; row < matrix->rows; row++)
-        matrix->table[row] = RandomDoubleArray(x, range, offset);
-
-    return (matrix);
-}
-
 Mat_type Matrix_TwoByTwoDet(Matrix mat) {
     if (mat->rows != 2 || mat->cols != 2) {
         printf("%s \n", TWOBTWO_ERROR);
@@ -218,7 +211,8 @@ void Matrix_Print(Matrix matrix) {
 }
 
 void Matrix_Free(Matrix matrix) {
-    for (size_t i = 0; i < matrix->rows; i++) free(matrix->table[i]);
+    for (size_t i = 0; i < matrix->rows; i++)
+		free(matrix->table[i]);
     free(matrix->table);
     free(matrix);
 }

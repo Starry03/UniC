@@ -45,8 +45,6 @@ Matrix Matrix_Suppressed(Matrix mat, size_t y, size_t x);
 
 Matrix Matrix_Transpose(Matrix mat);
 
-Matrix RandomDoubleMatrix(size_t y, size_t x, size_t range, double offset);
-
 Mat_type Matrix_TwoByTwoDet(Matrix mat);
 
 Mat_type Matrix_SarrusDet(Matrix mat);

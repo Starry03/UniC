@@ -2,20 +2,19 @@
 // Created by andre on 5/5/2023.
 //
 
-#ifndef STARRY_QUEUE_H
-#define STARRY_QUEUE_H
+#ifndef QUEUE_H
+#define QUEUE_H
 
 #include "../Nodes/Nodes.h"
 
 typedef Node Queue;
-typedef NodeType QueueType;
 
 Queue EmptyQueue();
 
-Queue Queue_Init(QueueType info);
+Queue Queue_Init(Generic info);
 
-void Queue_Add(Queue queue, QueueType info);
+void Queue_Add(Queue queue, Generic info);
 
-NodeType Queue_GetFirst(Queue queue);
+Generic Queue_Get(Queue *queue);
 
-#endif //STARRY_QUEUE_H
+#endif //QUEUE_H

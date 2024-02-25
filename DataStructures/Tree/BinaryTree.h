@@ -55,4 +55,4 @@ bool HasTwoNodes(BinaryTree tree);
 
 bool BinaryTree_DeleteTreeNode(BinaryTree *tree, TreeType value);
 
-#endif
+#endif //BINARYTREE_H

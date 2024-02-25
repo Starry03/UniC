@@ -25,11 +25,11 @@ size_t str_cmp(String str, String str2);
 
 size_t str_ncmp(String str, String str2, size_t n);
 
-void str_cpy(String dest, String src, bool terminated);
+void str_cpy(String dest, String src);
 
-void str_ncpy(String dest, String src, size_t n, bool terminated);
+void str_ncpy(String dest, String src, size_t n);
 
-size_t separator_generated_strings(String str, String sep);
+size_t count_words(String str, String sep);
 
 String *split(String str, String sep);
 
