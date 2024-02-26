@@ -6,13 +6,17 @@
 #define DICTIONARY_H
 
 #include <stdbool.h>
-#include <corecrt.h>
+#include <stddef.h>
 #include "../../DataStructures/LinkedList/LinkedList.h"
-#include "../../Utils/AllocationUtils/AllocationUtils.h"
 
 typedef struct s_dictionary {
 	LinkedList **buckets;
 	size_t size;
 } t_dictionary;
+
+typedef t_dictionary *Dict;
+
+Dict Dict_init(size_t size);
+Dict Dict_free();
 
 #endif

@@ -4,6 +4,8 @@
 
 #include "HashFunctions.h"
 
+#define PRIME 31
+
 size_t normalize(size_t val, size_t size) {
     return val % size;
 }
@@ -35,4 +37,13 @@ size_t hash_string(void *key, size_t size) {
     while (k[i])
         val += (int) k[i++];
     return normalize(val, size);
+}
+
+size_t hash_addr(Generic addr, size_t size) {
+	size_t out = 0;
+	size_t i = 0;
+    String pointer = (String)addr;
+	while (i < 8)
+		out += pointer[i] * PRIME;
+	return normalize(out, size);
 }

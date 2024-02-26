@@ -10,6 +10,7 @@ void free_int(Generic addr)
 }
 
 int main() {
+	printf("ciao\n");
 	int *a = (int *) malloc(sizeof(int));
 	*a = 10;
 

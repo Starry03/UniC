@@ -32,17 +32,6 @@ BinaryTree BinaryTree_Right(BinaryTree tree) {
     return tree->right;
 }
 
-// "l" or "L" == left
-// "r" or "R" == right
-BinaryTree GoTo(BinaryTree tree, char *direction) {
-
-    direction = strlwr(direction);
-    if (!strcmp(direction, "l")) return BinaryTree_Left(tree);
-    else if (!strcmp(direction, "r")) return BinaryTree_Right(tree);
-    // invalid direction
-    return tree;
-}
-
 int BinaryTree_Depth(BinaryTree tree) {
     if (TreeIsEmpty(tree)) return 0;
     int left = BinaryTree_Depth(BinaryTree_Left(tree));

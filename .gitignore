@@ -2,8 +2,8 @@
 cmake-build-debug
 .idea
 .vscode
+build/
 
 # files
-CMakeLists.txt
 *.xml
 *.iml

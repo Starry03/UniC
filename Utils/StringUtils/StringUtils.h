@@ -8,8 +8,7 @@
 
 #include <stddef.h>
 #include <stdbool.h>
-
-typedef char *String;
+#include "../GenericUtils/types.h"
 
 bool char_null(char c);
 

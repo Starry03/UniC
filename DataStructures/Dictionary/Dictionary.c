@@ -6,5 +6,5 @@
 
 #include <stdlib.h>
 #include <string.h>
-#include "DataStructures/LinkedList/LinkedList.h"
-#include "Utils/Hashing/HashFunctions.h"
+#include "../LinkedList/LinkedList.h"
+#include "../../Utils/Hashing/HashFunctions.h"

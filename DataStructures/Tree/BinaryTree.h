@@ -33,8 +33,6 @@ BinaryTree BinaryTree_Right(BinaryTree tree);
 
 TreeType BinaryTree_Value(BinaryTree tree);
 
-BinaryTree GoTo(BinaryTree tree, char *direction);
-
 int BinaryTree_Depth(BinaryTree tree);
 
 int BinaryTree_MaxNodesNumber(int depth);
