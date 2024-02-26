@@ -11,7 +11,7 @@ void BubbleSort(int *array, size_t size) {
     int swapped;
     while (1) {
         swapped = 0;
-        for (int i = 0; i < size - 1; i++) {
+        for (size_t i = 0; i < size - 1; i++) {
             if (array[i] > array[i + 1]) {
                 int_swap(&array[i], &(array[i + 1]));
                 swapped = 1;
@@ -23,7 +23,7 @@ void BubbleSort(int *array, size_t size) {
 
 // O(n^2)
 void InsertionSort(int *array, size_t size) {
-    for (int i = 1; i < size; i++) {
+    for (size_t i = 1; i < size; i++) {
         int currentIndex = i;
         while (currentIndex > 0 && array[currentIndex] < array[currentIndex - 1]) {
             int_swap(array + currentIndex, array + currentIndex - 1);
@@ -52,7 +52,7 @@ void Merge(int *arr, size_t low, size_t mid, size_t high) {
     else while (right <= high) temp[tempCounter++] = arr[right++];
 
     // copy temp to arr
-    for (int i = 0; i < tempLength; i++) arr[low + i] = temp[i];
+    for (size_t i = 0; i < tempLength; i++) arr[low + i] = temp[i];
 }
 
 // O(n log n)

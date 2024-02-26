@@ -13,6 +13,6 @@ void int_swap(int *n, int *n2) {
 void bytes_copy(void *dest, size_t size, void *src) {
     if (dest == NULL || src == NULL) return;
 
-    for (int i = 0; i < size; i++)
-        *((char *) (dest + i)) = *((char *) (src + i));
+    for (size_t i = 0; i < size; i++)
+        ((char *)dest)[i] = ((char *)src)[i];
 }

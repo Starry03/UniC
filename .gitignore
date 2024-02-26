@@ -8,3 +8,6 @@ build/
 CMakeLists.txt
 *.xml
 *.iml
+
+# linux
+*.sh
