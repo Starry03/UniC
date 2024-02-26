@@ -8,7 +8,7 @@
 
 #include <stddef.h>
 #include <stdbool.h>
-#include "../GenericUtils/types.h"
+#include "../types.h"
 
 bool char_null(char c);
 

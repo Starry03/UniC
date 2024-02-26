@@ -6,7 +6,7 @@
 #define STARRY_CLIBRARY_HASHFUNCTIONS_H
 
 #include <stddef.h>
-#include "../GenericUtils/types.h"
+#include "../types.h"
 
 size_t normalize(size_t val, size_t size);
 

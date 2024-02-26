@@ -3,18 +3,23 @@
 //
 
 #include "Sorting.h"
+#include <stdbool.h>
 
-#include "../../Utils/GenericUtils/GenericUtils.h"
+static void int_swap(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
 
 // O(n^2)
 void BubbleSort(int *array, size_t size) {
-    int swapped;
-    while (1) {
-        swapped = 0;
+    bool swapped;
+    while (true) {
+        swapped = false;
         for (size_t i = 0; i < size - 1; i++) {
             if (array[i] > array[i + 1]) {
                 int_swap(&array[i], &(array[i + 1]));
-                swapped = 1;
+                swapped = true;
             }
         }
         if (!swapped) break;
@@ -58,12 +63,12 @@ void Merge(int *arr, size_t low, size_t mid, size_t high) {
 // O(n log n)
 void MergeSort_rec(int *arr, size_t low, size_t high) {
     // low < high when there are at least 2 elements
-    if (low < high) {
-        size_t mid = (low + high) / 2;
-        MergeSort_rec(arr, low, mid);
-        MergeSort_rec(arr, mid + 1, high);
-        Merge(arr, low, mid, high);
-    }
+    if (low >= high)
+        return;
+    size_t mid = (low + high) / 2;
+    MergeSort_rec(arr, low, mid);
+    MergeSort_rec(arr, mid + 1, high);
+    Merge(arr, low, mid, high);
 }
 
 // O(n log n)

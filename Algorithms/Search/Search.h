@@ -6,9 +6,10 @@
 #define STARRY_SEARCH_H
 
 #include <stddef.h>
+#include "../../Utils/types.h"
 
-size_t LinearSearch(const int *arr, size_t length, size_t target);
+size_t LinearSearch(const Generic *arr, size_t length, Generic target);
 
-size_t BinarySearch(const int arr[], size_t length, size_t target);
+size_t BinarySearch(const Generic *arr, size_t length, Generic target);
 
 #endif //STARRY_SEARCH_H

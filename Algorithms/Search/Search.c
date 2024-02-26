@@ -2,13 +2,14 @@
 // Created by andre on 4/18/2023.
 //
 
-#include "../../Utils/GenericUtils/GenericUtils.h"
+#include "Search.h"
 
 // O(n)
-int LinearSearch(const int *arr, size_t length, size_t target) {
-    int count = 0;
+size_t LinearSearch(const Generic *arr, size_t length, Generic target) {
+    size_t count = 0;
     while (count < length) {
-        if (arr[count] == target) return count;
+        if (arr[count] == target)
+            return count;
         count++;
     }
     return -1;
@@ -16,7 +17,7 @@ int LinearSearch(const int *arr, size_t length, size_t target) {
 
 // Arr has to be sorted
 // O(log n)
-size_t BinarySearch(const int arr[], size_t length, size_t target) {
+size_t BinarySearch(const Generic *arr, size_t length, Generic target) {
     size_t left = 0;
     size_t right = length - 1;
     size_t mid;
