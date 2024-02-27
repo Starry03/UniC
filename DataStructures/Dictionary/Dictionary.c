@@ -22,6 +22,7 @@ static Dict_obj Dict_Obj_Init(Generic key, Generic value, void (*dealloc_key)(Ge
 	obj->value = value;
 	obj->dealloc_key = dealloc_key;
 	obj->dealloc_value = dealloc_value;
+	return obj;
 }
 
 static void Dict_Obj_Dealloc(Generic dict_obj)
