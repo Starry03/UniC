@@ -29,25 +29,35 @@ Handles native types
 example:
 
 ```c
-#include "Dictionary.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include "./DataStructures/Dictionary/Dictionary.h"
+
+void free_int(Generic addr)
+{
+	addr = (int *)addr;
+	printf("freeing: %p <==> %d\n", addr, *(int *)addr);
+	free(addr);
+}
 
 int main() {
-    Dictionary dict = Dictionary_Create(10);
-    Dictionary_Add(
-            dict,
-            string("key"),
-            int_(1),
-            STRING
-    );
-    printf("%d\n", *(int *) Dictionary_Get(dict, string("key"), STRING));
-    Dictionary_Dealloc(dict);
+	int *a, *b;
+	a = (malloc(sizeof(int)));
+	*a = 10;
+
+	b = (malloc(sizeof(int)));
+	*b = 20;
+
+	Dict dict = Dict_init(10);
+	Dict_Add(dict, a, b, &free_int, &free_int);
+
+	printf("value: %d\n", *(int *)Dict_Get(dict, a));
+
+	Dict_free(dict);
 }
 ```
 
 Note that dictionary must be deallocated
-
-Add & Get will ask for a malloc'd pointer, Add will not deallocate the key, but Get will
 
 ## Algorithms
 
