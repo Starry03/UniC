@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "DataStructures/LinkedList/LinkedList.h"
+#include "./DataStructures/Dictionary/Dictionary.h"
 
 void free_int(Generic addr)
 {
@@ -10,32 +10,17 @@ void free_int(Generic addr)
 }
 
 int main() {
-	int *a = (int *) malloc(sizeof(int));
+	int *a, *b;
+	a = (malloc(sizeof(int)));
 	*a = 10;
 
-	int *b = (int *) malloc(sizeof(int));
+	b = (malloc(sizeof(int)));
 	*b = 20;
 
-	LinkedList list = LinkedList_Init(a);
-	LinkedList head = list;
-	LinkedList_Append(&list, b);
-	// a -> b -> null
-	while (list)
-	{
-		printf("info: %d\n", *(int *)LinkedList_GetInfo(list));
-		list = LinkedList_GetNext(list);
-	}
+	Dict dict = Dict_init(10);
+	Dict_Add(dict, a, b, &free_int, &free_int);
 
-	list = head;
-	printf("removing b...\n");
-	LinkedList_Remove(&list, b, &free_int);
+	printf("value: %d\n", *(int *)Dict_Get(dict, a));
 
-	list = head;
-	while (list)
-	{
-		printf("info: %d\n", *(int *)LinkedList_GetInfo(list));
-		list = LinkedList_GetNext(list);
-	}
-
-	LinkedList_Dealloc(head, &free_int);
+	Dict_free(dict);
 }

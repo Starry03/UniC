@@ -14,10 +14,6 @@ typedef struct Node_ {
 
 typedef Node_ *Node;
 
-static Node EmptyNode();
-
-static Node Node_Allocate();
-
 Node Node_Init(Generic info);
 
 #endif //NODES_H

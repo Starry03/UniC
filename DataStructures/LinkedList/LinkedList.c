@@ -6,6 +6,8 @@
 
 #include <stdlib.h>
 
+#include <stdio.h>
+
 LinkedList EmptyList() {
 	return (LinkedList) NULL;
 }
@@ -24,41 +26,26 @@ LinkedList LinkedList_Init(Generic value) {
 }
 
 void LinkedList_Push(LinkedList *list, Generic object) {
-	if (!list || !object)
-		return;
-	LinkedList newNode = Node_Init(object);
-	if (!newNode)
-		return;
-	newNode->next = *list;
-	*list = newNode;
+	LinkedList node = LinkedList_Init(object);
+	node->next = *list;
+	*list = node;
 }
 
-void LinkedList_Append(LinkedList *list, Generic value) {
-	if (!list || !value)
+void LinkedList_Remove(LinkedList *node, void(*dealloc)(Generic)) {
+	if (!node || !*node || !dealloc)
 		return;
-	if (*list == EmptyList()) {
-		*list = LinkedList_Init(value);
-		return;
-	}
-	LinkedList newNode = Node_Init(value);
-	while (*list != EmptyList())
-		list = &(*list)->next;
-	*list = newNode;
+	LinkedList next = LinkedList_GetNext(*node);
+	dealloc(LinkedList_GetInfo(*node));
+	free(*node);
+	*node = next;
 }
 
-void LinkedList_Remove(LinkedList *list, Generic value, void(*dealloc)(Generic)) {
-	if (!list || !value)
+void LinkedList_RemoveByValue(LinkedList *list, Generic value, void(*dealloc)(Generic)) {
+	if (!list || !*list || !value)
 		return;
-	while (*list != EmptyList()) {
-		if (LinkedList_GetInfo(*list) == value) {
-			LinkedList target = LinkedList_GetNext(*list);
-			dealloc((*list)->info);
-			free(*list);
-			*list = target;
-			return;
-		}
+	while (LinkedList_GetInfo(*list) != value)
 		list = &((*list)->next);
-	}
+	LinkedList_Remove(list, dealloc);
 }
 
 LinkedList LinkedList_GetNode(LinkedList list, Generic value)
@@ -93,3 +80,4 @@ void LinkedList_Dealloc(LinkedList head, void(*dealloc)(Generic)) {
 		head = next;
 	}
 }
+

@@ -9,6 +9,8 @@
 #include <stddef.h>
 #include "../../DataStructures/LinkedList/LinkedList.h"
 
+#define DEFAULT_SIZE 10
+
 typedef struct s_dictionary {
 	LinkedList *buckets;
 	size_t size;
@@ -16,9 +18,21 @@ typedef struct s_dictionary {
 
 typedef t_dictionary *Dict;
 
+typedef struct s_dict_obj {
+	Generic key;
+	Generic value;
+	void(*dealloc_key)(Generic);
+	void(*dealloc_value)(Generic);
+} t_dict_obj;
+
+typedef t_dict_obj *Dict_obj;
+
+void Dict_obj_dealloc(Generic dict_obj);
+
 Dict Dict_init(size_t size);
-void Dict_Add(Dict dict, Generic value);
-void Dict_Remove(Dict dict, Generic value);
-Dict Dict_free();
+void Dict_Add(Dict dict, Generic key, Generic value, void(*dealloc_key)(Generic), void(*dealloc_value)(Generic));
+void *Dict_Get(Dict dict, Generic key);
+void Dict_Remove(Dict dict, Generic key);
+void Dict_free(Dict dict);
 
 #endif

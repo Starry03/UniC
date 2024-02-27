@@ -3,6 +3,7 @@
 //
 
 #include "HashFunctions.h"
+#include <stdint.h>
 
 #define PRIME 31
 
@@ -40,10 +41,6 @@ size_t hash_string(void *key, size_t size) {
 }
 
 size_t hash_addr(Generic addr, size_t size) {
-	size_t out = 0;
-	size_t i = 0;
-    String pointer = (String)addr;
-	while (i < 8)
-		out += pointer[i] * PRIME;
+	uint64_t out = (uint64_t) addr;
 	return normalize(out, size);
 }
