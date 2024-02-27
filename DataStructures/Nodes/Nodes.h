@@ -5,7 +5,7 @@
 #ifndef NODES_H
 #define NODES_H
 
-typedef void *Generic;
+#include "../../Utils/types.h"
 
 typedef struct Node_ {
 	Generic info;

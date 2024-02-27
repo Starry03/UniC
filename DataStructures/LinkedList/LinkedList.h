@@ -23,6 +23,8 @@ LinkedList LinkedList_GetNext(LinkedList list);
 
 Generic LinkedList_GetInfo(LinkedList list);
 
+LinkedList LinkedList_GetNode(LinkedList list, Generic value);
+
 void LinkedList_Dealloc(LinkedList head, void (*dealloc)(Generic));
 
 #endif //LINKEDLIST_H

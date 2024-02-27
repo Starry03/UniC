@@ -61,6 +61,15 @@ void LinkedList_Remove(LinkedList *list, Generic value, void(*dealloc)(Generic))
 	}
 }
 
+LinkedList LinkedList_GetNode(LinkedList list, Generic value)
+{
+	if (!list || !value)
+		return EmptyList();
+	while (LinkedList_GetInfo(list) != value)
+		list = LinkedList_GetNext(list);
+	return list;
+}
+
 LinkedList LinkedList_GetNext(LinkedList list) {
 	if (!list)
 		return (LinkedList) NULL;
