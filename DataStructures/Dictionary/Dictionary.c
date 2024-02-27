@@ -17,7 +17,7 @@ static Dict_obj Dict_Obj_Init(Generic key, Generic value, void (*dealloc_key)(Ge
 
 	obj = (Dict_obj)malloc(sizeof(t_dict_obj));
 	if (!obj)
-		return;
+		return NULL;
 	obj->key = key;
 	obj->value = value;
 	obj->dealloc_key = dealloc_key;
