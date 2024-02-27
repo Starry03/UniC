@@ -27,12 +27,10 @@ typedef struct s_dict_obj {
 
 typedef t_dict_obj *Dict_obj;
 
-void Dict_obj_dealloc(Generic dict_obj);
-
-Dict Dict_init(size_t size);
+Dict Dict_Init(size_t size);
 void Dict_Add(Dict dict, Generic key, Generic value, void(*dealloc_key)(Generic), void(*dealloc_value)(Generic));
 void *Dict_Get(Dict dict, Generic key);
 void Dict_Remove(Dict dict, Generic key);
-void Dict_free(Dict dict);
+void Dict_Free(Dict dict);
 
 #endif
