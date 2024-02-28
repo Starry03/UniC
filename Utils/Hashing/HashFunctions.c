@@ -3,7 +3,6 @@
 //
 
 #include "HashFunctions.h"
-#include <stdint.h>
 
 #define MAGIC 0xdeadbeef
 
