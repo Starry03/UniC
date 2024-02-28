@@ -30,8 +30,10 @@ static void Dict_Obj_Dealloc(Generic dict_obj)
 	Dict_obj obj;
 
 	obj = (Dict_obj)dict_obj;
-	obj->dealloc_key(obj->key);
-	obj->dealloc_value(obj->value);
+	if (obj->dealloc_key)
+		obj->dealloc_key(obj->key);
+	if (obj->dealloc_value)
+		obj->dealloc_value(obj->value);
 	free(dict_obj);
 }
 
