@@ -16,10 +16,11 @@ void alloc(Dict d)
 }
 
 int main() {
-	Dict dict = Dict_Init(1000);
+	Dict dict = Dict_Init(10);
 	int i = 0;
-	while (i++ < 1000)
+	while (i++ < 10)
 		alloc(dict);
+	Dict_Status(dict);
 	Dict_Free(dict);
 }
 

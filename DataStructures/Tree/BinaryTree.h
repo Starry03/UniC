@@ -7,6 +7,7 @@
 
 #include <stdbool.h>
 #include "../../Utils/types.h"
+#include <stddef.h>
 
 typedef struct BinaryTreeNode
 {

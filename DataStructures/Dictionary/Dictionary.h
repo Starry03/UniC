@@ -33,4 +33,6 @@ void *Dict_Get(Dict dict, Generic key);
 void Dict_Remove(Dict dict, Generic key);
 void Dict_Free(Dict dict);
 
+void Dict_Status(Dict dict);
+
 #endif

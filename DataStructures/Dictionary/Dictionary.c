@@ -6,6 +6,7 @@
 
 #include <stdlib.h>
 #include "../../Utils/Hashing/HashFunctions.h"
+#include <stdio.h>
 
 static inline Dict EmptyDict() { return (Dict)NULL; }
 
@@ -113,4 +114,20 @@ void Dict_Free(Dict dict)
 	}
 	free(dict->buckets);
 	free(dict);
+}
+
+void Dict_Status(Dict dict)
+{
+	printf("Number of buckets used: %zu\n", dict->size);
+	for (size_t i = 0; i < dict->size; i++)
+	{
+		LinkedList bucket = dict->buckets[i];
+		size_t count = 0;
+		while (bucket != NULL)
+		{
+			count++;
+			bucket = LinkedList_GetNext(bucket);
+		}
+		printf("Bucket %zu: %zu elements\n", i, count);
+	}
 }
