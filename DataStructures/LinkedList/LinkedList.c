@@ -8,15 +8,18 @@
 
 #include <stdio.h>
 
-LinkedList EmptyList() {
-	return (LinkedList) NULL;
+LinkedList EmptyList()
+{
+	return (LinkedList)NULL;
 }
 
-static LinkedList LinkedList_Alloc() {
-	return (LinkedList) malloc(sizeof(Node_));
+static LinkedList LinkedList_Alloc()
+{
+	return (LinkedList)malloc(sizeof(Node_));
 }
 
-LinkedList LinkedList_Init(Generic value) {
+LinkedList LinkedList_Init(Generic value)
+{
 	LinkedList list = LinkedList_Alloc();
 	if (!list)
 		return EmptyList();
@@ -25,13 +28,15 @@ LinkedList LinkedList_Init(Generic value) {
 	return list;
 }
 
-void LinkedList_Push(LinkedList *list, Generic object) {
+void LinkedList_Push(LinkedList *list, Generic object)
+{
 	LinkedList node = LinkedList_Init(object);
 	node->next = *list;
 	*list = node;
 }
 
-void LinkedList_Remove(LinkedList *node, void(*dealloc)(Generic)) {
+void LinkedList_Remove(LinkedList *node, void (*dealloc)(Generic))
+{
 	if (!node || !*node || !dealloc)
 		return;
 	LinkedList next = LinkedList_GetNext(*node);
@@ -40,7 +45,8 @@ void LinkedList_Remove(LinkedList *node, void(*dealloc)(Generic)) {
 	*node = next;
 }
 
-void LinkedList_RemoveByValue(LinkedList *list, Generic value, void(*dealloc)(Generic)) {
+void LinkedList_RemoveByValue(LinkedList *list, Generic value, void (*dealloc)(Generic))
+{
 	if (!list || !*list || !value)
 		return;
 	while (LinkedList_GetInfo(*list) != value)
@@ -57,23 +63,27 @@ LinkedList LinkedList_GetNode(LinkedList list, Generic value)
 	return list;
 }
 
-LinkedList LinkedList_GetNext(LinkedList list) {
+LinkedList LinkedList_GetNext(LinkedList list)
+{
 	if (!list)
-		return (LinkedList) NULL;
+		return (LinkedList)NULL;
 	return list->next;
 }
 
-Generic LinkedList_GetInfo(LinkedList list) {
+Generic LinkedList_GetInfo(LinkedList list)
+{
 	if (!list)
-		return (Generic) NULL;
+		return (Generic)NULL;
 	return list->info;
 }
 
-void LinkedList_Dealloc(LinkedList head, void(*dealloc)(Generic)) {
+void LinkedList_Dealloc(LinkedList head, void (*dealloc)(Generic))
+{
 	LinkedList next;
 	if (!head)
 		return;
-	while (head != NULL) {
+	while (head != NULL)
+	{
 		next = head->next;
 		if (dealloc)
 			dealloc(head->info);
@@ -81,4 +91,3 @@ void LinkedList_Dealloc(LinkedList head, void(*dealloc)(Generic)) {
 		head = next;
 	}
 }
-

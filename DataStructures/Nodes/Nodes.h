@@ -9,7 +9,7 @@
 
 typedef struct Node_ {
 	Generic info;
-    struct Node_ *next;
+	struct Node_ *next;
 } Node_;
 
 typedef Node_ *Node;

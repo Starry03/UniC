@@ -17,4 +17,8 @@ void Queue_Add(Queue queue, Generic info);
 
 Generic Queue_Get(Queue *queue);
 
+void Queue_Remove(Queue *queue, void (*dealloc)(Generic));
+
+void Queue_Dealloc(Queue *queue, void (*dealloc)(Generic));
+
 #endif //QUEUE_H

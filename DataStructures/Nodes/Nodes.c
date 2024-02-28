@@ -6,19 +6,22 @@
 
 #include <stdlib.h>
 
-static Node EmptyNode() {
-    return (Node) NULL;
+static Node EmptyNode()
+{
+	return (Node)NULL;
 }
 
-static Node Node_Allocate() {
-    return (Node) malloc(sizeof(Node_));
+static Node Node_Allocate()
+{
+	return (Node)malloc(sizeof(Node_));
 }
 
-Node Node_Init(void *info) {
-    Node node = Node_Allocate();
+Node Node_Init(Generic info)
+{
+	Node node = Node_Allocate();
 	if (!node)
 		return EmptyNode();
-    node->info = info;
-    node->next = EmptyNode();
-    return node;
+	node->info = info;
+	node->next = EmptyNode();
+	return node;
 }

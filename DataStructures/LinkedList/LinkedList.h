@@ -17,9 +17,9 @@ void LinkedList_Push(LinkedList *list, Generic object);
 
 void LinkedList_Append(LinkedList *list, Generic value);
 
-void LinkedList_Remove(LinkedList *node, void(*dealloc)(Generic));
+void LinkedList_Remove(LinkedList *node, void (*dealloc)(Generic));
 
-void LinkedList_RemoveByValue(LinkedList *list, Generic value, void(*dealloc)(Generic));
+void LinkedList_RemoveByValue(LinkedList *list, Generic value, void (*dealloc)(Generic));
 
 LinkedList LinkedList_GetNext(LinkedList list);
 
@@ -29,4 +29,4 @@ LinkedList LinkedList_GetNode(LinkedList list, Generic value);
 
 void LinkedList_Dealloc(LinkedList head, void (*dealloc)(Generic));
 
-#endif //LINKEDLIST_H
+#endif // LINKEDLIST_H
