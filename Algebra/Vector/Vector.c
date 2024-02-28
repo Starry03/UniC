@@ -9,22 +9,26 @@
 #include <math.h>
 
 static Vector2 AllocateVector2() {
-    return (Vector2) malloc(VECTOR2_SIZE);
+    return (Vector2) malloc(sizeof(Vector_2));
 }
 
 static Vector3 AllocateVector3() {
-    return (Vector3) malloc(VECTOR3_SIZE);
+    return (Vector3) malloc(sizeof(Vector_3));
 }
 
-Vector2 Vector2_init(double x, double y) {
+Vector2 Vector2_init(VectorType x, VectorType y) {
     Vector2 vector = AllocateVector2();
+    if (!vector)
+        return NULL;
     vector->x = x;
     vector->y = y;
     return vector;
 }
 
-Vector3 Vector3_init(double x, double y, double z) {
+Vector3 Vector3_init(VectorType x, VectorType y, VectorType z) {
     Vector3 vector = AllocateVector3();
+    if (!vector)
+        return NULL;
     vector->x = x;
     vector->y = y;
     vector->z = z;
@@ -46,14 +50,14 @@ Vector3 Vector3_Sum(Vector3 v, Vector3 v2) {
     );
 }
 
-Vector2 Vector2_Mul(double num, Vector2 v) {
+Vector2 Vector2_Mul(VectorType num, Vector2 v) {
     return Vector2_init(
             num * (v->x),
             num * (v->y)
     );
 }
 
-Vector3 Vector3_Mul(double num, Vector3 v) {
+Vector3 Vector3_Mul(VectorType num, Vector3 v) {
     return Vector3_init(
             v->x *= num,
             v->y *= num,
@@ -61,11 +65,11 @@ Vector3 Vector3_Mul(double num, Vector3 v) {
     );
 }
 
-double Vector2_ScalarProduct(Vector2 v, Vector2 v2) {
+VectorType Vector2_ScalarProduct(Vector2 v, Vector2 v2) {
     return v->x * v2->x + v2->y * v2->y;
 }
 
-double Vector3_ScalarProduct(Vector3 v, Vector3 v2) {
+VectorType Vector3_ScalarProduct(Vector3 v, Vector3 v2) {
     return v->x * v2->x + v2->y * v2->y + v->z * v2->z;
 }
 
@@ -77,26 +81,26 @@ Vector3 Vector3_VectorialProduct(Vector3 v, Vector3 v2) {
     );
 }
 
-double Vector2_Module(Vector2 v) {
+VectorType Vector2_Module(Vector2 v) {
     return sqrt(
             pow(v->x, 2) + pow(v->y, 2)
     );
 }
 
-double Vector3_Module(Vector3 v) {
+VectorType Vector3_Module(Vector3 v) {
     return sqrt(
             pow(v->x, 2) + pow(v->y, 2) + pow(v->z, 2)
     );
 }
 
 void Vector2_Normalize(Vector2 v) {
-    const double module = Vector2_Module(v);
+    const VectorType module = Vector2_Module(v);
     v->x /= module;
     v->y /= module;
 }
 
 void Vector3_Normalize(Vector3 v) {
-    const double module = Vector3_Module(v);
+    const VectorType module = Vector3_Module(v);
     v->x /= module;
     v->y /= module;
     v->z /= module;
