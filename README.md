@@ -1,8 +1,15 @@
 # UniC
 
-## Version 1.3
+## Version 1.5
+
+## Latest features & changes
+
+- Dictionary (Hashmap)
+- Hashing function
 
 ## About
+
+General purpose library
 
 Feel free to use it, but please note:
 
