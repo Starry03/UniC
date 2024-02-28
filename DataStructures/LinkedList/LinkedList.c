@@ -71,11 +71,12 @@ Generic LinkedList_GetInfo(LinkedList list) {
 
 void LinkedList_Dealloc(LinkedList head, void(*dealloc)(Generic)) {
 	LinkedList next;
-	if (!head || !dealloc)
+	if (!head)
 		return;
 	while (head != NULL) {
 		next = head->next;
-		dealloc(head->info);
+		if (dealloc)
+			dealloc(head->info);
 		free(head);
 		head = next;
 	}
