@@ -68,4 +68,3 @@ Basic implementation
 2. Dealloc
 3. Hashing
 
-```
