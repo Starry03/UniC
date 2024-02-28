@@ -1,4 +1,4 @@
-# Starry_CLibrary
+# UniC
 
 ## Version 1.3
 
@@ -50,24 +50,22 @@ int main() {
 
 ```
 
+1. Does not resize
+2. Handles 8 bytes data, use malloc'd pointers to handle bigger datas
+
 ## Algorithms
 
 1. Search
 2. Sort
 
+## Libft
+
+Basic implementation
+
 ## Utilities
 
-###### functions are implemented from scratch
+1. Types (used in the library)
+2. Dealloc
+3. Hashing
 
-1. Math
-2. String
-
-## Testing
-
-1. int to int
-
-```c
-int inputs[] = {1, 4, 8, 16, INT_MAX};
-int expected[] = {1, 2, 0, 4, 0};
-test_int_to_int(inputs, expected, sizeof(inputs) / 4, &Math_int_sqrt);
 ```
