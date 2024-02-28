@@ -6,11 +6,10 @@
 #define BINARYTREE_H
 
 #include <stdbool.h>
-
-typedef int TreeType;
+#include "../../Utils/types.h"
 
 typedef struct BinaryTreeNode {
-    TreeType info;
+    Generic info;
     struct BinaryTreeNode *left;
     struct BinaryTreeNode *right;
 } BinaryTreeNode;
@@ -19,10 +18,13 @@ typedef BinaryTreeNode *BinaryTree;
 
 #define TREE_NODE_SIZE 24
 
+
+BinaryTree EmptyTree();
+
 BinaryTree InitTreeNode();
 
 BinaryTree NewTree(
-        TreeType info,
+        Generic info,
         BinaryTree left,
         BinaryTree right
 );
@@ -31,17 +33,13 @@ BinaryTree BinaryTree_Left(BinaryTree tree);
 
 BinaryTree BinaryTree_Right(BinaryTree tree);
 
-TreeType BinaryTree_Value(BinaryTree tree);
+Generic BinaryTree_Value(BinaryTree tree);
 
-int BinaryTree_Depth(BinaryTree tree);
+size_t BinaryTree_Depth(BinaryTree tree);
 
-int BinaryTree_MaxNodesNumber(int depth);
+size_t BinaryTree_MaxNodesNumber(size_t depth);
 
-bool BinaryTree_IsInBinarySearchTree(BinaryTree tree, TreeType value);
-
-void BinaryTree_InsertLeaf(BinaryTree *tree, TreeType info, char *direction);
-
-void BinaryTree_InsertTreeNode(BinaryTree *tree, TreeType value, char *direction);
+bool BinaryTree_IsInBinarySearchTree(BinaryTree tree, Generic value);
 
 void BinaryTree_SetLeft(BinaryTree tree, BinaryTree left);
 
@@ -51,6 +49,6 @@ bool IsLeaf(BinaryTree tree);
 
 bool HasTwoNodes(BinaryTree tree);
 
-bool BinaryTree_DeleteTreeNode(BinaryTree *tree, TreeType value);
+bool BinaryTree_DeleteTreeNode(BinaryTree *tree, Generic value);
 
 #endif //BINARYTREE_H

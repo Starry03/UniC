@@ -9,7 +9,7 @@
 #include <stddef.h>
 #include "../../DataStructures/LinkedList/LinkedList.h"
 
-#define DEFAULT_SIZE 10
+#define DEFAULT_SIZE 20
 
 typedef struct s_dictionary {
 	LinkedList *buckets;
