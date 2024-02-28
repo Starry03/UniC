@@ -32,32 +32,27 @@ example:
 #include <stdio.h>
 #include <stdlib.h>
 #include "./DataStructures/Dictionary/Dictionary.h"
+#include "./Utils/Dealloc/Dealloc.h"
 
-void free_int(Generic addr)
+void alloc(Dict d)
 {
-	addr = (int *)addr;
-	printf("freeing: %p <==> %d\n", addr, *(int *)addr);
-	free(addr);
+	static int i = 0;
+	Dict_Add(d, i++, 10, NULL, NULL);
 }
 
 int main() {
-	int *a, *b;
-	a = (malloc(sizeof(int)));
-	*a = 10;
-
-	b = (malloc(sizeof(int)));
-	*b = 20;
-
-	Dict dict = Dict_init(10);
-	Dict_Add(dict, a, b, &free_int, &free_int);
-
-	printf("value: %d\n", *(int *)Dict_Get(dict, a));
-
-	Dict_free(dict);
+	Dict dict = Dict_Init(10);
+	int i = 0;
+	while (i++ < 10)
+		alloc(dict);
+	Dict_Status(dict);
+	int a = (int)Dict_Get(dict, 0);
+	printf("%d\n", a);
+	Dict_Free(dict);
 }
-```
 
-Note that dictionary must be deallocated
+
+```
 
 ## Algorithms
 

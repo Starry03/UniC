@@ -6,13 +6,7 @@
 void alloc(Dict d)
 {
 	static int i = 0;
-	int *key = (int *)malloc(sizeof(int));
-	*key = i++;
-
-	int *value = (int *)malloc(sizeof(int));
-	*value = 0;
-
-	Dict_Add(d, key, value, &dealloc_int, &dealloc_int);
+	Dict_Add(d, i++, 10, NULL, NULL);
 }
 
 int main() {
@@ -21,6 +15,8 @@ int main() {
 	while (i++ < 10)
 		alloc(dict);
 	Dict_Status(dict);
+	int a = (int)Dict_Get(dict, 0);
+	printf("%d\n", a);
 	Dict_Free(dict);
 }
 
