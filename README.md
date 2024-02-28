@@ -56,13 +56,13 @@ int main() {
 
 ```
 
-1. Does not resize
-2. Handles 8 bytes data, use malloc'd pointers to handle bigger datas
+- Does not resize
+- Handles 8 bytes data, use malloc'd pointers to handle bigger datas
 
 ## Algorithms
 
-1. Search
-2. Sort
+- Search
+- Sort
 
 ## Libft
 
@@ -70,7 +70,7 @@ Basic implementation
 
 ## Utilities
 
-1. Types (used in the library)
-2. Dealloc
-3. Hashing
+- Types (used in the library)
+- Dealloc
+- Hashing
 
