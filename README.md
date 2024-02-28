@@ -4,8 +4,6 @@
 
 ## About
 
-This is a "library" with the purpose of storing univerity material and to experiment with C
-
 Feel free to use it, but please note:
 
 1. it's not optimized for performance
@@ -24,7 +22,7 @@ Feel free to use it, but please note:
 
 ### Dictionaries
 
-Handles native types
+Handles everything
 
 example:
 
@@ -32,7 +30,6 @@ example:
 #include <stdio.h>
 #include <stdlib.h>
 #include "./DataStructures/Dictionary/Dictionary.h"
-#include "./Utils/Dealloc/Dealloc.h"
 
 void alloc(Dict d)
 {
@@ -50,7 +47,6 @@ int main() {
 	printf("%d\n", a);
 	Dict_Free(dict);
 }
-
 
 ```
 
