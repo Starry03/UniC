@@ -11,14 +11,13 @@ Feel free to use it, but please note:
 
 ## Data structures
 
-1. Arrays
-2. Binary tree
-3. Matrices
-4. Node
-5. Linked list
-6. Queue
-7. Vector
-8. Dictionary
+1. Matrices
+1. Vector
+1. Node
+1. Linked list
+1. Queue
+1. Binary tree
+1. Dictionary
 
 ### Dictionaries
 
