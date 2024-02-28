@@ -81,7 +81,8 @@ Dict Dict_Init(size_t size)
 }
 
 /**
- * @brief Add value to dict
+ * @brief Add value to dict\r
+ * @attention Key and value <= 8 bytes, use pointers for larger values
  * 
  * @param dict
  * @param key value or address
