@@ -13,18 +13,18 @@ General purpose library
 
 Feel free to use it, but please note:
 
-1. it's not optimized for performance
-2. it could be obviously improved
+- it's not optimized for performance
+- it could be obviously improved
 
 ## Data structures
 
-1. Matrices
-1. Vector
-1. Node
-1. Linked list
-1. Queue
-1. Binary tree
-1. Dictionary
+- Matrices
+- Vector
+- Node
+- Linked list
+- Queue
+- Binary tree
+- Dictionary
 
 ### Dictionaries
 
