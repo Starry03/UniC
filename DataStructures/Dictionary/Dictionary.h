@@ -5,7 +5,6 @@
 #ifndef DICTIONARY_H
 #define DICTIONARY_H
 
-#include <stdbool.h>
 #include <stddef.h>
 #include "../../DataStructures/LinkedList/LinkedList.h"
 
