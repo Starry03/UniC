@@ -52,6 +52,12 @@ static LinkedList *Dict_Alloc_Buckets(size_t size)
 	return buckets;
 }
 
+/**
+ * @brief Creates Dictionary instance
+ * 
+ * @param size if null, will be DEFAULT_SIZE
+ * @return Dict 
+ */
 Dict Dict_Init(size_t size)
 {
 	LinkedList *buckets;
@@ -74,6 +80,15 @@ Dict Dict_Init(size_t size)
 	return (dict);
 }
 
+/**
+ * @brief Add value to dict
+ * 
+ * @param dict
+ * @param key value or address
+ * @param value value or address
+ * @param dealloc_key null if is a value
+ * @param dealloc_value null if is a value
+ */
 void Dict_Add(Dict dict, Generic key, Generic value, void (*dealloc_key)(Generic), void (*dealloc_value)(Generic))
 {
 	const size_t hash = hash_addr(key, dict->size);
@@ -84,6 +99,13 @@ void Dict_Add(Dict dict, Generic key, Generic value, void (*dealloc_key)(Generic
 	LinkedList_Push(buckets + hash, obj);
 }
 
+/**
+ * @brief Get value from dict
+ * 
+ * @param dict 
+ * @param key 
+ * @return void* 
+ */
 void *Dict_Get(Dict dict, Generic key)
 {
 	const size_t hash = hash_addr(key, dict->size);
@@ -93,6 +115,12 @@ void *Dict_Get(Dict dict, Generic key)
 	return ((Dict_obj)LinkedList_GetInfo(bucket))->value;
 }
 
+/**
+ * @brief Remove key and value from dict
+ * 
+ * @param dict 
+ * @param key 
+ */
 void Dict_Remove(Dict dict, Generic key)
 {
 	const size_t hash = hash_addr(key, dict->size);
@@ -102,6 +130,11 @@ void Dict_Remove(Dict dict, Generic key)
 	LinkedList_Remove(dict->buckets + hash, &Dict_Obj_Dealloc);
 }
 
+/**
+ * @brief Frees all memory used by dict
+ * 
+ * @param dict 
+ */
 void Dict_Free(Dict dict)
 {
 	size_t i = 0;
@@ -116,6 +149,11 @@ void Dict_Free(Dict dict)
 	free(dict);
 }
 
+/**
+ * @brief Log the status of the dict
+ * 
+ * @param dict 
+ */
 void Dict_Status(Dict dict)
 {
 	printf("Number of buckets used: %zu\n", dict->size);
