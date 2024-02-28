@@ -6,15 +6,22 @@
 
 #define MAGIC 0xdeadbeef
 
-size_t normalize(size_t val, size_t size) {
-    return val % size;
+static size_t normalize(size_t bytes, size_t size) {
+    return bytes % size;
 }
 
-size_t hash_addr(Generic addr, size_t size)
+/**
+ * @brief 
+ * 
+ * @param bytes anything
+ * @param size hashmap size
+ * @return size_t 
+ */
+size_t hash_generic(Generic bytes, size_t size)
 {
-	size_t addr_ = (size_t)addr;
-	addr_ = addr_ ^ (addr_ >> 4);
-	addr_ = (addr_ + (addr_ << 5)) ^ MAGIC;
-	addr_ = addr_ ^ (addr_ >> 11);
-	return normalize(addr_, size);
+	size_t bin = (size_t)bytes;
+	bin = bin ^ (bin >> 4);
+	bin = (bin + (bin << 5)) ^ MAGIC;
+	bin = bin ^ (bin >> 11);
+	return normalize((size_t)bin, size);
 }

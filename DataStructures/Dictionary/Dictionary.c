@@ -92,7 +92,7 @@ Dict Dict_Init(size_t size)
  */
 void Dict_Add(Dict dict, Generic key, Generic value, void (*dealloc_key)(Generic), void (*dealloc_value)(Generic))
 {
-	const size_t hash = hash_addr(key, dict->size);
+	const size_t hash = hash_generic(key, dict->size);
 	LinkedList *buckets = dict->buckets;
 	Dict_obj obj = Dict_Obj_Init(key, value, dealloc_key, dealloc_value);
 	if (!obj)
@@ -109,7 +109,7 @@ void Dict_Add(Dict dict, Generic key, Generic value, void (*dealloc_key)(Generic
  */
 void *Dict_Get(Dict dict, Generic key)
 {
-	const size_t hash = hash_addr(key, dict->size);
+	const size_t hash = hash_generic(key, dict->size);
 	LinkedList bucket = (dict->buckets)[hash];
 	while (((Dict_obj)LinkedList_GetInfo(bucket))->key != key)
 		bucket = LinkedList_GetNext(bucket);
@@ -124,7 +124,7 @@ void *Dict_Get(Dict dict, Generic key)
  */
 void Dict_Remove(Dict dict, Generic key)
 {
-	const size_t hash = hash_addr(key, dict->size);
+	const size_t hash = hash_generic(key, dict->size);
 	LinkedList bucket = (dict->buckets)[hash];
 	while (((Dict_obj)LinkedList_GetInfo(bucket))->key != key)
 		bucket = LinkedList_GetNext(bucket);

@@ -6,9 +6,8 @@
 #define STARRY_CLIBRARY_HASHFUNCTIONS_H
 
 #include <stddef.h>
+#include <stdint.h>
 #include "../types.h"
-
-size_t normalize(size_t val, size_t size);
 
 size_t hash_int(void *key, size_t size);
 
@@ -22,7 +21,6 @@ size_t hash_char(void *key, size_t size);
 
 size_t hash_string(void *key, size_t size);
 
-size_t hash_addr(Generic addr, size_t size);
+size_t hash_generic(Generic addr, size_t size);
 
 #endif //STARRY_CLIBRARY_HASHFUNCTIONS_H
-
