@@ -21,6 +21,10 @@ void QuickSort_rec(int *arr, size_t low, size_t high);
 
 void QuickSort(int *array, size_t size);
 
-void TimSort(int *array, size_t size);
+void RadixSort(int *array, size_t size);
+
+void CountingSort(int *array, int *sorted, size_t size, size_t k);
+
+void BucketSort(int *array, size_t size);
 
 #endif //STARRY_SORTING_H
