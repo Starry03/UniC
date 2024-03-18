@@ -6,6 +6,7 @@
 #define STARRY_SORTING_H
 
 #include <stddef.h>
+#include "Utils/types.h"
 
 void BubbleSort(int *array, size_t size);
 
@@ -21,10 +22,10 @@ void QuickSort_rec(int *arr, size_t low, size_t high);
 
 void QuickSort(int *array, size_t size);
 
+void CountingSort(const int array[], int dest[], int size, int k);
+
 void RadixSort(int *array, size_t size);
 
-void CountingSort(int *array, int *sorted, size_t size, size_t k);
-
-void BucketSort(int *array, size_t size);
+void BucketSort(Generic *array, int size);
 
 #endif //STARRY_SORTING_H
