@@ -22,7 +22,7 @@ void BubbleSort(int *array, size_t size) {
 		swapped = false;
 		for (size_t i = 0; i < size - 1; i++) {
 			if (array[i] > array[i + 1]) {
-				int_swap(&array[i], &(array[i + 1]));
+				int_swap(array + i, array + i + 1);
 				swapped = true;
 			}
 		}
