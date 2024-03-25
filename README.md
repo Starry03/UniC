@@ -68,9 +68,3 @@ int main() {
 
 Basic implementation
 
-## Utilities
-
-- Types (used in the library)
-- Dealloc
-- Hashing
-
