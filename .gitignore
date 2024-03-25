@@ -9,3 +9,4 @@ CMakeLists.txt
 *.xml
 *.iml
 run.sh
+main.c

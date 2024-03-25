@@ -2,8 +2,8 @@
 // Created by andre on 4/19/2023.
 //
 
-#ifndef STARRY_SORTING_H
-#define STARRY_SORTING_H
+#ifndef SORTING_H
+#define SORTING_H
 
 #include <stddef.h>
 #include "Utils/types.h"

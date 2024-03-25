@@ -162,7 +162,7 @@ void BucketSort(Generic *array, int size) {
 		buckets[i] = EmptyList();
 	for (int i = 1; i <= size; i++) {
 		index = floor(size * (*(int *) array[i]));
-		LinkedList_Append(buckets + index, array[i]);
+		// LinkedList_Append(buckets + index, array[i]);
 	}
 	for (int i = 0; i < size; i++) {
 		// InsertionSort(bucket[i], &LinkedList_Cmp)
