@@ -1,6 +1,6 @@
 # UniC
 
-## Version 1.5
+### Version 1.5
 
 ## Latest features & changes
 
