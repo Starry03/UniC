@@ -6,17 +6,18 @@
 #define SORTING_H
 
 #include <stddef.h>
+#include <stdbool.h>
 #include "Utils/types.h"
 
-void BubbleSort(int *array, size_t size);
+void BubbleSort(Generic *array, size_t size, bool (*cmp)(Generic, Generic));
 
-void InsertionSort(int *array, size_t size);
+void InsertionSort(Generic *array, size_t size, bool (*cmp)(Generic, Generic));
 
-void MergeSort(int *array, size_t size);
+void MergeSort(Generic *array, size_t size, bool (*cmp)(Generic, Generic));
 
-void MergeSort_rec(int *arr, size_t low, size_t high);
+void MergeSort_rec(Generic *arr, size_t low, size_t high, bool (*cmp)(Generic, Generic));
 
-void Merge(int *arr, size_t low, size_t mid, size_t high);
+void Merge(Generic *arr, size_t low, size_t mid, size_t high, bool (*cmp)(Generic, Generic));
 
 void QuickSort_rec(int *arr, size_t low, size_t high);
 
