@@ -2,7 +2,7 @@
 
 ### Version 1.5
 
-## Latest features & changes
+### Latest features & changes
 
 - Dictionary (Hashmap)
 - Hashing function
