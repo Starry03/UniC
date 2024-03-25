@@ -55,9 +55,9 @@ VectorType Vector2_Module(Vector2 v);
 
 VectorType Vector3_Module(Vector3 v);
 
-void Vector2_Normalize(Vector2 v);
+Vector2 Vector2_Normalized(Vector2 v);
 
-void Vector3_Normalize(Vector3 v);
+Vector3 Vector3_Normalized(Vector3 v);
 
 void Vector2_Print(Vector2 v);
 
