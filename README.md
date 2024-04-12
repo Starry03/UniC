@@ -11,7 +11,6 @@
 
 - Heap
 - Graph
-- Make dictionary resizeable
 
 ## About
 
@@ -62,7 +61,7 @@ int main() {
 
 ```
 
-- Does not resize
+- Resizes for better performance
 - Handles 8 bytes data, use malloc'd pointers to handle bigger datas
 
 ## Algorithms
