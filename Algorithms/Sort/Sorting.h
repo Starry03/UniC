@@ -29,4 +29,6 @@ void RadixSort(int *array, size_t size);
 
 void BucketSort(Generic *array, int size);
 
+void HeapSort(int *arr, size_t size);
+
 #endif //STARRY_SORTING_H

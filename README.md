@@ -7,6 +7,12 @@
 - Dictionary (Hashmap)
 - Hashing function
 
+### TO-DO
+
+- Heap
+- Graph
+- Make dictionary resizeable
+
 ## About
 
 General purpose library
