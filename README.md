@@ -55,7 +55,7 @@ int main() {
 	while (i++ < 10)
 		alloc(dict);
 	Dict_Status(dict);
-	int a = (int)Dict_Get(dict, 0);
+	int a = (int)Dict_Get(&dict, 0);
 	printf("%d\n", a);
 	Dict_Free(dict);
 }

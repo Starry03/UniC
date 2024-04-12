@@ -132,7 +132,7 @@ void	QuickSort_rec(int *arr, size_t low, size_t high)
 			while (left < right && arr[left] <= pivot)
 				left++;
 			if (left < right)
-				int_swap(arr + left, arr + right);
+				swap(arr + left, arr + right);
 		}
 		// fix pivot position
 		if (low != right)
