@@ -13,7 +13,7 @@ Queue Queue_Init(Generic info);
 
 void Queue_Add(Queue queue, Generic info);
 
-Generic Queue_poll(Queue *queue);
+Generic	Queue_poll(Queue *queue, void (*dealloc)(Generic));
 
 void Queue_Dealloc(Queue *queue, void (*dealloc)(Generic));
 

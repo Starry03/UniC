@@ -29,10 +29,7 @@ Generic	Queue_poll(Queue *queue, void (*dealloc)(Generic))
 	return (out);
 }
 
-void	Queue_Dealloc(Queue *queue, void (*dealloc)(Generic))
+inline void	Queue_Dealloc(Queue *queue, void (*dealloc)(Generic))
 {
-	if (!queue || !*queue)
-		return ;
-	while (*queue)
-		Queue_Remove(queue, dealloc);
+	LinkedList_Dealloc(*queue, dealloc);
 }
