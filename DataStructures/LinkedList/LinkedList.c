@@ -5,9 +5,6 @@
 #include "LinkedList.h"
 #include <stdlib.h>
 
-#define LINKEDLIST_EMPTY (LinkedList)0
-
-
 static inline LinkedList	LinkedList_Alloc(void)
 {
 	return (LinkedList)malloc(sizeof(Node_));

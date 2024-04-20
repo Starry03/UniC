@@ -9,6 +9,8 @@
 
 typedef Node LinkedList;
 
+#define LINKEDLIST_EMPTY (LinkedList)0
+
 LinkedList	LinkedList_Init(Generic value);
 
 void	LinkedList_Push(LinkedList *list, Generic object);

@@ -19,7 +19,7 @@ static void	swap(Generic *a, Generic *b)
 }
 
 // O(n^2)
-void	BubbleSort(Generic *array, size_t size, bool (*cmp)(Generic, Generic))
+void	BubbleSort(Generic *array, size_t size, int (*cmp)(Generic, Generic))
 {
 	bool	swapped;
 
@@ -39,7 +39,7 @@ void	BubbleSort(Generic *array, size_t size, bool (*cmp)(Generic, Generic))
 }
 
 // O(n^2)
-void	InsertionSort(Generic *array, size_t size, bool (*cmp)(Generic,
+void	InsertionSort(Generic *array, size_t size, int (*cmp)(Generic,
 			Generic))
 {
 	size_t	currentIndex;
@@ -58,15 +58,16 @@ void	InsertionSort(Generic *array, size_t size, bool (*cmp)(Generic,
 
 // O(n log n)
 void	Merge(Generic *arr, size_t low, size_t mid, size_t high,
-		bool (*cmp)(Generic, Generic))
+		int (*cmp)(Generic, Generic))
 {
-	size_t	tempLength;
-	size_t	temp[tempLength];
-	size_t	left;
-	size_t	right;
-	size_t	tempCounter;
+	const size_t	tempLength = high - low + 1;
+	Generic			*temp[tempLength];
+	size_t			left;
+	size_t			right;
+	size_t			tempCounter;
 
-	tempLength = high - low + 1;
+	if (!arr)
+		return ;
 	// pointers to the left and right sub-arrays
 	left = low;
 	right = mid + 1;
@@ -92,7 +93,7 @@ void	Merge(Generic *arr, size_t low, size_t mid, size_t high,
 }
 
 // O(n log n)
-void	MergeSort_rec(Generic *arr, size_t low, size_t high, bool (*cmp)(Generic,
+void	MergeSort_rec(Generic *arr, size_t low, size_t high, int (*cmp)(Generic,
 			Generic))
 {
 	size_t	mid;
@@ -107,7 +108,7 @@ void	MergeSort_rec(Generic *arr, size_t low, size_t high, bool (*cmp)(Generic,
 }
 
 // O(n log n)
-void	MergeSort(Generic *array, size_t size, bool (*cmp)(Generic, Generic))
+void	MergeSort(Generic *array, size_t size, int (*cmp)(Generic, Generic))
 {
 	MergeSort_rec(array, 0, size - 1, cmp);
 }
@@ -132,7 +133,7 @@ void	QuickSort_rec(int *arr, size_t low, size_t high)
 			while (left < right && arr[left] <= pivot)
 				left++;
 			if (left < right)
-				swap(arr + left, arr + right);
+				swap((void *)(arr + left), (void *)(arr + right));
 		}
 		// fix pivot position
 		if (low != right)
@@ -192,7 +193,7 @@ void	BucketSort(Generic *array, int size)
 	LinkedList	buckets[size];
 
 	for (int i = 0; i < size; i++)
-		buckets[i] = EmptyList();
+		buckets[i] = LINKEDLIST_EMPTY;
 	for (int i = 1; i <= size; i++)
 	{
 		index = floor(size * (*(int *)array[i]));
