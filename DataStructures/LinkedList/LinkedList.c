@@ -26,10 +26,17 @@ LinkedList	LinkedList_Init(Generic value)
 	return (list);
 }
 
+void	LinkedList_Append(LinkedList list, Generic value)
+{
+	if (!list)
+		return ;
+	LinkedList_GetLast(list)->next = LinkedList_Init(value);
+}
+
 void	LinkedList_Push(LinkedList *list, Generic object)
 {
 	LinkedList node;
-	
+
 	if (!list || !*list)
 		return ;
 	node = LinkedList_Init(object);
@@ -39,7 +46,7 @@ void	LinkedList_Push(LinkedList *list, Generic object)
 
 void	LinkedList_Remove(LinkedList *node, void (*dealloc)(Generic))
 {
-	LinkedList	next;
+	LinkedList next;
 
 	if (!node || !*node || !dealloc)
 		return ;
