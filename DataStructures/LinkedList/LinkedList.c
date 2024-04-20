@@ -8,11 +8,6 @@
 #define LINKEDLIST_EMPTY (LinkedList)0
 
 
-LinkedList	EmptyList(void)
-{
-	return (LINKEDLIST_EMPTY);
-}
-
 static inline LinkedList	LinkedList_Alloc(void)
 {
 	return (LinkedList)malloc(sizeof(Node_));
