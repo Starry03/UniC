@@ -7,56 +7,26 @@
 
 #define QUEUE_EMPTY (Queue)0
 
-Queue	Queue_Init(Generic info)
-{
-	Queue queue;
 
-	queue = (Queue)malloc(sizeof(Node));
-	if (!queue)
-		return (QUEUE_EMPTY);
-	queue->info = info;
-	queue->next = NULL;
-	return (queue);
+inline Queue	Queue_Init(Generic info)
+{
+	return (Queue)LinkedList_Init(info);
 }
 
-void	Queue_Add(Queue queue, Generic info)
+inline void	Queue_Add(Queue queue, Generic info)
 {
-	Queue node;
-
-	if (queue == NULL)
-		return ;
-	while (queue->next != NULL)
-	{
-		queue = queue->next;
-	}
-	node = Queue_Init(info);
-	if (!node)
-		return ;
-	queue->next = node;
+	LinkedList_Append(&queue, info);
 }
 
-Generic	Queue_Get(Queue *queue)
+Generic	Queue_poll(Queue *queue, void (*dealloc)(Generic))
 {
-	Queue node;
+	Generic	out;
 
 	if (!queue || !*queue)
 		return (GENERIC_NULL);
-	node = *queue;
-	*queue = node->next;
-	return (node->info);
-}
-
-void	Queue_Remove(Queue *queue, void (*dealloc)(Generic))
-{
-	Queue node;
-
-	if (!queue || !*queue)
-		return ;
-	node = *queue;
-	*queue = node->next;
-	if (dealloc)
-		dealloc(node->info);
-	free(node);
+	out = (*queue)->info;
+	LinkedList_Remove(queue, dealloc);
+	return (out);
 }
 
 void	Queue_Dealloc(Queue *queue, void (*dealloc)(Generic))

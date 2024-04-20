@@ -5,17 +5,15 @@
 #ifndef QUEUE_H
 #define QUEUE_H
 
-#include "../Nodes/Nodes.h"
+#include "../LinkedList/LinkedList.h"
 
-typedef Node Queue;
+typedef LinkedList Queue;
 
 Queue Queue_Init(Generic info);
 
 void Queue_Add(Queue queue, Generic info);
 
-Generic Queue_Get(Queue *queue);
-
-void Queue_Remove(Queue *queue, void (*dealloc)(Generic));
+Generic Queue_poll(Queue *queue);
 
 void Queue_Dealloc(Queue *queue, void (*dealloc)(Generic));
 
