@@ -3,64 +3,66 @@
 //
 
 #include "Queue.h"
-
 #include <stdlib.h>
 
-Queue EmptyQueue()
-{
-	return (Queue)NULL;
-}
+#define QUEUE_EMPTY (Queue)0
 
-Queue Queue_Init(Generic info)
+Queue	Queue_Init(Generic info)
 {
-	Queue queue = (Queue)malloc(sizeof(Node));
+	Queue queue;
+
+	queue = (Queue)malloc(sizeof(Node));
 	if (!queue)
-		return EmptyQueue();
+		return (QUEUE_EMPTY);
 	queue->info = info;
 	queue->next = NULL;
-	return queue;
+	return (queue);
 }
 
-void Queue_Add(Queue queue, Generic info)
+void	Queue_Add(Queue queue, Generic info)
 {
 	Queue node;
+
 	if (queue == NULL)
-		return;
+		return ;
 	while (queue->next != NULL)
 	{
 		queue = queue->next;
 	}
 	node = Queue_Init(info);
 	if (!node)
-		return;
+		return ;
 	queue->next = node;
 }
 
-Generic Queue_Get(Queue *queue)
+Generic	Queue_Get(Queue *queue)
 {
 	Queue node;
+
 	if (!queue || !*queue)
-		return (Generic)NULL;
+		return (GENERIC_NULL);
 	node = *queue;
 	*queue = node->next;
-	return node->info;
+	return (node->info);
 }
 
-void Queue_Remove(Queue *queue, void (*dealloc)(Generic))
+void	Queue_Remove(Queue *queue, void (*dealloc)(Generic))
 {
+	Queue node;
+
 	if (!queue || !*queue)
-		return;
-	Queue node = *queue;
+		return ;
+	node = *queue;
 	*queue = node->next;
 	if (dealloc)
 		dealloc(node->info);
 	free(node);
 }
 
-void Queue_Dealloc(Queue *queue, void (*dealloc)(Generic))
+void	Queue_Dealloc(Queue *queue, void (*dealloc)(Generic))
 {
 	if (!queue || !*queue)
-		return;
+		return ;
 	while (*queue)
 		Queue_Remove(queue, dealloc);
 }

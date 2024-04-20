@@ -9,8 +9,6 @@
 
 typedef Node Queue;
 
-Queue EmptyQueue();
-
 Queue Queue_Init(Generic info);
 
 void Queue_Add(Queue queue, Generic info);

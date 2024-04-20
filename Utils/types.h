@@ -1,7 +1,10 @@
 #ifndef TYPES_H
-#define TYPES_H
+# define TYPES_H
 
-typedef void * Generic;
-typedef char * String;
+#define GENERIC_NULL (Generic)0
+#define STRING_NULL (String)0
 
-#endif // !TYPES_H
+typedef void	*Generic;
+typedef char	*String;
+
+#endif
