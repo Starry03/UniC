@@ -5,13 +5,15 @@
 #include "LinkedList.h"
 #include <stdlib.h>
 
+#define LINKEDLIST_EMPTY (LinkedList)0
+
 
 LinkedList	EmptyList(void)
 {
-	return ((LinkedList)NULL);
+	return (LINKEDLIST_EMPTY);
 }
 
-static LinkedList	LinkedList_Alloc(void)
+static inline LinkedList	LinkedList_Alloc(void)
 {
 	return (LinkedList)malloc(sizeof(Node_));
 }
@@ -20,9 +22,9 @@ LinkedList	LinkedList_Init(Generic value)
 {
 	LinkedList list = LinkedList_Alloc();
 	if (!list)
-		return (EmptyList());
+		return (LINKEDLIST_EMPTY);
 	list->info = value;
-	list->next = EmptyList();
+	list->next = LINKEDLIST_EMPTY;
 	return (list);
 }
 
@@ -69,7 +71,7 @@ void	LinkedList_RemoveByValue(LinkedList *list, Generic value,
 LinkedList	LinkedList_GetNode(LinkedList list, Generic value)
 {
 	if (!list || !value)
-		return (EmptyList());
+		return (LINKEDLIST_EMPTY);
 	while (LinkedList_GetInfo(list) != value)
 		list = LinkedList_GetNext(list);
 	return (list);
@@ -78,21 +80,21 @@ LinkedList	LinkedList_GetNode(LinkedList list, Generic value)
 LinkedList	LinkedList_GetNext(LinkedList list)
 {
 	if (!list)
-		return ((LinkedList)NULL);
+		return (LINKEDLIST_EMPTY);
 	return (list->next);
 }
 
 Generic	LinkedList_GetInfo(LinkedList list)
 {
 	if (!list)
-		return ((Generic)NULL);
+		return (GENERIC_NULL);
 	return (list->info);
 }
 
 LinkedList	LinkedList_GetLast(LinkedList list)
 {
 	if (!list)
-		return (EmptyList());
+		return (LINKEDLIST_EMPTY);
 	while (list->next)
 		list = LinkedList_GetNext(list);
 	return (list);
