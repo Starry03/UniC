@@ -21,7 +21,7 @@ Graph	Graph_Init(void)
 	graph = (Graph)malloc(sizeof(t_graph));
 	if (!graph)
 		return (NULL);
-	graph->adjacency_list = EmptyList();
+	graph->adjacency_list = LINKEDLIST_EMPTY;
 	return (graph);
 }
 
@@ -44,5 +44,5 @@ void	Graph_AddVertex(Graph graph, Generic value, void (*dealloc)(Generic))
 	if (!graph || !value)
 		return ;
 	node = GraphNode_Init(id++, value, dealloc);
-	LinkedList_Push(graph->adjacency_list, node);
+	LinkedList_Push(&(graph->adjacency_list), node);
 }

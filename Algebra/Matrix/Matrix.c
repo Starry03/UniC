@@ -49,7 +49,7 @@ Matrix	Identity_matrix(size_t length, Mat_type value)
 	return (matrix);
 }
 
-bool	KroneckerDelta(size_t i, size_t j)
+inline bool	KroneckerDelta(size_t i, size_t j)
 {
 	return (i == j);
 }

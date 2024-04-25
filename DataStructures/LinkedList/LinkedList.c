@@ -16,9 +16,9 @@ LinkedList	LinkedList_Init(Generic value)
 
 	list = LinkedList_Alloc();
 	if (!list)
-		return (EmptyList());
+		return (LINKEDLIST_EMPTY);
 	list->info = value;
-	list->next = EmptyList();
+	list->next = LINKEDLIST_EMPTY;
 	return (list);
 }
 
@@ -31,8 +31,22 @@ void	LinkedList_Push(LinkedList *list, Generic object)
 	*list = node;
 }
 
-void	LinkedList_Remove(LinkedList *node, void (*dealloc)(Generic))
+void	LinkedList_Append(LinkedList list, Generic value)
 {
+	LinkedList	node;
+
+	if (!list)
+		return ;
+	node = LinkedList_Init(value);
+	while (list->next)
+		list = list->next;
+	list->next = node;
+}
+
+	void LinkedList_Remove(LinkedList *node, void (*dealloc)(Generic))
+{
+	LinkedList	next;
+
 	if (!node || !*node || !dealloc)
 		return ;
 	next = LinkedList_GetNext(*node);
@@ -54,7 +68,7 @@ void	LinkedList_RemoveByValue(LinkedList *list, Generic value,
 LinkedList	LinkedList_GetNode(LinkedList list, Generic value)
 {
 	if (!list || !value)
-		return (EmptyList());
+		return (LINKEDLIST_EMPTY);
 	while (LinkedList_GetInfo(list) != value)
 		list = LinkedList_GetNext(list);
 	return (list);
@@ -63,14 +77,14 @@ LinkedList	LinkedList_GetNode(LinkedList list, Generic value)
 LinkedList	LinkedList_GetNext(LinkedList list)
 {
 	if (!list)
-		return ((LinkedList)NULL);
+		return (LINKEDLIST_EMPTY);
 	return (list->next);
 }
 
 Generic	LinkedList_GetInfo(LinkedList list)
 {
 	if (!list)
-		return ((Generic)NULL);
+		return (GENERIC_NULL);
 	return (list->info);
 }
 
