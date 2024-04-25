@@ -1,15 +1,14 @@
 #include "DataStructures/Graph/Graph.h"
 #include "./Utils/Dealloc/Dealloc.h"
+#include "Algebra/Matrix/Matrix.h"
 
 int	main(int argc, char const *argv[])
 {
-	Graph	graph;
+	Matrix	matrix;
 
-	graph = Graph_Init();
-
-	Graph_AddVertex(graph, 100, NULL);
-
-	Graph_Free(graph);
-
+	matrix = Matrix_Init(10, 10);
+	Matrix_LaplaceDet(matrix);
+	Matrix_Print(matrix);
+	Matrix_Free(matrix);
 	return (0);
 }

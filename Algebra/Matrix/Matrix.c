@@ -3,13 +3,14 @@
 //
 
 #include "Matrix.h"
+#include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
 
-#define SQUARE_ERROR	"Matrix is not square"
-#define TWOBTWO_ERROR	"Matrix is not 2x2"
-#define SARRUS_ERROR	"Matrix is not 3x3"
-#define MATRIX_NULL		(Matrix) NULL
+#define SQUARE_ERROR "Matrix is not square"
+#define TWOBTWO_ERROR "Matrix is not 2x2"
+#define SARRUS_ERROR "Matrix is not 3x3"
+#define MATRIX_NULL (Matrix) NULL
 
 static Mat_type	*InitRow(size_t len)
 {
@@ -188,7 +189,11 @@ Mat_type	Matrix_TwoByTwoDet(Matrix mat)
 	double		secondaryDiagonal;
 
 	if (!mat || mat->rows != 2 || mat->cols != 2)
+	{
+		errno = EINVAL;
+		perror(TWOBTWO_ERROR);
 		return (0);
+	}
 	table = mat->table;
 	mainDiagonal = table[0][0] * table[1][1];
 	secondaryDiagonal = table[0][1] * table[1][0];
@@ -210,27 +215,34 @@ Mat_type	Matrix_SarrusDet(Matrix mat)
 	const Mat_type	tertiaryDiagonal2 = mat->table[0][1] * mat->table[1][0]
 			* mat->table[2][2];
 
-	if (mat->rows != 3 || mat->cols != 3)
+	if (!mat || mat->rows != 3 || mat->cols != 3)
 	{
-		printf("%s\n", SARRUS_ERROR);
-		exit(EXIT_FAILURE);
+		errno = EINVAL;
+		perror(SARRUS_ERROR);
+		return (0);
 	}
 	return (mainDiagonal + secondaryDiagonal + tertiaryDiagonal - mainDiagonal2
 		- secondaryDiagonal2 - tertiaryDiagonal2);
 }
 
-#pragma clang diagnostic push
-#pragma ide diagnostic ignored "misc-no-recursion"
-
+/**
+ * @brief Recursive function to calculate the determinant of a matrix
+ * @param mat: Matrix to calculate the determinant
+ *
+ * @return The determinant of the matrix
+ */
 Mat_type	Matrix_LaplaceDet(Matrix mat)
 {
 	Mat_type	det;
 	Matrix		subMatrix;
 
+	if (!mat)
+		return (0);
 	if (mat->rows != mat->cols)
 	{
-		printf("%s\n", SQUARE_ERROR);
-		exit(EXIT_FAILURE);
+		errno = EINVAL;
+		perror(SQUARE_ERROR);
+		return (0);
 	}
 	if (mat->rows == 2)
 		return (Matrix_TwoByTwoDet(mat));
