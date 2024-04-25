@@ -6,9 +6,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define SQUARE_ERROR "Matrix is not square"
-#define TWOBTWO_ERROR "Matrix is not 2x2"
-#define SARRUS_ERROR "Matrix is not 3x3"
+#define SQUARE_ERROR	"Matrix is not square"
+#define TWOBTWO_ERROR	"Matrix is not 2x2"
+#define SARRUS_ERROR	"Matrix is not 3x3"
+#define MATRIX_NULL		(Matrix) NULL
 
 static Mat_type	*InitRow(size_t len)
 {
@@ -31,7 +32,7 @@ Matrix	Matrix_Init(size_t y, size_t x)
 
 	matrix = (Matrix)malloc(sizeof(Mat));
 	if (!matrix)
-		return (NULL);
+		return (MATRIX_NULL);
 	matrix->table = InitTable(y, x);
 	matrix->cols = x;
 	matrix->rows = y;
@@ -56,11 +57,15 @@ inline bool	KroneckerDelta(size_t i, size_t j)
 
 void	Matrix_SetValue(Matrix matrix, Mat_type value, size_t y, size_t x)
 {
+	if (!matrix)
+		return ;
 	matrix->table[y][x] = value;
 }
 
 Mat_type	*Matrix_GetRow(Matrix matrix, size_t n)
 {
+	if (!matrix)
+		return (NULL);
 	return (matrix->table[n]);
 }
 
@@ -70,9 +75,7 @@ Mat_type	*Matrix_GetColumn(Matrix matrix, size_t n)
 
 	arr = InitRow(matrix->rows);
 	for (size_t y = 0; y < matrix->rows; y++)
-	{
 		arr[y] = matrix->table[y][n];
-	}
 	return ((Mat_type *)arr);
 }
 
@@ -80,6 +83,8 @@ Matrix	Matrix_Sum(Matrix mat, Matrix mat2)
 {
 	Matrix	newMatrix;
 
+	if (!mat || !mat2)
+		return (MATRIX_NULL);
 	newMatrix = Matrix_Init(mat->rows, mat->cols);
 	if ((mat->rows != mat2->rows) || (mat->cols != mat2->cols))
 	{
@@ -127,9 +132,11 @@ Matrix	Matrix_Suppressed(Matrix mat, size_t y, size_t x)
 {
 	const size_t	new_y = mat->rows - 1;
 	const size_t	new_x = mat->cols - 1;
-	size_t			x_count = 0, y_count;
+	size_t			x_count;
+	size_t			y_count;
 	Matrix			subMatrix;
 
+	x_count = 0;
 	if (mat->rows < 2 && mat->cols < 2)
 	{
 		printf("Mat cannot be modified (insufficient size)");
@@ -165,6 +172,8 @@ Matrix	Matrix_Transpose(Matrix mat)
 {
 	Matrix	newMatrix;
 
+	if (!mat)
+		return (MATRIX_NULL);
 	newMatrix = Matrix_Init(mat->cols, mat->rows);
 	for (size_t row = 0; row < mat->rows; row++)
 		for (size_t col = 0; col < mat->cols; col++)
@@ -174,14 +183,15 @@ Matrix	Matrix_Transpose(Matrix mat)
 
 Mat_type	Matrix_TwoByTwoDet(Matrix mat)
 {
-	const double	mainDiagonal = mat->table[0][0] * mat->table[1][1];
-	const double	secondaryDiagonal = mat->table[0][1] * mat->table[1][0];
+	Mat_type	**table;
+	double		mainDiagonal;
+	double		secondaryDiagonal;
 
-	if (mat->rows != 2 || mat->cols != 2)
-	{
-		printf("%s \n", TWOBTWO_ERROR);
-		exit(EXIT_FAILURE);
-	}
+	if (!mat || mat->rows != 2 || mat->cols != 2)
+		return (0);
+	table = mat->table;
+	mainDiagonal = table[0][0] * table[1][1];
+	secondaryDiagonal = table[0][1] * table[1][0];
 	return (mainDiagonal - secondaryDiagonal);
 }
 
