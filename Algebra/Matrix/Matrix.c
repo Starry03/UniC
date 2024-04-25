@@ -265,6 +265,8 @@ void	Matrix_Fill(Matrix matrix, Mat_type value, size_t y0, size_t x0)
 {
 	size_t	x0_copy;
 
+	if (!matrix)
+		return ;
 	x0_copy = x0;
 	while (y0 < matrix->rows)
 	{
