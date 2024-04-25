@@ -12,27 +12,20 @@ static inline LinkedList	LinkedList_Alloc(void)
 
 LinkedList	LinkedList_Init(Generic value)
 {
-	LinkedList list = LinkedList_Alloc();
-	if (!list)
-		return (LINKEDLIST_EMPTY);
-	list->info = value;
-	list->next = LINKEDLIST_EMPTY;
-	return (list);
-}
+	LinkedList	list;
 
-void	LinkedList_Append(LinkedList list, Generic value)
-{
+	list = LinkedList_Alloc();
 	if (!list)
-		return ;
-	LinkedList_GetLast(list)->next = LinkedList_Init(value);
+		return (EmptyList());
+	list->info = value;
+	list->next = EmptyList();
+	return (list);
 }
 
 void	LinkedList_Push(LinkedList *list, Generic object)
 {
-	LinkedList node;
+	LinkedList	node;
 
-	if (!list || !*list)
-		return ;
 	node = LinkedList_Init(object);
 	node->next = *list;
 	*list = node;
@@ -40,8 +33,6 @@ void	LinkedList_Push(LinkedList *list, Generic object)
 
 void	LinkedList_Remove(LinkedList *node, void (*dealloc)(Generic))
 {
-	LinkedList next;
-
 	if (!node || !*node || !dealloc)
 		return ;
 	next = LinkedList_GetNext(*node);
@@ -63,7 +54,7 @@ void	LinkedList_RemoveByValue(LinkedList *list, Generic value,
 LinkedList	LinkedList_GetNode(LinkedList list, Generic value)
 {
 	if (!list || !value)
-		return (LINKEDLIST_EMPTY);
+		return (EmptyList());
 	while (LinkedList_GetInfo(list) != value)
 		list = LinkedList_GetNext(list);
 	return (list);
@@ -72,32 +63,24 @@ LinkedList	LinkedList_GetNode(LinkedList list, Generic value)
 LinkedList	LinkedList_GetNext(LinkedList list)
 {
 	if (!list)
-		return (LINKEDLIST_EMPTY);
+		return ((LinkedList)NULL);
 	return (list->next);
 }
 
 Generic	LinkedList_GetInfo(LinkedList list)
 {
 	if (!list)
-		return (GENERIC_NULL);
+		return ((Generic)NULL);
 	return (list->info);
-}
-
-LinkedList	LinkedList_GetLast(LinkedList list)
-{
-	if (!list)
-		return (LINKEDLIST_EMPTY);
-	while (list->next)
-		list = LinkedList_GetNext(list);
-	return (list);
 }
 
 void	LinkedList_Dealloc(LinkedList head, void (*dealloc)(Generic))
 {
-	LinkedList next;
+	LinkedList	next;
+
 	if (!head)
 		return ;
-	while (head)
+	while (head != NULL)
 	{
 		next = head->next;
 		if (dealloc)

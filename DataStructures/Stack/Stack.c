@@ -17,6 +17,14 @@ inline void	stack_add(Stack stack, Generic value)
 {
 	LinkedList_Push((LinkedList *)&stack, value);
 }
+
+/**
+ * @brief removes the top value from the stack
+ *
+ * @param stack
+ * @param dealloc
+ * @return Generic
+ */
 Generic	stack_poll(Stack *stack, void (*dealloc)(Generic))
 {
 	Generic	out;

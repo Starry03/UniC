@@ -1,13 +1,16 @@
 #ifndef GRAPH_H
-#define GRAPH_H
+# define GRAPH_H
 
-typedef struct s_graph {
+# include "../../Utils/types.h"
+# include <stddef.h>
 
-} t_graph;
+typedef struct s_graph	t_graph;
 
-typedef t_graph *Graph;
+typedef t_graph			*Graph;
 
-Graph Graph_Init();
-void Graph_Free(Graph graph);
+Graph					Graph_Init(void);
+void					Graph_AddVertex(Graph graph, Generic value,
+							void (*dealloc)(Generic));
+void					Graph_Free(Graph graph);
 
 #endif // !GRAPH_H
