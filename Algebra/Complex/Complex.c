@@ -51,7 +51,6 @@ t_complex	complex_mul(t_complex a, t_complex b)
 }
 t_complex	complex_div(t_complex a, t_complex b)
 {
-	t_complex c;
 	t_complex_type mod;
 
 	mod = complex_mod(b);

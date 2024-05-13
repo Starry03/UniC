@@ -1,35 +1,37 @@
-# Directories containing source files
-SRC_DIRS := Algrebra Algorithms DataStructures libft Utils 
+# Directories to search for source files
+DIRS := Algebra Algorithms DataStructures libft Utils
+
+# Find all .c files in the specified directories and their subdirectories
+SRCS := $(shell find $(DIRS) -name '*.c')
+
+# Object files corresponding to source files
+OBJS := $(SRCS:.c=.o)
+
+# Name of the static library
+LIB := UniC.a
 
 # Compiler and flags
 CC := gcc
-CFLAGS := -Wall -Wextra -Iinclude
-
-# Output directory
-OUTPUT_DIR := lib
-NAME = UniC.a
-
-# Source files
-SRCS := $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.c))
-
-# Object files
-OBJS := $(patsubst %.c,%.o,$(SRCS))
-
-# Target library
-TARGET := $(OUTPUT_DIR)/$(NAME)
+CFLAGS := -Wall -Wextra -Werror -lm -I.
 
 # Default target
-all: $(TARGET)
+all: $(LIB)
 
-# Compile source files
+# Rule to create the static library
+$(LIB): $(OBJS)
+	ar rcs $@ $^
+
+# Rule to compile .c files into .o files
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# Create static library
-$(TARGET): $(OBJS)
-	mkdir -p $(OUTPUT_DIR)
-	ar rcs $@ $^
-
-# Clean build artifacts
+# Rule to clean up
 clean:
-	rm -rf $(OUTPUT_DIR) $(OBJS)
+	rm -f $(OBJS)
+
+fclean: clean
+	rm -f $(LIB)
+
+re: fclean all
+
+.PHONY: all clean fclean re

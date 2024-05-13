@@ -259,8 +259,6 @@ Mat_type	Matrix_LaplaceDet(Matrix mat)
 	return (det);
 }
 
-#pragma clang diagnostic pop
-
 void	Matrix_Fill(Matrix matrix, Mat_type value, size_t y0, size_t x0)
 {
 	size_t	x0_copy;

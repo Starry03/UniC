@@ -11,3 +11,4 @@ CMakeLists.txt
 run.sh
 main.c
 *.a
+*.o

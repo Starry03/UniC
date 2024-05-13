@@ -39,8 +39,7 @@ void	BubbleSort(Generic *array, size_t size, int (*cmp)(Generic, Generic))
 }
 
 // O(n^2)
-void	InsertionSort(Generic *array, size_t size, int (*cmp)(Generic,
-			Generic))
+void	InsertionSort(Generic *array, size_t size, int (*cmp)(Generic, Generic))
 {
 	size_t	currentIndex;
 
@@ -189,9 +188,8 @@ void	CountingSort(const int array[], int dest[], int size, int k)
  */
 void	BucketSort(Generic *array, int size)
 {
-	int			index;
-	LinkedList	buckets[size];
-
+	int index __attribute__((unused));
+	LinkedList buckets[size] __attribute__((unused));
 	for (int i = 0; i < size; i++)
 		buckets[i] = LINKEDLIST_EMPTY;
 	for (int i = 1; i <= size; i++)

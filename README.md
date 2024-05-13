@@ -26,7 +26,7 @@ Feel free to use it, but please note:
 ```sh
 cd '<lib path>'
 make						# compile library
-gcc ... ./UniC/lib/UniC.a	# link library
+gcc ... ./UniC/UniC.a		# link library
 ```
 
 ## Data structures
