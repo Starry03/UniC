@@ -21,6 +21,14 @@ Feel free to use it, but please note:
 - it's not optimized for performance
 - it could be obviously improved
 
+### Linking
+
+```sh
+cd '<lib path>'
+make						# compile library
+gcc ... ./UniC/lib/UniC.a	# link library
+```
+
 ## Data structures
 
 - Matrices

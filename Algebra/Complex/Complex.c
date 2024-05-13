@@ -1,17 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Complex.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: starry <starry@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/27 13:16:44 by starry            #+#    #+#             */
-/*   Updated: 2024/04/27 13:31:04 by starry           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "Complex.h"
 #include <math.h>
+#include <stdlib.h>
 
 t_complex	complex_init(t_complex_type re, t_complex_type im)
 {
@@ -57,7 +46,8 @@ t_complex	complex_sub(t_complex a, t_complex b)
 }
 t_complex	complex_mul(t_complex a, t_complex b)
 {
-	return (a->re * b->re - a->im * b->im, a->re * b->im + a->im * b->re);
+	return (complex_init(a->re * b->re - a->im * b->im, a->re * b->im + a->im
+			* b->re));
 }
 t_complex	complex_div(t_complex a, t_complex b)
 {
