@@ -56,11 +56,11 @@ void	LinkedList_Append(LinkedList list, Generic value)
 }
 
 void	LinkedList_RemoveByValue(LinkedList *list, Generic value,
-		void (*dealloc)(Generic))
+		void (*dealloc)(Generic), int (*cmp)(Generic, Generic))
 {
 	if (!list || !*list || !value)
 		return ;
-	while (LinkedList_GetInfo(*list) != value)
+	while (*list && cmp(LinkedList_GetInfo(*list), value) != 0)
 		list = &((*list)->next);
 	LinkedList_Remove(list, dealloc);
 }
