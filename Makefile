@@ -12,7 +12,8 @@ LIB := UniC.a
 
 # Compiler and flags
 CC := gcc
-CFLAGS := -Wall -Wextra -Werror -lm -I.
+CFLAGS := -Wall -Wextra -Werror -I.
+LINK := -lm
 
 # Default target
 all: $(LIB)
@@ -23,7 +24,7 @@ $(LIB): $(OBJS)
 
 # Rule to compile .c files into .o files
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(LINK) -c $< -o $@
 
 # Rule to clean up
 clean:
