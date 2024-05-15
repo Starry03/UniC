@@ -9,7 +9,7 @@ typedef struct s_graph
 }				t_graph;
 
 /**
- * @brief Initializes a graph with a given number of vertices.
+ * @brief Initializes an empty graph.
  *
  * @return Graph A pointer to the graph.
 
@@ -45,4 +45,25 @@ void	Graph_AddVertex(Graph graph, Generic value, void (*dealloc)(Generic))
 		return ;
 	node = GraphNode_Init(id++, value, dealloc);
 	LinkedList_Push(&(graph->adjacency_list), node);
+}
+
+void	Graph_AddEdge(GraphNode from, GraphNode to, size_t weight)
+{
+	GraphNode_AddEdge(from, to, weight);
+}
+
+void	Graph_RemoveEdge(GraphNode from, GraphNode to)
+{
+	GraphNode_RemoveEdge(from, to);
+}
+
+void	GraphNode_AddDoubleEdge(GraphNode from, GraphNode to, size_t weight,
+		size_t weight2)
+{
+	GraphNode_AddDoubleEdge(from, to, weight, weight2);
+}
+
+void	GraphNode_RemoveDoubleEdge(GraphNode from, GraphNode to)
+{
+	GraphNode_RemoveDoubleEdge(from, to);
 }

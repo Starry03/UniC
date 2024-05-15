@@ -1,5 +1,6 @@
 #include "../../DataStructures/LinkedList/LinkedList.h"
 #include "../../Utils/types.h"
+#include "Edge.h"
 #include "GraphNode.h"
 #include <stdbool.h>
 #include <stdlib.h>
@@ -29,6 +30,9 @@ GraphNode	GraphNode_Init(size_t id, Generic info, void (*dealloc)(Generic))
 	return (node);
 }
 
+/**
+ * @brief Free the node and its edges
+ */
 void	GraphNode_Free(Generic node)
 {
 	GraphNode	g_node;
@@ -38,7 +42,7 @@ void	GraphNode_Free(Generic node)
 	g_node = (GraphNode)node;
 	if (g_node->dealloc)
 		g_node->dealloc(g_node->info);
-	LinkedList_Dealloc(g_node->edges, GraphNode_Free);
+	LinkedList_Dealloc(g_node->edges, Edge_Free);
 	free(node);
 }
 
@@ -55,40 +59,45 @@ size_t	GraphNode_GetId(GraphNode node)
 	return (node->id);
 }
 
-void	GraphNode_AddEdge(GraphNode from, GraphNode to)
+void	GraphNode_AddEdge(GraphNode from, GraphNode to, size_t weight)
 {
-	if (!from || !to)
-		return ;
-	LinkedList_Push(&from->edges, to);
-}
-
-void	GraphNode_RemoveEdge(GraphNode from, GraphNode to)
-{
-	LinkedList	node;
-	GraphNode	edge;
+	Edge	edge;
 
 	if (!from || !to)
 		return ;
-	node = from->edges;
-	while (node)
-	{
-		edge = (GraphNode)node->info;
-		if (edge->id == to->id)
-		{
-			LinkedList_Remove(&node, &GraphNode_Free);
-			break ;
-		}
-		node = LinkedList_GetNext(node);
-	}
+	edge = Edge_Init(from, to, weight);
+	if (!edge)
+		return ;
+	LinkedList_Push(&from->edges, edge);
 }
 
-void	Graph_AddDoubleEdge(GraphNode from, GraphNode to)
+void	GraphNode_RemoveEdge(GraphNode node, Edge edge)
 {
-	GraphNode_AddEdge(from, to);
-	GraphNode_AddEdge(to, from);
+	if (!node || !edge)
+		return ;
+	
+	LinkedList_RemoveByValue(&node->edges, edge, Edge_Free, Edge_Cmp);
 }
-void	Graph_RemoveDoubleEdge(GraphNode from, GraphNode to)
+
+/**
+
+	* @brief Add an edge from 'from' to 'to' (weigth) and from 'to' to 'from' (weight2)
+ */
+void	GraphNode_AddDoubleEdge(GraphNode from, GraphNode to, size_t weight,
+		size_t weight2)
+{
+	GraphNode_AddEdge(from, to, weight);
+	GraphNode_AddEdge(to, from, weight2);
+}
+void	GraphNode_RemoveDoubleEdge(GraphNode from, GraphNode to)
 {
 	GraphNode_RemoveEdge(from, to);
 	GraphNode_RemoveEdge(to, from);
+}
+
+bool	GraphNode_Cmp(GraphNode a, GraphNode b)
+{
+	if (!a || !b)
+		return (false);
+	return (a->id == b->id);
 }
