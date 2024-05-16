@@ -167,10 +167,9 @@ void	*Dict_Get(t_dict dict, Generic key, int (*cmp)(Generic, Generic))
 	const size_t	hash = hash_generic(key, dict->size);
 	LinkedList		bucket;
 	Dict_obj		obj;
-	Generic			obj_key;
 
 	bucket = (dict->buckets)[hash];
-	while (obj_key = LinkedList_GetInfo(bucket) && cmp(obj_key, key))
+	while (LinkedList_GetInfo(bucket) && cmp(((Dict_obj)LinkedList_GetInfo(bucket))->key, key))
 		bucket = LinkedList_GetNext(bucket);
 	obj = (Dict_obj)LinkedList_GetInfo(bucket);
 	if (!obj)
