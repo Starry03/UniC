@@ -31,7 +31,8 @@ t_dict					Dict_Init(size_t size);
 void					Dict_Add(t_dict *dict, Generic key, Generic value,
 							void (*dealloc_key)(Generic),
 							void (*dealloc_value)(Generic));
-void					*Dict_Get(t_dict dict, Generic key);
+void					*Dict_Get(t_dict dict, Generic key, int (*cmp)(Generic,
+								Generic));
 void					Dict_Remove(t_dict dict, Generic key);
 void					Dict_Free(t_dict dict);
 

@@ -162,14 +162,15 @@ void	Dict_Add(t_dict *dict, Generic key, Generic value,
  * @param key
  * @return void*
  */
-void	*Dict_Get(t_dict dict, Generic key)
+void	*Dict_Get(t_dict dict, Generic key, int (*cmp)(Generic, Generic))
 {
 	const size_t	hash = hash_generic(key, dict->size);
 	LinkedList		bucket;
 	Dict_obj		obj;
+	Generic			obj_key;
 
 	bucket = (dict->buckets)[hash];
-	while (LinkedList_GetInfo(bucket) && ((Dict_obj)LinkedList_GetInfo(bucket))->key != key)
+	while (obj_key = LinkedList_GetInfo(bucket) && cmp(obj_key, key))
 		bucket = LinkedList_GetNext(bucket);
 	obj = (Dict_obj)LinkedList_GetInfo(bucket);
 	if (!obj)
