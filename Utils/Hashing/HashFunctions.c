@@ -18,10 +18,13 @@ size_t	hash_string(void *key, size_t size)
 
 	hash = 0;
 	str = (char *)key;
+
 	while (*str)
 	{
-		hash = (hash << 5) - hash + *str++;
+		hash = hash * 31 + *str;
+		str++;
 	}
+
 	return (normalize(hash, size));
 }
 
