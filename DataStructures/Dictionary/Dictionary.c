@@ -22,7 +22,7 @@ static inline t_dict	Dict_alloc(void)
 
 static Dict_obj	Dict_Obj_Init(Generic key, Generic value,
 		size_t (*hash_key)(Generic, size_t), void (*dealloc_key)(Generic),
-		void (*dealloc_value)(Generic))
+		void (*dealloc_value)(Generic), int (*cmp)(Generic, Generic))
 {
 	Dict_obj	obj;
 
@@ -34,6 +34,7 @@ static Dict_obj	Dict_Obj_Init(Generic key, Generic value,
 	obj->dealloc_key = dealloc_key;
 	obj->dealloc_value = dealloc_value;
 	obj->hash_key = hash_key;
+	obj->cmp = cmp;
 	return (obj);
 }
 
@@ -114,7 +115,7 @@ t_dict	Dict_Realloc(t_dict old_dict)
 		{
 			obj = current_bucket->info;
 			Dict_Add(&new_dict, obj->key, obj->value, obj->hash_key,
-				obj->dealloc_key, obj->dealloc_value);
+				obj->dealloc_key, obj->dealloc_value, obj->cmp);
 			current_bucket = LinkedList_GetNext(current_bucket);
 		}
 		i++;
@@ -135,7 +136,7 @@ t_dict	Dict_Realloc(t_dict old_dict)
  */
 void	Dict_Add(t_dict *dict, Generic key, Generic value,
 		size_t (*hash_key)(Generic, size_t), void (*dealloc_key)(Generic),
-		void (*dealloc_value)(Generic))
+		void (*dealloc_value)(Generic), int (*cmp)(Generic, Generic))
 {
 	const size_t	hash = hash_generic(hash_key(key, (*dict)->size),
 				(*dict)->size);
@@ -143,7 +144,7 @@ void	Dict_Add(t_dict *dict, Generic key, Generic value,
 	t_dict			d;
 	Dict_obj		obj;
 
-	if (!dict)
+	if (!dict || Dict_Get(*dict, key, hash_key, cmp))
 		return ;
 	d = *dict;
 	if (d->used + 1 > d->size)
@@ -152,7 +153,7 @@ void	Dict_Add(t_dict *dict, Generic key, Generic value,
 		return ;
 	}
 	buckets = d->buckets;
-	obj = Dict_Obj_Init(key, value, hash_key, dealloc_key, dealloc_value);
+	obj = Dict_Obj_Init(key, value, hash_key, dealloc_key, dealloc_value, cmp);
 	if (!obj)
 		return ;
 	LinkedList_Push(buckets + hash, obj);
