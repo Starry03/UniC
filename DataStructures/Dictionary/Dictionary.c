@@ -157,6 +157,7 @@ bool	Dict_Add(t_dict *dict, Generic key, Generic value,
 		return (false);
 	LinkedList_Push(buckets + hash, obj);
 	d->used++;
+	return (true);
 }
 
 /**
