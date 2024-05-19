@@ -95,7 +95,7 @@ t_dict	Dict_Init(size_t size)
 
 /**
  * @brief Reallocates dict creating a new one with double the size
- *
+ * @warning causes double free, will be fixed in the future
  * @param old_dict
  * @return Dict
  */
