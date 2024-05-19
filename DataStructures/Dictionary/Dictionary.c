@@ -150,10 +150,7 @@ bool	Dict_Add(t_dict *dict, Generic key, Generic value,
 		return (false);
 	d = *dict;
 	if (d->used + 1 > d->size)
-	{
 		*dict = Dict_Realloc(*dict);
-		return ;
-	}
 	buckets = d->buckets;
 	obj = Dict_Obj_Init(key, value, hash_key, dealloc_key, dealloc_value, cmp);
 	if (!obj)
