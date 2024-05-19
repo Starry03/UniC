@@ -7,6 +7,7 @@
 
 # include "../../DataStructures/LinkedList/LinkedList.h"
 # include <stddef.h>
+# include <stdbool.h>
 
 typedef struct s_dictionary
 {
@@ -30,7 +31,7 @@ typedef struct s_dict_obj
 typedef t_dict_obj		*Dict_obj;
 
 t_dict					Dict_Init(size_t size);
-void					Dict_Add(t_dict *dict, Generic key, Generic value,
+bool					Dict_Add(t_dict *dict, Generic key, Generic value,
 							size_t (*hash_key)(Generic, size_t),
 							void (*dealloc_key)(Generic),
 							void (*dealloc_value)(Generic), int (*cmp)(Generic,

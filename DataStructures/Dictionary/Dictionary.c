@@ -133,8 +133,10 @@ t_dict	Dict_Realloc(t_dict old_dict)
  * @param value value or address
  * @param dealloc_key null if is a value
  * @param dealloc_value null if is a value
+ * @param cmp function to compare keys
+ * @return true if added, false if key already exists
  */
-void	Dict_Add(t_dict *dict, Generic key, Generic value,
+bool	Dict_Add(t_dict *dict, Generic key, Generic value,
 		size_t (*hash_key)(Generic, size_t), void (*dealloc_key)(Generic),
 		void (*dealloc_value)(Generic), int (*cmp)(Generic, Generic))
 {
@@ -145,7 +147,7 @@ void	Dict_Add(t_dict *dict, Generic key, Generic value,
 	Dict_obj		obj;
 
 	if (!dict || Dict_Get(*dict, key, hash_key, cmp))
-		return ;
+		return (false);
 	d = *dict;
 	if (d->used + 1 > d->size)
 	{
@@ -155,7 +157,7 @@ void	Dict_Add(t_dict *dict, Generic key, Generic value,
 	buckets = d->buckets;
 	obj = Dict_Obj_Init(key, value, hash_key, dealloc_key, dealloc_value, cmp);
 	if (!obj)
-		return ;
+		return (false);
 	LinkedList_Push(buckets + hash, obj);
 	d->used++;
 }
