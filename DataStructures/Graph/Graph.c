@@ -53,45 +53,6 @@ void	Graph_AddDoubleEdge(Vertex vertex, Edge edge)
 	Graph_AddEdge(edge->dest, double_edge);
 }
 
-Vertex	Vertex_Init(Generic value)
-{
-	static uint32_t	id = 0;
-	Vertex			vertex;
-
-	vertex = (Vertex)malloc(sizeof(t_vertex));
-	if (!vertex)
-		return (NULL);
-	vertex->edges = LINKEDLIST_EMPTY;
-	vertex->value = value;
-	vertex->id = id++;
-	vertex->status = VERTEX_UNVISITED;
-	return (vertex);
-}
-void	Vertex_Free(Graph graph, Vertex vertex)
-{
-	LinkedList_Dealloc(vertex->edges, Edge_Free);
-	if (graph->dealloc_vertex)
-		graph->dealloc_vertex(vertex->value);
-	free(vertex);
-}
-
-Edge	Edge_Init(Vertex src, Vertex dest, uint32_t weight)
-{
-	Edge	edge;
-
-	edge = (Edge)malloc(sizeof(t_edge));
-	if (!edge)
-		return (NULL);
-	edge->src = src;
-	edge->dest = dest;
-	edge->weight = weight;
-	return (edge);
-}
-void	Edge_Free(Generic edge)
-{
-	free(edge);
-}
-
 void	Graph_RemoveVertex(Graph graph, Vertex vertex)
 {
 	LinkedList	adj_list;
