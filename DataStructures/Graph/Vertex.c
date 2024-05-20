@@ -13,6 +13,8 @@ Vertex	Vertex_Init(Generic value)
 	vertex->value = value;
 	vertex->id = id++;
 	vertex->status = VERTEX_UNVISITED;
+	vertex->distance = 0;
+	vertex->time = 0;
 	return (vertex);
 }
 void	Vertex_Free(Graph graph, Vertex vertex)

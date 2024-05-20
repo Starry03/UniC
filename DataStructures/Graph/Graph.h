@@ -28,12 +28,16 @@ typedef enum e_vertex_status
  * @brief A vertex is a node in a graph.
  * @note id is used to identify the vertex internally.
  * @note status is used for graph traversal.
-*/
+ * @note time is used for graph traversal and edge classification.
+ * @note distance is used for shortest path algorithms.
+ */
 typedef struct s_vertex
 {
 	LinkedList		edges;
 	Generic			value;
 	uint32_t		id;
+	uint32_t		distance;
+	uint32_t		time;
 	t_vertex_status	status;
 }					t_vertex;
 
