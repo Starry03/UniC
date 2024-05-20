@@ -24,6 +24,11 @@ typedef enum e_vertex_status
 	VERTEX_VISITED,
 }					t_vertex_status;
 
+/**
+ * @brief A vertex is a node in a graph.
+ * @note id is used to identify the vertex internally.
+ * @note status is used for graph traversal.
+*/
 typedef struct s_vertex
 {
 	LinkedList		edges;
