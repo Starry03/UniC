@@ -165,6 +165,8 @@ bool	Dict_Add(t_dict *dict, Generic key, Generic value,
  *
  * @param dict
  * @param key
+ * @param hash_key
+ * @param cmp
  * @return void*
  */
 void	*Dict_Get(t_dict dict, Generic key, size_t (*hash_key)(Generic, size_t),
