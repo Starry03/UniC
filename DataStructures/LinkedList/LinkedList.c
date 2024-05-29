@@ -36,14 +36,17 @@ void	LinkedList_Append(LinkedList list, Generic value)
 	LinkedList	node;
 
 	if (!list)
+	{
+		*list = LinkedList_Init(value);
 		return ;
+	}
 	node = LinkedList_Init(value);
 	while (list->next)
 		list = list->next;
 	list->next = node;
 }
 
-	void LinkedList_Remove(LinkedList *node, void (*dealloc)(Generic))
+void	LinkedList_Remove(LinkedList *node, void (*dealloc)(Generic))
 {
 	LinkedList	next;
 
