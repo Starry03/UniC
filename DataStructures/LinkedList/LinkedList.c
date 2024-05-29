@@ -35,7 +35,7 @@ void	LinkedList_Append(LinkedList *list, Generic value)
 {
 	LinkedList	node;
 
-	if (!list)
+	if (!*list)
 	{
 		*list = LinkedList_Init(value);
 		return ;
