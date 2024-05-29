@@ -31,7 +31,7 @@ void	LinkedList_Push(LinkedList *list, Generic object)
 	*list = node;
 }
 
-void	LinkedList_Append(LinkedList list, Generic value)
+void	LinkedList_Append(LinkedList *list, Generic value)
 {
 	LinkedList	node;
 
@@ -41,9 +41,9 @@ void	LinkedList_Append(LinkedList list, Generic value)
 		return ;
 	}
 	node = LinkedList_Init(value);
-	while (list->next)
-		list = list->next;
-	list->next = node;
+	while (*list->next)
+		list = &((*list)->next);
+	*list->next = node;
 }
 
 void	LinkedList_Remove(LinkedList *node, void (*dealloc)(Generic))
