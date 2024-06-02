@@ -6,6 +6,7 @@
 # define LINKEDLIST_H
 
 # include "../Nodes/Nodes.h"
+# include <stddef.h>
 
 typedef Node	LinkedList;
 
@@ -27,6 +28,8 @@ LinkedList		LinkedList_GetNext(LinkedList list);
 Generic			LinkedList_GetInfo(LinkedList list);
 
 LinkedList		LinkedList_GetNode(LinkedList list, Generic value);
+
+LinkedList		LinkedList_GetNth(LinkedList list, size_t n);
 
 LinkedList		LinkedList_GetLast(LinkedList list);
 

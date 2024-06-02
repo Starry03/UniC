@@ -106,3 +106,16 @@ void	LinkedList_Dealloc(LinkedList head, void (*dealloc)(Generic))
 		head = next;
 	}
 }
+
+LinkedList	LinkedList_GetNth(LinkedList list, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	while (list && i < n)
+	{
+		list = LinkedList_GetNext(list);
+		i++;
+	}
+	return (list);
+}
