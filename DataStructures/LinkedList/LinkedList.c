@@ -112,10 +112,25 @@ LinkedList	LinkedList_GetNth(LinkedList list, size_t n)
 	size_t	i;
 
 	i = 0;
-	while (list && i < n)
+	while (i < n)
 	{
 		list = LinkedList_GetNext(list);
+		if (!list)
+			return (LINKEDLIST_EMPTY);
 		i++;
 	}
 	return (list);
+}
+
+size_t	LinkedList_Size(LinkedList list)
+{
+	size_t	size;
+
+	size = 0;
+	while (list)
+	{
+		size++;
+		list = LinkedList_GetNext(list);
+	}
+	return (size);
 }

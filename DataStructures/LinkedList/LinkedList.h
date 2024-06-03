@@ -35,4 +35,6 @@ LinkedList		LinkedList_GetLast(LinkedList list);
 
 void			LinkedList_Dealloc(LinkedList head, void (*dealloc)(Generic));
 
+size_t			LinkedList_Size(LinkedList list);
+
 #endif // LINKEDLIST_H
