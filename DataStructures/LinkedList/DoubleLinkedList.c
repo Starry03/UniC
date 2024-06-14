@@ -1,4 +1,5 @@
 #include "DoubleLinkedList.h"
+#include <stdlib.h>
 
 DoubleLinkedList	DoubleLinkedList_Init(Generic info)
 {
@@ -18,7 +19,7 @@ DoubleLinkedList	DoubleLinkedList_Insert(DoubleLinkedList *list,
 	if (index == LAST)
 		return (DoubleLinkedList_Append(*list, info));
 	temp = DoubleLinkedList_GetNth(*list, index);
-	node = Node_Init(info);
+	node = DoubleNode_Init(info);
 	if (temp)
 		temp->prev = node;
 	node->next = temp;

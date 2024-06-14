@@ -14,13 +14,13 @@ DoubleLinkedList	DoubleLinkedList_Insert(DoubleLinkedList *list,
 DoubleLinkedList	DoubleLinkedList_Append(DoubleLinkedList list,
 						Generic info);
 DoubleLinkedList	DoubleLinkedList_Push(DoubleLinkedList *list, Generic info);
-DoubleLinkedList	DoubleLinkedList_RemoveByValue(DoubleLinkedList list,
+void				DoubleLinkedList_RemoveByValue(DoubleLinkedList list,
 						Comparator cmp, Generic info, Deallocator dealloc);
 void				DoubleLinkedList_Remove(DoubleLinkedList node,
 						Deallocator dealloc);
 void				DoubleLinkedList_RemoveByIndex(DoubleLinkedList list,
 						size_t index, Deallocator dealloc);
-void				DoubleLinkedList_Search(DoubleLinkedList list,
+DoubleLinkedList	DoubleLinkedList_Search(DoubleLinkedList list,
 						Comparator cmp, Generic info);
 DoubleLinkedList	DoubleLinkedList_GetNth(DoubleLinkedList list,
 						size_t index);
