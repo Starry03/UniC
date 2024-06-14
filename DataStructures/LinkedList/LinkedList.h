@@ -21,7 +21,7 @@ LinkedList		LinkedList_Append(LinkedList *list, Generic value);
 void			LinkedList_Remove(LinkedList *node, void (*dealloc)(Generic));
 
 void			LinkedList_RemoveByValue(LinkedList *list, Generic value,
-					void (*dealloc)(Generic), int (*cmp)(Generic, Generic));
+					void (*dealloc)(Generic), Comparator cmp);
 
 LinkedList		LinkedList_GetNext(LinkedList list);
 
