@@ -135,3 +135,26 @@ size_t	LinkedList_Size(LinkedList list)
 	}
 	return (size);
 }
+
+LinkedList	LinkedList_Insert(LinkedList *list, Generic value, size_t index)
+{
+	LinkedList	c_node;
+	LinkedList	n_node;
+
+	if (!list || !*list)
+		return (LINKEDLIST_EMPTY);
+	if (index == START)
+	{
+		LinkedList_Push(list, value);
+		return (*list);
+	}
+	if (index == LAST)
+		return (LinkedList_Append(list, value));
+	c_node = LinkedList_GetNth(*list, index);
+	if (!c_node)
+		return (LINKEDLIST_EMPTY);
+	n_node = LinkedList_Init(value);
+	n_node->next = c_node->next;
+	c_node->next = n_node;
+	return (n_node);
+}

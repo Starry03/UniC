@@ -18,6 +18,9 @@ void			LinkedList_Push(LinkedList *list, Generic object);
 
 LinkedList		LinkedList_Append(LinkedList *list, Generic value);
 
+LinkedList		LinkedList_Insert(LinkedList *list, Generic value,
+					size_t index);
+
 void			LinkedList_Remove(LinkedList *node, void (*dealloc)(Generic));
 
 void			LinkedList_RemoveByValue(LinkedList *list, Generic value,
