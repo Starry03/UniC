@@ -54,7 +54,8 @@ void	LinkedList_Remove(LinkedList *node, void (*dealloc)(Generic))
 	if (!node || !*node || !dealloc)
 		return ;
 	next = LinkedList_GetNext(*node);
-	dealloc(LinkedList_GetInfo(*node));
+	if (dealloc)
+		dealloc(LinkedList_GetInfo(*node));
 	free(*node);
 	*node = next;
 }
