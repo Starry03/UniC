@@ -2,6 +2,7 @@
 # define GRAPH_H
 
 # include "../LinkedList/LinkedList.h"
+# include <stdbool.h>
 # include <stdint.h>
 
 /**
@@ -30,14 +31,16 @@ typedef enum e_vertex_status
  * @note status is used for graph traversal.
  * @note time is used for graph traversal and edge classification.
  * @note distance is used for shortest path algorithms.
+ * @note predecessor is used for shortest path algorithms.
  */
 typedef struct s_vertex
 {
 	LinkedList		edges;
 	Generic			value;
-	uint32_t		id;
-	uint32_t		distance;
-	uint32_t		time;
+	uint64_t		id;
+	uint64_t		distance;
+	uint64_t		time;
+	struct s_vertex	*predecessor;
 	t_vertex_status	status;
 }					t_vertex;
 
@@ -53,7 +56,7 @@ typedef struct s_edge
 {
 	Vertex			src;
 	Vertex			dest;
-	uint32_t		weight;
+	uint64_t		weight;
 }					t_edge;
 
 typedef t_edge		*Edge;
@@ -70,7 +73,15 @@ void				Graph_RemoveVertex(Graph graph, Vertex vertex);
 void				Graph_RemoveEdge(Vertex vertex, Edge edge);
 void				Graph_RemoveDoubleEdge(Vertex vertex, Edge edge);
 
-Edge				Edge_Init(Vertex src, Vertex dest, uint32_t weight);
+Edge				Edge_Init(Vertex src, Vertex dest, uint64_t weight);
 void				Edge_Free(Generic edge);
+
+LinkedList			Dikstra(Graph graph, Vertex src, Vertex dest);
+
+/* UTILS */
+void				Vertex_InitSingleSource(Graph graph, Vertex src);
+bool				Edge_Relax(Vertex src, Vertex dest, uint64_t weight);
+int					cmp_vertex_distance(Generic a, Generic b);
+inline void			free_heap_entry(Generic entry);
 
 #endif

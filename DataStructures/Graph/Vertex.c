@@ -15,6 +15,7 @@ Vertex	Vertex_Init(Generic value)
 	vertex->status = VERTEX_UNVISITED;
 	vertex->distance = 0;
 	vertex->time = 0;
+	vertex->predecessor = NULL;
 	return (vertex);
 }
 void	Vertex_Free(Graph graph, Vertex vertex)

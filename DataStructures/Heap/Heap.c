@@ -96,11 +96,15 @@ Generic	Heap_GetMin(t_heap heap)
 {
 	if (!heap || !heap->is_min_heap)
 		return (NULL);
+	if (heap->length == 0)
+		return (NULL);
 	return (heap->entries[0]->value);
 }
 Generic	Heap_GetMax(t_heap heap)
 {
 	if (!heap || heap->is_min_heap)
+		return (NULL);
+	if (heap->length == 0)
 		return (NULL);
 	return (heap->entries[0]->value);
 }
