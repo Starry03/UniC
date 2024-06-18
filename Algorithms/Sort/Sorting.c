@@ -19,7 +19,7 @@ static void	swap(Generic *a, Generic *b)
 }
 
 // O(n^2)
-void	BubbleSort(Generic *array, size_t size, int (*cmp)(Generic, Generic))
+void	BubbleSort(Generic *array, size_t size, Comparator cmp)
 {
 	bool	swapped;
 
@@ -39,7 +39,7 @@ void	BubbleSort(Generic *array, size_t size, int (*cmp)(Generic, Generic))
 }
 
 // O(n^2)
-void	InsertionSort(Generic *array, size_t size, int (*cmp)(Generic, Generic))
+void	InsertionSort(Generic *array, size_t size, Comparator cmp)
 {
 	size_t	currentIndex;
 
@@ -56,8 +56,7 @@ void	InsertionSort(Generic *array, size_t size, int (*cmp)(Generic, Generic))
 }
 
 // O(n log n)
-void	Merge(Generic *arr, size_t low, size_t mid, size_t high,
-		int (*cmp)(Generic, Generic))
+void	Merge(Generic *arr, size_t low, size_t mid, size_t high, Comparator cmp)
 {
 	const size_t	tempLength = high - low + 1;
 	Generic			*temp[tempLength];
@@ -92,8 +91,7 @@ void	Merge(Generic *arr, size_t low, size_t mid, size_t high,
 }
 
 // O(n log n)
-void	MergeSort_rec(Generic *arr, size_t low, size_t high, int (*cmp)(Generic,
-			Generic))
+void	MergeSort_rec(Generic *arr, size_t low, size_t high, Comparator cmp)
 {
 	size_t	mid;
 
@@ -107,7 +105,7 @@ void	MergeSort_rec(Generic *arr, size_t low, size_t high, int (*cmp)(Generic,
 }
 
 // O(n log n)
-void	MergeSort(Generic *array, size_t size, int (*cmp)(Generic, Generic))
+void	MergeSort(Generic *array, size_t size, Comparator cmp)
 {
 	MergeSort_rec(array, 0, size - 1, cmp);
 }
