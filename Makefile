@@ -12,7 +12,7 @@ LIB := UniC.a
 
 # Compiler and flags
 CC := gcc
-CFLAGS := -Wall -Wextra -Werror -I.
+CFLAGS := -Wall -Wextra -Werror -I. -g
 LINK := -lm
 
 # Default target

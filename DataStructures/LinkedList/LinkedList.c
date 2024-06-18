@@ -34,30 +34,34 @@ void	LinkedList_Push(LinkedList *list, Generic object)
 LinkedList	LinkedList_Append(LinkedList *list, Generic value)
 {
 	LinkedList	node;
+	LinkedList	last;
 
+	if (!list)
+		return (LINKEDLIST_EMPTY);
+	node = LinkedList_Init(value);
+	if (!node)
+		return (LINKEDLIST_EMPTY);
 	if (!*list)
 	{
-		*list = LinkedList_Init(value);
-		return (*list);
+		*list = node;
+		return (node);
 	}
-	node = LinkedList_Init(value);
-	while ((*list)->next)
-		list = &((*list)->next);
-	(*list)->next = node;
+	last = LinkedList_GetLast(*list);
+	last->next = node;
 	return (node);
 }
 
 void	LinkedList_Remove(LinkedList *node, void (*dealloc)(Generic))
 {
-	LinkedList	next;
+	LinkedList	temp;
 
-	if (!node || !*node || !dealloc)
+	if (!node || !*node)
 		return ;
-	next = LinkedList_GetNext(*node);
+	temp = *node;
+	(*node) = (*node)->next;
 	if (dealloc)
-		dealloc(LinkedList_GetInfo(*node));
-	free(*node);
-	*node = next;
+		dealloc(temp->info);
+	free(temp);
 }
 
 void	LinkedList_RemoveByValue(LinkedList *list, Generic value,
@@ -158,4 +162,13 @@ LinkedList	LinkedList_Insert(LinkedList *list, Generic value, size_t index)
 	n_node->next = c_node->next;
 	c_node->next = n_node;
 	return (n_node);
+}
+
+LinkedList	LinkedList_GetLast(LinkedList list)
+{
+	if (!list)
+		return (LINKEDLIST_EMPTY);
+	while (list->next)
+		list = list->next;
+	return (list);
 }
