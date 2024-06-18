@@ -131,6 +131,53 @@ Generic	Heap_PollMax(t_heap heap)
 	return (max->value);
 }
 
+static void	Heap_Increase(t_heap heap, size_t index, Generic key, Generic value)
+{
+	t_heap_entry	entry;
+	t_heap_entry	parent;
+	Comparator		cmp;
+	t_heap_entry	*entries;
+
+	cmp = heap->cmp;
+	entries = heap->entries;
+	if (cmp(key, HeapEntry_GetParent(heap, index)->key) < 0)
+		return ;
+	entries[index] = HeapEntry_init(key, value);
+	while (index && cmp(entries[ENTRY_PARENT(index)]->key, key) < 0)
+	{
+		swap_entries(entries[index], entries[ENTRY_PARENT(index)]);
+		index = ENTRY_PARENT(index);
+	}
+}
+
+static void	Heap_Decrease(t_heap heap, size_t index, Generic key, Generic value)
+{
+	t_heap_entry	entry;
+	t_heap_entry	parent;
+	Comparator		cmp;
+	t_heap_entry	*entries;
+
+	cmp = heap->cmp;
+	entries = heap->entries;
+	if (cmp(key, HeapEntry_GetParent(heap, index)->key) > 0)
+		return ;
+	entries[index] = HeapEntry_init(key, value);
+	while (index && cmp(entries[ENTRY_PARENT(index)]->key, key) > 0)
+	{
+		swap_entries(entries[index], entries[ENTRY_PARENT(index)]);
+		index = ENTRY_PARENT(index);
+	}
+}
+
 void	Heap_Insert(t_heap heap, Generic key, Generic value)
 {
+	if (!heap || !key)
+		return ;
+	if (heap->length == heap->capacity)
+		return ;
+	heap->length++;
+	if (heap->is_min_heap)
+		Heap_Decrease(heap, heap->length - 1, key, value);
+	else
+		Heap_Increase(heap, heap->length - 1, key, value);
 }

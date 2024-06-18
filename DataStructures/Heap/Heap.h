@@ -5,6 +5,7 @@
 # include <stddef.h>
 # define ENTRY_LEFT(i) (2 * i + 1)
 # define ENTRY_RIGHT(i) (2 * i + 2)
+# define ENTRY_PARENT(i) ((i - 1) / 2)
 
 typedef struct s_heap_entry
 {
