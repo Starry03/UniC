@@ -67,7 +67,8 @@ void	Heap_Heapify(t_heap heap, size_t index)
 	temp[0] = heap->entries[index];
 	temp[1] = left;
 	temp[2] = right;
-	qsort(temp, 3, sizeof(t_heap_entry), heap->cmp);
+	qsort(temp, 3, sizeof(t_heap_entry), (int (*)(const void *,
+				const void *))(heap->cmp));
 	if (heap->is_min_heap)
 		swap = temp[0];
 	else
@@ -135,18 +136,18 @@ Generic	Heap_PollMax(t_heap heap)
 	return (max->value);
 }
 
-static void	Heap_Increase(t_heap heap, size_t index, Generic key, Generic value)
+void	Heap_Increase(t_heap heap, size_t index, t_heap_entry entry)
 {
-	t_heap_entry	entry;
-	t_heap_entry	parent;
 	Comparator		cmp;
 	t_heap_entry	*entries;
+	Generic			key;
 
 	cmp = heap->cmp;
+	key = entry->key;
 	entries = heap->entries;
 	if (cmp(key, HeapEntry_GetParent(heap, index)->key) < 0)
 		return ;
-	entries[index] = HeapEntry_init(key, value);
+	entries[index] = entry;
 	while (index && cmp(entries[ENTRY_PARENT(index)]->key, key) < 0)
 	{
 		swap_entries(entries[index], entries[ENTRY_PARENT(index)]);
@@ -154,18 +155,18 @@ static void	Heap_Increase(t_heap heap, size_t index, Generic key, Generic value)
 	}
 }
 
-static void	Heap_Decrease(t_heap heap, size_t index, Generic key, Generic value)
+void	Heap_Decrease(t_heap heap, size_t index, t_heap_entry entry)
 {
-	t_heap_entry	entry;
-	t_heap_entry	parent;
 	Comparator		cmp;
 	t_heap_entry	*entries;
+	Generic			key;
 
 	cmp = heap->cmp;
 	entries = heap->entries;
+	key = entry->key;
 	if (cmp(key, HeapEntry_GetParent(heap, index)->key) > 0)
 		return ;
-	entries[index] = HeapEntry_init(key, value);
+	entries[index] = entry;
 	while (index && cmp(entries[ENTRY_PARENT(index)]->key, key) > 0)
 	{
 		swap_entries(entries[index], entries[ENTRY_PARENT(index)]);
@@ -173,15 +174,15 @@ static void	Heap_Decrease(t_heap heap, size_t index, Generic key, Generic value)
 	}
 }
 
-void	Heap_Insert(t_heap heap, Generic key, Generic value)
+void	Heap_Insert(t_heap heap, t_heap_entry entry)
 {
-	if (!heap || !key)
+	if (!heap || !entry || !entry->key)
 		return ;
 	if (heap->length == heap->capacity)
 		return ;
 	heap->length++;
 	if (heap->is_min_heap)
-		Heap_Decrease(heap, heap->length - 1, key, value);
+		Heap_Decrease(heap, heap->length - 1, entry);
 	else
-		Heap_Increase(heap, heap->length - 1, key, value);
+		Heap_Increase(heap, heap->length - 1, entry);
 }

@@ -37,10 +37,14 @@ t_heap					Heap_init(size_t capacity, Comparator cmp,
 void					Heap_Free(t_heap heap);
 void					Heap_Heapify(t_heap heap, size_t index);
 void					Heap_Build(t_heap heap);
-void					Heap_Insert(t_heap heap, Generic key, Generic value);
+void					Heap_Insert(t_heap heap, t_heap_entry entry);
 Generic					Heap_PollMin(t_heap heap);
 Generic					Heap_PollMax(t_heap heap);
 Generic					Heap_GetMin(t_heap heap);
 Generic					Heap_GetMax(t_heap heap);
+void					Heap_Increase(t_heap heap, size_t index,
+							t_heap_entry entry);
+void					Heap_Decrease(t_heap heap, size_t index,
+							t_heap_entry entry);
 
 #endif

@@ -36,6 +36,6 @@ fclean: clean
 re: fclean all
 
 test:
-	$(CC) $(CFLAGS) main.c -I. ./UniC.a -o main && valgrind --leak-check=full -s ./main
+	$(CC) $(CFLAGS) main.c -g -I. ./UniC.a -o main && valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./main
 
 .PHONY: all clean fclean re test

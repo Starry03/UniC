@@ -81,7 +81,9 @@ LinkedList			Dikstra(Graph graph, Vertex src, Vertex dest);
 /* UTILS */
 void				Vertex_InitSingleSource(Graph graph, Vertex src);
 bool				Edge_Relax(Vertex src, Vertex dest, uint64_t weight);
-int					cmp_vertex_distance(Generic a, Generic b);
-inline void			free_heap_entry(Generic entry);
+int					Vertex_CmpDistance(Generic a, Generic b);
+int					Vertex_CmpId(Generic a, Generic b);
+void				free_heap_entry(Generic entry);
+size_t				Vertex_Hash(Generic vertex, size_t capacity);
 
 #endif
