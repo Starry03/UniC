@@ -10,6 +10,7 @@ t_heap_entry	HeapEntry_init(Generic key, Generic value)
 		return (NULL);
 	entry->key = key;
 	entry->value = value;
+	entry->index = 0;
 	return (entry);
 }
 t_heap_entry	HeapEntry_GetLeftChild(t_heap heap, size_t i)

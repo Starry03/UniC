@@ -13,3 +13,4 @@ main.c
 main
 *.a
 *.o
+*vgcore*

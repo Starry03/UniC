@@ -9,6 +9,7 @@
 
 typedef struct s_heap_entry
 {
+	size_t				index;
 	Generic				key;
 	Generic				value;
 }						t_heap_entry_;
@@ -42,9 +43,9 @@ Generic					Heap_PollMin(t_heap heap);
 Generic					Heap_PollMax(t_heap heap);
 Generic					Heap_GetMin(t_heap heap);
 Generic					Heap_GetMax(t_heap heap);
-void					Heap_Increase(t_heap heap, size_t index,
-							t_heap_entry entry);
-void					Heap_Decrease(t_heap heap, size_t index,
-							t_heap_entry entry);
+void					Heap_Increase(t_heap heap, size_t index);
+void					Heap_Decrease(t_heap heap, size_t index);
+void					Heap_ReplaceKey(t_heap heap, t_heap_entry entry,
+							Generic key, Deallocator dealloc);
 
 #endif

@@ -1,6 +1,15 @@
 #include "Heap.h"
+#include <stdio.h>
 #include <stdlib.h>
 
+/**
+ * @brief Create a new heap entry.
+ * @param capacity: the capacity of the heap
+ * @param cmp: function to compare the keys of the heap entries
+ * @param dealloc: function to deallocate the entry of the heap (key + value
+	+ entry itself)
+ * @param is_min_heap: if the heap is a min heap
+ */
 t_heap	Heap_init(size_t capacity, Comparator cmp, Deallocator dealloc,
 		bool is_min_heap)
 {
@@ -47,6 +56,8 @@ static void	swap_entries(t_heap_entry a, t_heap_entry b)
 	Generic	key;
 	Generic	value;
 
+	if (!a || !b)
+		return ;
 	key = a->key;
 	value = a->value;
 	a->key = b->key;
@@ -55,31 +66,41 @@ static void	swap_entries(t_heap_entry a, t_heap_entry b)
 	b->value = value;
 }
 
+static size_t	limit_arr(t_heap_entry *arr, size_t expected_lenth)
+{
+	size_t	i;
+
+	if (!arr || !expected_lenth)
+		return (0);
+	i = 0;
+	while (arr[i] && i < expected_lenth)
+		i++;
+	return (i);
+}
+
 void	Heap_Heapify(t_heap heap, size_t index)
 {
-	t_heap_entry	left;
-	t_heap_entry	right;
 	t_heap_entry	temp[3];
 	t_heap_entry	swap;
+	size_t			max_length;
 
-	left = HeapEntry_GetLeftChild(heap, index);
-	right = HeapEntry_GetRightChild(heap, index);
+	if (!heap || !heap->length)
+		return ;
 	temp[0] = heap->entries[index];
-	temp[1] = left;
-	temp[2] = right;
-	qsort(temp, 3, sizeof(t_heap_entry), (int (*)(const void *,
-				const void *))(heap->cmp));
+	temp[1] = HeapEntry_GetLeftChild(heap, index);
+	temp[2] = HeapEntry_GetRightChild(heap, index);
+	max_length = limit_arr(temp, 3);
+	if (!max_length)
+		return ;
+	qsort(temp, max_length, sizeof(t_heap_entry), (__compar_fn_t)(heap->cmp));
 	if (heap->is_min_heap)
 		swap = temp[0];
 	else
-		swap = temp[2];
-	if (swap == heap->entries[index])
+		swap = temp[max_length - 1];
+	if (swap->index == index)
 		return ;
 	swap_entries(heap->entries[index], swap);
-	if (swap == left)
-		Heap_Heapify(heap, ENTRY_LEFT(index));
-	else
-		Heap_Heapify(heap, ENTRY_RIGHT(index));
+	Heap_Heapify(heap, swap->index);
 }
 
 void	Heap_Build(t_heap heap)
@@ -112,64 +133,60 @@ Generic	Heap_GetMax(t_heap heap)
 Generic	Heap_PollMin(t_heap heap)
 {
 	t_heap_entry	min;
+	Generic			value;
 
-	if (!heap || !heap->is_min_heap)
+	if (!heap || !heap->is_min_heap || !heap->length)
 		return (NULL);
 	min = heap->entries[0];
+	value = min->value;
 	heap->entries[0] = heap->entries[heap->length - 1];
-	heap->dealloc(min);
+	if (heap->dealloc)
+		heap->dealloc(min);
 	heap->length--;
 	Heap_Heapify(heap, 0);
-	return (min->value);
+	return (value);
 }
 Generic	Heap_PollMax(t_heap heap)
 {
 	t_heap_entry	max;
+	Generic			value;
 
-	if (!heap || heap->is_min_heap)
+	if (!heap || heap->is_min_heap || !heap->length)
 		return (NULL);
 	max = heap->entries[0];
+	value = max->value;
 	heap->entries[0] = heap->entries[heap->length - 1];
-	heap->dealloc(max);
+	if (heap->dealloc)
+		heap->dealloc(max);
 	heap->length--;
 	Heap_Heapify(heap, 0);
-	return (max->value);
+	return (value);
 }
 
-void	Heap_Increase(t_heap heap, size_t index, t_heap_entry entry)
+void	Heap_Increase(t_heap heap, size_t index)
 {
-	Comparator		cmp;
-	t_heap_entry	*entries;
-	Generic			key;
+	t_heap_entry	parent;
 
-	cmp = heap->cmp;
-	key = entry->key;
-	entries = heap->entries;
-	if (cmp(key, HeapEntry_GetParent(heap, index)->key) < 0)
+	if (!heap)
 		return ;
-	entries[index] = entry;
-	while (index && cmp(entries[ENTRY_PARENT(index)]->key, key) < 0)
+	while (index && (parent = HeapEntry_GetParent(heap, index))
+		&& heap->cmp(parent, heap->entries[index]) < 0)
 	{
-		swap_entries(entries[index], entries[ENTRY_PARENT(index)]);
+		swap_entries(heap->entries[index], parent);
 		index = ENTRY_PARENT(index);
 	}
 }
 
-void	Heap_Decrease(t_heap heap, size_t index, t_heap_entry entry)
+void	Heap_Decrease(t_heap heap, size_t index)
 {
-	Comparator		cmp;
-	t_heap_entry	*entries;
-	Generic			key;
+	t_heap_entry	parent;
 
-	cmp = heap->cmp;
-	entries = heap->entries;
-	key = entry->key;
-	if (cmp(key, HeapEntry_GetParent(heap, index)->key) > 0)
+	if (!heap)
 		return ;
-	entries[index] = entry;
-	while (index && cmp(entries[ENTRY_PARENT(index)]->key, key) > 0)
+	while (index && (parent = HeapEntry_GetParent(heap, index))
+		&& heap->cmp(parent, heap->entries[index]) > 0)
 	{
-		swap_entries(entries[index], entries[ENTRY_PARENT(index)]);
+		swap_entries(heap->entries[index], parent);
 		index = ENTRY_PARENT(index);
 	}
 }
@@ -180,9 +197,25 @@ void	Heap_Insert(t_heap heap, t_heap_entry entry)
 		return ;
 	if (heap->length == heap->capacity)
 		return ;
+	entry->index = heap->length;
+	heap->entries[heap->length] = entry;
 	heap->length++;
 	if (heap->is_min_heap)
-		Heap_Decrease(heap, heap->length - 1, entry);
+		Heap_Decrease(heap, heap->length - 1);
 	else
-		Heap_Increase(heap, heap->length - 1, entry);
+		Heap_Increase(heap, heap->length - 1);
+}
+
+void	Heap_ReplaceKey(t_heap heap, t_heap_entry entry, Generic key,
+		Deallocator dealloc)
+{
+	void	(*func)(t_heap, size_t);
+
+	if (!heap || !entry || !key)
+		return ;
+	func = (heap->is_min_heap) ? Heap_Decrease : Heap_Increase;
+	if (dealloc)
+		dealloc(entry->key);
+	entry->key = key;
+	func(heap, entry->index);
 }

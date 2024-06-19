@@ -2,6 +2,7 @@
 #include "Graph.h"
 #include <limits.h>
 #include <stdlib.h>
+#include "../../Utils/Dealloc/Dealloc.h"
 
 void	Vertex_InitSingleSource(Graph graph, Vertex src)
 {
@@ -54,7 +55,7 @@ void	free_heap_entry(Generic entry)
 	t_heap_entry	e;
 
 	e = (t_heap_entry)entry;
-	free((uint64_t *)(e->key));
+	dealloc_uint64(e->key);
 	free(e);
 }
 
