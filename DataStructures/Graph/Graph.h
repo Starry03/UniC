@@ -26,12 +26,13 @@ typedef enum e_vertex_status
 }					t_vertex_status;
 
 /**
- * @brief A vertex is a node in a graph.
- * @note id is used to identify the vertex internally.
- * @note status is used for graph traversal.
- * @note time is used for graph traversal and edge classification.
- * @note distance is used for shortest path algorithms.
- * @note predecessor is used for shortest path algorithms.
+ * @brief A vertex is a node in a graph
+ * @note id is used to identify the vertex internally
+ * @note status is used for graph traversal
+ * @note distance is used for shortest path algorithms
+ * @note discovery_time is used for DFS
+ * @note finish_time is used for DFS
+ * @note predecessor is used to retrieve a path
  */
 typedef struct s_vertex
 {
@@ -39,7 +40,8 @@ typedef struct s_vertex
 	Generic			value;
 	uint64_t		id;
 	uint64_t		distance;
-	uint64_t		time;
+	uint64_t		discovery_time;
+	uint64_t		finish_time;
 	struct s_vertex	*predecessor;
 	t_vertex_status	status;
 }					t_vertex;
@@ -76,6 +78,11 @@ void				Graph_RemoveDoubleEdge(Vertex vertex, Edge edge);
 Edge				Edge_Init(Vertex src, Vertex dest, uint64_t weight);
 void				Edge_Free(Generic edge);
 
+/* EXPLORING */
+Vertex				Graph_BFS(Graph graph, Vertex src, Generic target);
+Vertex				Graph_DFS(Graph graph);
+
+/* PATH FINDING */
 LinkedList			Dijkstra(Graph graph, Vertex src, Vertex dest);
 
 /* UTILS */

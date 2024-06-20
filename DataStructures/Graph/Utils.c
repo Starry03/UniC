@@ -9,16 +9,21 @@ void	Vertex_InitSingleSource(Graph graph, Vertex src)
 	LinkedList	vertices;
 	Vertex		vertex;
 
+	if (!graph)
+		return ;
 	vertices = graph->adjacency_list;
 	while (vertices)
 	{
 		vertex = (Vertex)(vertices->info);
 		vertex->distance = UINT64_MAX;
-		vertex->time = 0;
+		vertex->discovery_time = 0;
+		vertex->finish_time = 0;
 		vertex->status = VERTEX_UNVISITED;
 		vertex->predecessor = NULL;
 		vertices = LinkedList_GetNext(vertices);
 	}
+	if (!src)
+		return ;
 	src->distance = 0;
 }
 

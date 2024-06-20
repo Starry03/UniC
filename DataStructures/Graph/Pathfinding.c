@@ -2,8 +2,6 @@
 #include "../Dictionary/Dictionary.h"
 #include "../Heap/Heap.h"
 #include "Graph.h"
-#include <assert.h>
-#include <stdio.h>
 #include <stdlib.h>
 
 static void	Dijkstra_Init_MinHeap_Hashmap(t_heap min_heap, LinkedList vertices,
