@@ -12,6 +12,7 @@ run.shmain.c
 *.a
 *.o
 *vgcore*
+main.c
 
 examples/*
 !examples/*.c

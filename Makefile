@@ -31,7 +31,8 @@ valgrind:
 	$(CC) $(CFLAGS) main.c $(UniC) -o main && valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./main
 
 # examples
+EXAMPLES_SRC = examplegraph.c
 graphdraw:
-	$(CC) $(CFLAGS) examples/graphdraw.c $(UniC) -o examples/graphdraw && examples/graphdraw
+	$(CC) $(CFLAGS) examples/$(EXAMPLES_SRC) examples/graphdraw.c $(UniC) -o examples/graphdraw && examples/graphdraw
 
 .PHONY: all clean fclean re valgrind graphdraw

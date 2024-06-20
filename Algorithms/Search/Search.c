@@ -4,9 +4,15 @@
 
 #include "Search.h"
 
-// O(n)
+/**
+ * @brief Linear search algorithm
+ * @param arr Array to search
+ * @param length Length of the array
+ * @param target Target to search
+ * @param cmp Comparison function
+ */
 size_t	LinearSearch(const Generic *arr, size_t length, Generic target,
-		bool (*cmp)(Generic, Generic))
+		Comparator cmp)
 {
 	size_t	count;
 
@@ -23,7 +29,7 @@ size_t	LinearSearch(const Generic *arr, size_t length, Generic target,
 // Arr has to be sorted
 // O(log n)
 size_t	BinarySearch(const Generic *arr, size_t length, Generic target,
-		bool (*cmp)(Generic, Generic))
+		Comparator cmp)
 {
 	size_t	left;
 	size_t	right;
