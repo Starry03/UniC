@@ -1,4 +1,5 @@
 #include "Heap.h"
+#include "../../Algorithms/Sort/Sorting.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -73,7 +74,7 @@ static size_t	limit_arr(t_heap_entry *arr, size_t expected_lenth)
 	if (!arr || !expected_lenth)
 		return (0);
 	i = 0;
-	while (arr[i] && i < expected_lenth)
+	while (i < expected_lenth && arr[i])
 		i++;
 	return (i);
 }
@@ -92,7 +93,7 @@ void	Heap_Heapify(t_heap heap, size_t index)
 	max_length = limit_arr(temp, 3);
 	if (!max_length)
 		return ;
-	qsort(temp, max_length, sizeof(t_heap_entry), (__compar_fn_t)(heap->cmp));
+	MergeSort((Generic *)temp, max_length, heap->cmp);
 	if (heap->is_min_heap)
 		swap = temp[0];
 	else
@@ -130,37 +131,29 @@ Generic	Heap_GetMax(t_heap heap)
 		return (NULL);
 	return (heap->entries[0]->value);
 }
-Generic	Heap_PollMin(t_heap heap)
+t_heap_entry	Heap_PollMin(t_heap heap)
 {
 	t_heap_entry	min;
-	Generic			value;
 
 	if (!heap || !heap->is_min_heap || !heap->length)
 		return (NULL);
 	min = heap->entries[0];
-	value = min->value;
 	heap->entries[0] = heap->entries[heap->length - 1];
-	if (heap->dealloc)
-		heap->dealloc(min);
 	heap->length--;
 	Heap_Heapify(heap, 0);
-	return (value);
+	return (min);
 }
-Generic	Heap_PollMax(t_heap heap)
+t_heap_entry	Heap_PollMax(t_heap heap)
 {
 	t_heap_entry	max;
-	Generic			value;
 
 	if (!heap || heap->is_min_heap || !heap->length)
 		return (NULL);
 	max = heap->entries[0];
-	value = max->value;
 	heap->entries[0] = heap->entries[heap->length - 1];
-	if (heap->dealloc)
-		heap->dealloc(max);
 	heap->length--;
 	Heap_Heapify(heap, 0);
-	return (value);
+	return (max);
 }
 
 void	Heap_Increase(t_heap heap, size_t index)

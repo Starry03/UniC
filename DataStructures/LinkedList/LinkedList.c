@@ -99,7 +99,7 @@ void	LinkedList_Dealloc(LinkedList head, Deallocator dealloc)
 
 	if (!head)
 		return ;
-	while (head != NULL)
+	while (head)
 	{
 		next = head->next;
 		if (dealloc)

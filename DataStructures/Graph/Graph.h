@@ -76,11 +76,12 @@ void				Graph_RemoveDoubleEdge(Vertex vertex, Edge edge);
 Edge				Edge_Init(Vertex src, Vertex dest, uint64_t weight);
 void				Edge_Free(Generic edge);
 
-LinkedList			Dikstra(Graph graph, Vertex src, Vertex dest);
+LinkedList			Dijkstra(Graph graph, Vertex src, Vertex dest);
 
 /* UTILS */
 void				Vertex_InitSingleSource(Graph graph, Vertex src);
 bool				Edge_Relax(Vertex src, Vertex dest, uint64_t weight);
+LinkedList			BuildPath(Vertex dest);
 int					Vertex_CmpDistance(Generic a, Generic b);
 int					Vertex_CmpId(Generic a, Generic b);
 void				free_heap_entry(Generic entry);

@@ -1,8 +1,8 @@
+#include "../../Utils/Dealloc/Dealloc.h"
 #include "../Heap/Heap.h"
 #include "Graph.h"
 #include <limits.h>
 #include <stdlib.h>
-#include "../../Utils/Dealloc/Dealloc.h"
 
 void	Vertex_InitSingleSource(Graph graph, Vertex src)
 {
@@ -33,14 +33,14 @@ bool	Edge_Relax(Vertex src, Vertex dest, uint64_t weight)
 
 int	Vertex_CmpDistance(Generic a, Generic b)
 {
-	Vertex	vertex_a;
-	Vertex	vertex_b;
+	uint64_t	*dist_a;
+	uint64_t	*dist_b;
 
-	vertex_a = (Vertex)a;
-	vertex_b = (Vertex)b;
-	if (vertex_a->distance < vertex_b->distance)
+	dist_a = (uint64_t *)((t_heap_entry)a)->key;
+	dist_b = (uint64_t *)((t_heap_entry)b)->key;
+	if (*dist_a < *dist_b)
 		return (-1);
-	if (vertex_a->distance > vertex_b->distance)
+	if (*dist_a > *dist_b)
 		return (1);
 	return (0);
 }
@@ -62,4 +62,17 @@ void	free_heap_entry(Generic entry)
 size_t	Vertex_Hash(Generic vertex, size_t capacity)
 {
 	return (((size_t)((Vertex)vertex)->id) % capacity);
+}
+
+LinkedList	BuildPath(Vertex dest)
+{
+	LinkedList	path;
+
+	path = NULL;
+	while (dest)
+	{
+		LinkedList_Push(&path, dest);
+		dest = dest->predecessor;
+	}
+	return (path);
 }
