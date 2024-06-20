@@ -55,7 +55,7 @@ int	Vertex_CmpId(Generic a, Generic b)
 	return ((int)((Vertex)a)->id - (int)((Vertex)b)->id);
 }
 
-void	free_heap_entry(Generic entry)
+void	DijkstraHeapEntry_Free(Generic entry)
 {
 	t_heap_entry	e;
 

@@ -11,7 +11,8 @@ typedef LinkedList	Stack;
 
 Stack				stack_init(Generic value);
 void				stack_add(Stack stack, Generic value);
-Generic				stack_poll(Stack *stack, void (*dealloc)(Generic));
+Generic				stack_poll(Stack *stack);
+void 				stack_dealloc_element(Stack stack, Deallocator dealloc);
 void				stack_free(Stack *stack, void (*dealloc)(Generic));
 
 #endif

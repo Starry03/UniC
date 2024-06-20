@@ -2,6 +2,13 @@
 #include "Graph.h"
 #include <stdio.h>
 
+/**
+ * @brief BFS
+ * @param graph
+ * @param src
+ * @param target: value of a vertex to find,
+	if null will explore the whole graph
+ */
 Vertex	Graph_BFS(Graph graph, Vertex src, Generic target)
 {
 	Queue		queue;
@@ -14,7 +21,7 @@ Vertex	Graph_BFS(Graph graph, Vertex src, Generic target)
 	vertex = NULL;
 	Vertex_InitSingleSource(graph, src);
 	queue = Queue_Init(src);
-	while (queue_el = Queue_poll(&queue))
+	while ((queue_el = Queue_poll(&queue)))
 	{
 		vertex = (Vertex)(queue_el->info);
 		edges = vertex->edges;
@@ -60,6 +67,10 @@ static void	DFS_Visit(Vertex vertex, uint64_t *time)
 	vertex->finish_time = *time++;
 }
 
+/**
+ * @brief DFS
+ * @param graph
+ */
 Vertex	Graph_DFS(Graph graph)
 {
 	LinkedList	vertices;

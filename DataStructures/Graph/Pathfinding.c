@@ -52,7 +52,7 @@ LinkedList	Dijkstra(Graph graph, Vertex src, Vertex dest)
 	if (!hashmap)
 		return (NULL);
 	min_heap = Heap_init(LinkedList_Size(vertices), Vertex_CmpDistance,
-			free_heap_entry, true);
+			DijkstraHeapEntry_Free, true);
 	if (!min_heap)
 	{
 		Dict_Free(hashmap);
@@ -77,7 +77,7 @@ LinkedList	Dijkstra(Graph graph, Vertex src, Vertex dest)
 		LinkedList_Push(&visited_entries, entry);
 	}
 	path = BuildPath(dest);
-	LinkedList_Dealloc(visited_entries, free_heap_entry);
+	LinkedList_Dealloc(visited_entries, DijkstraHeapEntry_Free);
 	Dict_Free(hashmap);
 	Heap_Free(min_heap);
 	return (path);

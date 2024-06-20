@@ -91,7 +91,13 @@ bool				Edge_Relax(Vertex src, Vertex dest, uint64_t weight);
 LinkedList			BuildPath(Vertex dest);
 int					Vertex_CmpDistance(Generic a, Generic b);
 int					Vertex_CmpId(Generic a, Generic b);
-void				free_heap_entry(Generic entry);
+void				DijkstraHeapEntry_Free(Generic entry);
 size_t				Vertex_Hash(Generic vertex, size_t capacity);
+
+/* UI UTILS */
+# define MERMAID_HORIZONAL "LR"
+# define MERMAID_VERTICAL "TD"
+void				Graph_GenerateMermaid(Graph graph, String filename,
+						String direction);
 
 #endif

@@ -1,5 +1,5 @@
-#include "Heap.h"
 #include "../../Algorithms/Sort/Sorting.h"
+#include "Heap.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -32,6 +32,7 @@ t_heap	Heap_init(size_t capacity, Comparator cmp, Deallocator dealloc,
 	heap->is_min_heap = is_min_heap;
 	return (heap);
 }
+
 void	Heap_Free(t_heap heap)
 {
 	size_t			i;
@@ -79,6 +80,9 @@ static size_t	limit_arr(t_heap_entry *arr, size_t expected_lenth)
 	return (i);
 }
 
+/**
+ * @brief Heapify the heap at index i
+ */
 void	Heap_Heapify(t_heap heap, size_t index)
 {
 	t_heap_entry	temp[3];
@@ -104,6 +108,9 @@ void	Heap_Heapify(t_heap heap, size_t index)
 	Heap_Heapify(heap, swap->index);
 }
 
+/**
+ * @brief Build the heap from a generic array
+ */
 void	Heap_Build(t_heap heap)
 {
 	size_t	i;
@@ -115,6 +122,11 @@ void	Heap_Build(t_heap heap)
 		i--;
 	}
 }
+
+/**
+ * @brief get min
+ * @return actual value
+ */
 Generic	Heap_GetMin(t_heap heap)
 {
 	if (!heap || !heap->is_min_heap)
@@ -123,6 +135,11 @@ Generic	Heap_GetMin(t_heap heap)
 		return (NULL);
 	return (heap->entries[0]->value);
 }
+
+/**
+ * @brief get max
+ * @return actual value
+ */
 Generic	Heap_GetMax(t_heap heap)
 {
 	if (!heap || heap->is_min_heap)
@@ -131,6 +148,11 @@ Generic	Heap_GetMax(t_heap heap)
 		return (NULL);
 	return (heap->entries[0]->value);
 }
+
+/**
+ * @brief Poll the min value from the heap
+ * @return the heap entry containing the min value
+ */
 t_heap_entry	Heap_PollMin(t_heap heap)
 {
 	t_heap_entry	min;
@@ -143,6 +165,11 @@ t_heap_entry	Heap_PollMin(t_heap heap)
 	Heap_Heapify(heap, 0);
 	return (min);
 }
+
+/**
+ * @brief Poll the max value from the heap
+ * @return the heap entry containing the max value
+ */
 t_heap_entry	Heap_PollMax(t_heap heap)
 {
 	t_heap_entry	max;
@@ -156,6 +183,9 @@ t_heap_entry	Heap_PollMax(t_heap heap)
 	return (max);
 }
 
+/**
+ * @brief Increase the key of the heap at index
+ */
 void	Heap_Increase(t_heap heap, size_t index)
 {
 	t_heap_entry	parent;
@@ -170,6 +200,9 @@ void	Heap_Increase(t_heap heap, size_t index)
 	}
 }
 
+/**
+ * @brief Decrease the key of the heap at index
+ */
 void	Heap_Decrease(t_heap heap, size_t index)
 {
 	t_heap_entry	parent;
@@ -184,6 +217,9 @@ void	Heap_Decrease(t_heap heap, size_t index)
 	}
 }
 
+/**
+ * @brief Insert a new entry in the heap
+ */
 void	Heap_Insert(t_heap heap, t_heap_entry entry)
 {
 	if (!heap || !entry || !entry->key)
@@ -199,6 +235,9 @@ void	Heap_Insert(t_heap heap, t_heap_entry entry)
 		Heap_Increase(heap, heap->length - 1);
 }
 
+/**
+ * @brief Replace the key of the entry in the heap
+ */
 void	Heap_ReplaceKey(t_heap heap, t_heap_entry entry, Generic key,
 		Deallocator dealloc)
 {

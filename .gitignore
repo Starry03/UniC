@@ -8,9 +8,10 @@ build/
 CMakeLists.txt
 *.xml
 *.iml
-run.sh
-main.c
-main
+run.shmain.c
 *.a
 *.o
 *vgcore*
+
+examples/*
+!examples/*.c
