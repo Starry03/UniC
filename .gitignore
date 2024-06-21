@@ -15,4 +15,4 @@ run.shmain.c
 main.c
 
 examples/*
-!examples/*.c
+!examples/*.[ch]
