@@ -1,4 +1,5 @@
 #include "Stack.h"
+#include <stdlib.h>
 
 #define STACK_EMPTY (Stack)0
 

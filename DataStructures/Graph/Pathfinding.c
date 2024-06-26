@@ -60,11 +60,11 @@ LinkedList	Dijkstra(Graph graph, Vertex src, Vertex dest)
 	}
 	Vertex_InitSingleSource(graph, src);
 	Dijkstra_Init_MinHeap_Hashmap(min_heap, vertices, hashmap);
-	while (entry = Heap_PollMin(min_heap))
+	while ((entry = Heap_PollMin(min_heap)))
 	{
 		vertex = (Vertex)entry->value;
 		vertex_edges = vertex->edges;
-		while (edge = (Edge)LinkedList_GetInfo(vertex_edges))
+		while ((edge = (Edge)LinkedList_GetInfo(vertex_edges)))
 		{
 			entry_from_dict = ((t_heap_entry)Dict_Get(hashmap, edge->dest));
 			if (Edge_Relax(vertex, edge->dest, edge->weight))

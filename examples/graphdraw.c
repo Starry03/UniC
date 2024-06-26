@@ -14,10 +14,8 @@ void	test_graph(void)
 	Graph_Free(graph);
 }
 
-int	main(int argc, char const *argv[])
+int	main(void)
 {
-	(void)argc;
-	(void)argv;
 	test_graph();
 	return (0);
 }
