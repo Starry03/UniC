@@ -53,7 +53,7 @@ void	LinkedList_Remove(LinkedList *node, Deallocator dealloc)
 
 	if (!node || !*node)
 		return ;
-	tmp = (*node);
+	tmp = *node;
 	*node = (*node)->next;
 	if (dealloc)
 		dealloc(tmp->info);
