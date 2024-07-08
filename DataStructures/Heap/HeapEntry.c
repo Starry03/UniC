@@ -6,7 +6,7 @@
  * @param key: the key of the entry
  * @param value: the value of the entry
  */
-t_heap_entry	HeapEntry_init(Generic key, Generic value)
+t_heap_entry	HeapEntry_Init(Generic key, Generic value)
 {
 	t_heap_entry	entry;
 

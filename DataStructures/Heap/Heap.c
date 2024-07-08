@@ -11,7 +11,7 @@
 	+ entry itself)
  * @param is_min_heap: if the heap is a min heap
  */
-t_heap	Heap_init(size_t capacity, Comparator cmp, Deallocator dealloc,
+t_heap	Heap_Init(size_t capacity, Comparator cmp, Deallocator dealloc,
 		bool is_min_heap)
 {
 	t_heap	heap;
@@ -33,6 +33,9 @@ t_heap	Heap_init(size_t capacity, Comparator cmp, Deallocator dealloc,
 	return (heap);
 }
 
+/**
+ * @brief Free the heap
+ */
 void	Heap_Free(t_heap heap)
 {
 	size_t			i;
@@ -53,6 +56,9 @@ void	Heap_Free(t_heap heap)
 	free(heap);
 }
 
+/**
+ * @brief swap entrie values
+ */
 static void	swap_entries(t_heap_entry a, t_heap_entry b)
 {
 	Generic	key;
@@ -68,6 +74,9 @@ static void	swap_entries(t_heap_entry a, t_heap_entry b)
 	b->value = value;
 }
 
+/**
+ * @brief gets null terminated array length
+ */
 static size_t	limit_arr(t_heap_entry *arr, size_t expected_lenth)
 {
 	size_t	i;

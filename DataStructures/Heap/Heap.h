@@ -28,12 +28,12 @@ typedef struct s_heap
 
 typedef t_heap_			*t_heap;
 
-t_heap_entry			HeapEntry_init(Generic key, Generic value);
+t_heap_entry			HeapEntry_Init(Generic key, Generic value);
 t_heap_entry			HeapEntry_GetLeftChild(t_heap heap, size_t i);
 t_heap_entry			HeapEntry_GetRightChild(t_heap heap, size_t i);
 t_heap_entry			HeapEntry_GetParent(t_heap heap, size_t i);
 
-t_heap					Heap_init(size_t capacity, Comparator cmp,
+t_heap					Heap_Init(size_t capacity, Comparator cmp,
 							Deallocator dealloc, bool is_min_heap);
 void					Heap_Free(t_heap heap);
 void					Heap_Heapify(t_heap heap, size_t index);

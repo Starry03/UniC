@@ -3,7 +3,7 @@
 
 #define STACK_EMPTY (Stack)0
 
-inline Stack	stack_init(Generic value)
+inline Stack	Stack_Init(Generic value)
 {
 	return (Stack)(LinkedList_Init(value));
 }
@@ -14,7 +14,7 @@ inline Stack	stack_init(Generic value)
  * @param stack
  * @param value
  */
-inline void	stack_add(Stack stack, Generic value)
+inline void	Stack_Add(Stack stack, Generic value)
 {
 	LinkedList_Push((LinkedList *)&stack, value);
 }
@@ -24,10 +24,10 @@ inline void	stack_add(Stack stack, Generic value)
  *
  * @param stack
  * @param dealloc
- * @note does not deallocate the value, call stack_dealloc_element
+ * @note does not deallocate the value, call Stack_Dealloc_Element
  * @return Generic
  */
-Generic	stack_poll(Stack *stack)
+Generic	Stack_Poll(Stack *stack)
 {
 	Generic	out;
 
@@ -44,7 +44,7 @@ Generic	stack_poll(Stack *stack)
  * @param stack
  * @param dealloc
  */
-void	stack_dealloc_element(Stack stack, Deallocator dealloc)
+void	Stack_Dealloc_Element(Stack stack, Deallocator dealloc)
 {
 	if (!stack)
 		return ;
@@ -53,7 +53,7 @@ void	stack_dealloc_element(Stack stack, Deallocator dealloc)
 	free(stack);
 }
 
-inline void	stack_free(Stack *stack, void (*dealloc)(Generic))
+inline void	Stack_Free(Stack *stack, void (*dealloc)(Generic))
 {
 	LinkedList_Dealloc(*stack, dealloc);
 }

@@ -18,7 +18,7 @@ static void	Dijkstra_Init_MinHeap_Hashmap(t_heap min_heap, LinkedList vertices,
 		vertex = LinkedList_GetInfo(vertices);
 		dist = (uint64_t *)malloc(sizeof(uint64_t));
 		*dist = vertex->distance;
-		entry = HeapEntry_init(dist, vertex);
+		entry = HeapEntry_Init(dist, vertex);
 		Heap_Insert(min_heap, entry);
 		Dict_Add(&hashmap, vertex, entry, NULL, NULL);
 		vertices = LinkedList_GetNext(vertices);
@@ -51,7 +51,7 @@ LinkedList	Dijkstra(Graph graph, Vertex src, Vertex dest)
 	hashmap = Dict_Init(LinkedList_Size(vertices), Vertex_CmpId, Vertex_Hash);
 	if (!hashmap)
 		return (NULL);
-	min_heap = Heap_init(LinkedList_Size(vertices), Vertex_CmpDistance,
+	min_heap = Heap_Init(LinkedList_Size(vertices), Vertex_CmpDistance,
 			DijkstraHeapEntry_Free, true);
 	if (!min_heap)
 	{
