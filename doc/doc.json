@@ -2,44 +2,6 @@
     "name": "./",
     "subfolders": [
         {
-            "name": "./examples",
-            "subfolders": [],
-            "files": [
-                {
-                    "functions": [
-                        {
-                            "doc": "",
-                            "header": "",
-                            "body": "{\n\tGraph graph;\n\tVertex v1;\n\tVertex v2;\n\tVertex v3;\n\tVertex v4;\n\tVertex v5;\n\tVertex v6;\n\n\tgraph = Graph_Init(NULL, Compare_String);\n\tv1 = Vertex_Init(\"a\");\n\tv2 = Vertex_Init(\"b\");\n\tv3 = Vertex_Init(\"c\");\n\tv4 = Vertex_Init(\"d\");\n\tv5 = Vertex_Init(\"e\");\n\tv6 = Vertex_Init(\"f\");\n\t// add vertices to the graph\n\tGraph_AddVertex(graph, v6);\n\tGraph_AddVertex(graph, v5);\n\tGraph_AddVertex(graph, v4);\n\tGraph_AddVertex(graph, v3);\n\tGraph_AddVertex(graph, v2);\n\tGraph_AddVertex(graph, v1);\n\t// add edges to the graph\n\tGraph_AddEdge(v5, Edge_Init(v5, v6, 2));\n\tGraph_AddEdge(v6, Edge_Init(v6, v1, 1));\n\tGraph_AddEdge(v6, Edge_Init(v6, v3, 3));\n\tGraph_AddEdge(v6, Edge_Init(v6, v5, 6));\n\tGraph_AddEdge(v4, Edge_Init(v4, v5, 3));\n\tGraph_AddEdge(v2, Edge_Init(v2, v5, 1));\n\tGraph_AddEdge(v2, Edge_Init(v2, v3, 4));\n\tGraph_AddEdge(v1, Edge_Init(v1, v4, 1));\n\tGraph_AddEdge(v1, Edge_Init(v1, v2, 2));\n\treturn (graph);\n}",
-                            "DOC_PATTERN": "(\\/\\*\\*[^\\/]*\\*\\/)",
-                            "FUNCTION_HEADER_PATTERN": "(\\w+\\s+\\w+\\((?:\\s*\\w+\\s+\\S+[,]*)+\\))",
-                            "BRACKET_PATTERN": "(\\{(?:[^{}]|(?R))*\\})"
-                        }
-                    ]
-                },
-                {
-                    "functions": [
-                        {
-                            "doc": "",
-                            "header": "",
-                            "body": "{\n\tGraph graph;\n\n\tgraph = get_example_graph();\n\tGraph_GenerateMermaid(graph, \"examples/graph.md\", MERMAID_HORIZONAL);\n\tGraph_Free(graph);\n}",
-                            "DOC_PATTERN": "(\\/\\*\\*[^\\/]*\\*\\/)",
-                            "FUNCTION_HEADER_PATTERN": "(\\w+\\s+\\w+\\((?:\\s*\\w+\\s+\\S+[,]*)+\\))",
-                            "BRACKET_PATTERN": "(\\{(?:[^{}]|(?R))*\\})"
-                        },
-                        {
-                            "doc": "",
-                            "header": "",
-                            "body": "{\n\ttest_graph();\n\treturn (0);\n}",
-                            "DOC_PATTERN": "(\\/\\*\\*[^\\/]*\\*\\/)",
-                            "FUNCTION_HEADER_PATTERN": "(\\w+\\s+\\w+\\((?:\\s*\\w+\\s+\\S+[,]*)+\\))",
-                            "BRACKET_PATTERN": "(\\{(?:[^{}]|(?R))*\\})"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
             "name": "./Algorithms",
             "subfolders": [
                 {
@@ -834,11 +796,6 @@
                     ]
                 }
             ],
-            "files": []
-        },
-        {
-            "name": "./doc",
-            "subfolders": [],
             "files": []
         },
         {

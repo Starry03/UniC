@@ -66,7 +66,7 @@ def get_match(pattern: str, content: str) -> list:
 def build_dir_doc(
     path: str,
     extensions: list[str] = ["c"],
-    path_exclusions: list[str] = ["."],
+    path_exclusions: list[str] = [".", "examples", "doc", "build", "test"],
     file_exclusions: list[str] = ["main.c"],
 ) -> FolderWrapper:
     wrapper = FolderWrapper(name=path, subfolders=[], files=[])

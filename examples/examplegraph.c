@@ -1,6 +1,9 @@
 #include "examples.h"
 #include "Utils/Compare/comparators.h"
 
+/**
+ * @return an example graph
+ */
 Graph	get_example_graph(void)
 {
 	Graph graph;
