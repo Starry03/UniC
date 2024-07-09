@@ -3,6 +3,7 @@ cmake-build-debug
 .idea
 .vscode
 build/
+.venv
 
 # files
 CMakeLists.txt
