@@ -4,35 +4,44 @@ import os
 import json
 
 
+DOC_PATTERN: str = r"(\/\*\*[^\/]*\*\/)"
+FUNCTION_HEADER_PATTERN: str = r"((?:\w+\s+)*\w+\s+\w+\((?:\s*\w+\s+\S+[,]*)+\))"
+BRACKET_PATTERN: str = r"(\{(?:[^{}]|(?R))*\})"
+PATTERN: str = (
+    r"(?:"
+    + DOC_PATTERN
+    + r"*\s*"
+    + FUNCTION_HEADER_PATTERN
+    + r"\s*"
+    + BRACKET_PATTERN
+    + r")"
+)
+
+
 @dataclass
 class FunctionDoc:
     doc: str
     header: str
     body: str
-    DOC_PATTERN: str = r"(\/\*\*[^\/]*\*\/)"
-    FUNCTION_HEADER_PATTERN: str = r"(\w+\s+\w+\((?:\s*\w+\s+\S+[,]*)+\))"
-    BRACKET_PATTERN: str = r"(\{(?:[^{}]|(?R))*\})"
 
 
 @dataclass
 class FileDoc:
+    name: str
     functions: tuple[FunctionDoc]
 
     @staticmethod
     def generate_from_file(file: str) -> "FileDoc":
-        out: tuple[FunctionDoc] = tuple()
         with open(file, "r") as f:
             content: str = f.read()
-            doc: list[str] = get_match(FunctionDoc.DOC_PATTERN, content)
-            headers: list[str] = get_match(FunctionDoc.FUNCTION_HEADER_PATTERN, content)
-            bodies: list[str] = get_match(FunctionDoc.BRACKET_PATTERN, content)
-            # trash
-            max_len: int = max(len(doc), len(headers), len(bodies))
-            doc += [""] * (max_len - len(doc))
-            headers += [""] * (max_len - len(headers))
-            bodies += [""] * (max_len - len(bodies))
-            out = [FunctionDoc(doc[i], headers[i], bodies[i]) for i in range(len(doc))]
-        return FileDoc(functions=out)
+            res: list = get_match(
+                PATTERN,
+                content,
+            )
+            out: tuple[FunctionDoc] = tuple(
+                [FunctionDoc(doc=m[0], header=m[1], body=m[2]) for m in res]
+            )
+        return FileDoc(name=file, functions=out)
 
 
 @dataclass
@@ -83,6 +92,19 @@ def build_dir_doc(
             continue
         wrapper.add_folder(build_dir_doc(eval_path))
     return wrapper
+
+
+def test(path: str) -> None:
+    """
+    test
+
+    Args:
+        path (str): file path
+    """
+    d = FileDoc.generate_from_file(path)
+    for f in d.functions:
+        print("function:")
+        print(f"{f.doc}")
 
 
 wr = build_dir_doc("./")

@@ -8,7 +8,6 @@
 
 ### TO-DO
 
-- make doc generation 100% reliable
 - doc ui
 
 ## About
