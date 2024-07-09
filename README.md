@@ -1,18 +1,15 @@
 # UniC
 
-### Version 1.9
+### Version 1.9.2
 
 ### Latest features & changes
 
-- DoubleLinkedList
-- Heap
-- Graph
-- new utils types
+- doc generation
 
 ### TO-DO
 
-- Graph algorithms
-- Add examples
+- make doc generation 100% reliable
+- doc ui
 
 ## About
 
@@ -22,6 +19,27 @@ Feel free to use it, but please note:
 
 - it's not optimized for performance
 - it could be obviously improved
+
+### Dependecies
+
+- gcc
+- make
+- python (doc)
+
+### Doc
+
+```sh
+bash ./doc_gen.sh
+or
+chmod 777 ./doc_gen.sh && ./doc_gen.sh
+```
+will generate
+```sh
+doc/doc.json
+```
+doc ui
+```sh
+```
 
 ### Linking
 

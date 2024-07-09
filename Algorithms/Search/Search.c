@@ -26,8 +26,13 @@ size_t	LinearSearch(const Generic *arr, size_t length, Generic target,
 	return (-1);
 }
 
-// Arr has to be sorted
-// O(log n)
+/**
+ * @brief Binary search algorithm
+ * @param arr Array to search
+ * @param length Length of the array
+ * @param target Target to search
+ * @param cmp Comparison function
+ */
 size_t	BinarySearch(const Generic *arr, size_t length, Generic target,
 		Comparator cmp)
 {
