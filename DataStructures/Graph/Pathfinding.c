@@ -20,7 +20,7 @@ static void	Dijkstra_Init_MinHeap_Hashmap(t_heap min_heap, LinkedList vertices,
 		*dist = vertex->distance;
 		entry = HeapEntry_Init(dist, vertex);
 		Heap_Insert(min_heap, entry);
-		Dict_Add(&hashmap, vertex, entry, NULL, NULL);
+		Dict_Add(&hashmap, vertex, entry, NULL);
 		vertices = LinkedList_GetNext(vertices);
 	}
 }
@@ -48,7 +48,7 @@ LinkedList	Dijkstra(Graph graph, Vertex src, Vertex dest)
 	if (!graph || !src || !dest)
 		return (NULL);
 	vertices = graph->adjacency_list;
-	hashmap = Dict_Init(LinkedList_Size(vertices), Vertex_CmpId, Vertex_Hash);
+	hashmap = Dict_Init(LinkedList_Size(vertices), Vertex_CmpId, Vertex_Hash, NULL);
 	if (!hashmap)
 		return (NULL);
 	min_heap = Heap_Init(LinkedList_Size(vertices), Vertex_CmpDistance,
