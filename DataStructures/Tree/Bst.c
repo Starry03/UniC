@@ -1,9 +1,11 @@
 #include "Bst.h"
+#include <stdlib.h>
 
 BST	Bst_Init(Generic key, Generic info, Comparator cmp)
 {
 	BST	bst;
 
+	(void)key;
 	bst = (BST)malloc(sizeof(Bst));
 	if (!bst)
 		return (NULL);

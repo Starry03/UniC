@@ -20,7 +20,7 @@ static void	Dijkstra_Init_MinHeap_Hashmap(t_heap min_heap, LinkedList vertices,
 		*dist = vertex->distance;
 		entry = HeapEntry_Init(dist, vertex);
 		Heap_Insert(min_heap, entry);
-		Dict_Add(&hashmap, vertex, entry, NULL);
+		Dict_Add(hashmap, vertex, entry, NULL);
 		vertices = LinkedList_GetNext(vertices);
 	}
 }
