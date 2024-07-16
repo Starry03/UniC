@@ -507,7 +507,7 @@
                                     "body": "{\n\treturn (hash_universal(hashed_key, dict->a, dict->b, dict->prime,\n\t\t\tdict->size));\n}"
                                 },
                                 {
-                                    "doc": "",
+                                    "doc": "/**\n * @brief Adds object to dict without checking if key already exists\n * @note Used internally to avoid reallocating dict from zero\n */",
                                     "header": "static void\tsoft_add(t_dict dict, Dict_obj obj)",
                                     "body": "{\n\tsize_t\t\thash;\n\tLinkedList\tbucket;\n\n\thash = hash_function(dict, dict->hash_key(obj->key, dict->size));\n\tbucket = dict->buckets[hash];\n\tLinkedList_Push(&bucket, obj);\n\tdict->buckets[hash] = bucket;\n\tdict->used++;\n}"
                                 },
@@ -517,7 +517,7 @@
                                     "body": "{\n\treturn (((double)(dict->used + 1) / dict->size) >= MAX_LOAD_FACTOR);\n}"
                                 },
                                 {
-                                    "doc": "/**\n * @brief Add value to dict\\r\n * @attention Key and value <= 8 bytes, use pointers for larger values\n *\n * @param dict\n * @param key value or address\n * @param value value or address\n * @param dealloc_value null if is a value\n * @param cmp function to compare keys\n * @return true if added, false if key already exists\n */",
+                                    "doc": "/**\n * @brief Add value to dict\\r\n * @attention Key and value <= 8 bytes, use pointers for larger values\n *\n * @param dict\n * @param key value or address\n * @param value value or address\n * @param dealloc_value function to deallocate value\n * @return true if added, false if key already exists\n */",
                                     "header": "bool\tDict_Add(t_dict dict, Generic key, Generic value,\n\t\tDeallocator dealloc_value)",
                                     "body": "{\n\tsize_t\t\thash;\n\tLinkedList\t*buckets;\n\tDict_obj\tobj;\n\n\tif (!dict || Dict_Get(dict, key))\n\t\treturn (false);\n\tif (dict_has_breached_load_factor(dict))\n\t\tDict_Realloc(dict);\n\thash = hash_function(dict, dict->hash_key(key, dict->size));\n\tbuckets = dict->buckets;\n\tobj = Dict_Obj_Init(key, value, dict->dealloc_key, dealloc_value);\n\tif (!obj)\n\t\treturn (false);\n\tLinkedList_Push(buckets + hash, obj);\n\tdict->used++;\n\treturn (true);\n}"
                                 },
@@ -643,7 +643,7 @@
                                 {
                                     "doc": "",
                                     "header": "BST\tBst_Init(Generic key, Generic info, Comparator cmp)",
-                                    "body": "{\n\tBST\tbst;\n\n\tbst = (BST)malloc(sizeof(Bst));\n\tif (!bst)\n\t\treturn (NULL);\n\tbst->root = BinaryTree_Init(info, BINARY_TREE_EMPTY, BINARY_TREE_EMPTY);\n\tbst->cmp = cmp;\n\treturn (bst);\n}"
+                                    "body": "{\n\tBST\tbst;\n\n\t(void)key;\n\tbst = (BST)malloc(sizeof(Bst));\n\tif (!bst)\n\t\treturn (NULL);\n\tbst->root = BinaryTree_Init(info, BINARY_TREE_EMPTY, BINARY_TREE_EMPTY);\n\tbst->cmp = cmp;\n\treturn (bst);\n}"
                                 }
                             ]
                         },

@@ -67,6 +67,7 @@ static LinkedList	*Dict_Alloc_Buckets(size_t size)
  * @param size number of buckets, if null size := DEFAULT_SIZE
  * @param cmp function to compare keys
  * @param hash_key function to hash keys
+ * @param dealloc_key function to deallocate keys
  * @return Dict
  */
 t_dict	Dict_Init(size_t size, Comparator cmp, Hasher hash_key,
@@ -103,6 +104,11 @@ static size_t	hash_function(t_dict dict, size_t hashed_key)
 			dict->size));
 }
 
+/**
+ * @brief Takes all dict_objs from dict
+ * @param dict
+ * @return LinkedList of Dict_obj
+ */
 static LinkedList	take_dict_objs(t_dict dict)
 {
 	LinkedList	list;
@@ -129,6 +135,10 @@ static LinkedList	take_dict_objs(t_dict dict)
 	return (list);
 }
 
+/**
+ * @brief Adds object to dict without checking if key already exists
+ * @note Used internally to avoid reallocating dict from zero
+ */
 static void	soft_add(t_dict dict, Dict_obj obj)
 {
 	size_t		hash;
@@ -176,8 +186,7 @@ static bool	dict_has_breached_load_factor(t_dict dict)
  * @param dict
  * @param key value or address
  * @param value value or address
- * @param dealloc_value null if is a value
- * @param cmp function to compare keys
+ * @param dealloc_value function to deallocate value
  * @return true if added, false if key already exists
  */
 bool	Dict_Add(t_dict dict, Generic key, Generic value,
@@ -206,8 +215,6 @@ bool	Dict_Add(t_dict dict, Generic key, Generic value,
  *
  * @param dict
  * @param key
- * @param hash_key
- * @param cmp
  * @return void*
  */
 void	*Dict_Get(t_dict dict, Generic key)
