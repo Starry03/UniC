@@ -30,18 +30,13 @@ Feel free to use it, but please note:
 ### Doc
 
 ```sh
+# build postgres db
 bash ./doc_gen.sh
 or
 chmod 777 ./doc_gen.sh && ./doc_gen.sh
 ```
 
-will generate
-
-```sh
-doc/doc.json
-```
-
-doc ui
+#### Run UI
 
 ```sh
 ```
