@@ -2,6 +2,8 @@ import regex as re
 from dataclasses import dataclass, asdict
 import os
 import json
+import psycopg2
+from dotenv import load_dotenv
 
 
 DOC_PATTERN: str = r"(\/\*\*[^\/]*\*\/)"
@@ -15,6 +17,32 @@ PATTERN: str = (
     + r"\s*"
     + BRACKET_PATTERN
     + r")"
+)
+load_dotenv()
+
+db = psycopg2.connect(
+    dbname=os.getenv("POSTGRES_DB"),
+    user=os.getenv("POSTGRES_USER"),
+    password=os.getenv("POSTGRES_PASSWORD"),
+    host=os.getenv("POSTGRES_HOST"),
+    port=os.getenv("POSTGRES_PORT"),
+)
+
+cursor = db.cursor()
+cursor.execute(
+    """
+    CREATE SCHEMA IF NOT EXISTS functions;
+"""
+)
+cursor.execute(
+    """
+    CREATE TABLE IF NOT EXISTS functions.function (
+        category VARCHAR(255),
+        header VARCHAR(255) UNIQUE,
+        body TEXT,
+        doc TEXT
+    );
+	"""
 )
 
 
@@ -88,7 +116,24 @@ def build_dir_doc(
         eval_path: str = os.path.join(path, file)
         if not os.path.isdir(eval_path):
             if file.split(".")[-1] in extensions:
-                wrapper.add_file_doc(FileDoc.generate_from_file(eval_path))
+                file_doc: FileDoc = FileDoc.generate_from_file(eval_path)
+                category: str = (
+                    file_doc.name.split("/")[-2]
+                    if file_doc.name.count("/") > 1
+                    else "General"
+                )
+                for function in file_doc.functions:
+                    try:
+                        cursor.execute(
+                            """
+                            INSERT INTO functions.function (category, header, body, doc)
+                            VALUES (%s, %s, %s, %s);
+                            """,
+                            (category, function.header, function.body, function.doc),
+                        )
+                    except (psycopg2.errors.UniqueViolation, psycopg2.errors.InFailedSqlTransaction):
+                        continue
+                wrapper.add_file_doc(file_doc)
             continue
         wrapper.add_folder(build_dir_doc(eval_path))
     return wrapper
@@ -108,6 +153,9 @@ def test(path: str) -> None:
 
 
 wr = build_dir_doc("./")
-j = json.dumps(asdict(wr), indent=4)
-with open("doc/doc.json", "w") as f:
-    f.write(j)
+# j = json.dumps(asdict(wr), indent=4)
+# with open("doc/doc.json", "w") as f:
+#     f.write(j)
+db.commit()
+cursor.close()
+db.close()
