@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 
 
 DOC_PATTERN: str = r"(\/\*\*[^\/]*\*\/)"
-FUNCTION_HEADER_PATTERN: str = r"((?:\w+\s+)*\w+\s+\w+\((?:\s*\w+\s+\S+[,]*)+\))"
+FUNCTION_HEADER_PATTERN: str = r"((?:\w+\s+)*\w+\s+(\w+)\((?:\s*\w+\s+\S+[,]*)+\))"
 BRACKET_PATTERN: str = r"(\{(?:[^{}]|(?R))*\})"
 PATTERN: str = (
     r"(?:"
@@ -38,6 +38,7 @@ cursor.execute(
     """
     CREATE TABLE IF NOT EXISTS functions.function (
         category VARCHAR(255),
+        name VARCHAR(255),
         header VARCHAR(255) UNIQUE,
         body TEXT,
         doc TEXT
@@ -49,6 +50,7 @@ cursor.execute(
 @dataclass
 class FunctionDoc:
     doc: str
+    name: str
     header: str
     body: str
 
@@ -67,7 +69,7 @@ class FileDoc:
                 content,
             )
             out: tuple[FunctionDoc] = tuple(
-                [FunctionDoc(doc=m[0], header=m[1], body=m[2]) for m in res]
+                [FunctionDoc(doc=m[0], name=m[2], header=m[1], body=m[3]) for m in res]
             )
         return FileDoc(name=file, functions=out)
 
@@ -126,12 +128,15 @@ def build_dir_doc(
                     try:
                         cursor.execute(
                             """
-                            INSERT INTO functions.function (category, header, body, doc)
-                            VALUES (%s, %s, %s, %s);
+                            INSERT INTO functions.function (category, name, header, body, doc)
+                            VALUES (%s, %s, %s, %s, %s);
                             """,
-                            (category, function.header, function.body, function.doc),
+                            (category, function.name, function.header, function.body, function.doc),
                         )
-                    except (psycopg2.errors.UniqueViolation, psycopg2.errors.InFailedSqlTransaction):
+                    except (
+                        psycopg2.errors.UniqueViolation,
+                        psycopg2.errors.InFailedSqlTransaction,
+                    ):
                         continue
                 wrapper.add_file_doc(file_doc)
             continue

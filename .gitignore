@@ -4,7 +4,8 @@ cmake-build-debug
 .vscode
 build/
 /.venv
-.env
+**/.env
+test/
 
 # files
 CMakeLists.txt
