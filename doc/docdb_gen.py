@@ -4,7 +4,7 @@ import os
 import json
 import psycopg2
 from dotenv import load_dotenv
-
+import logging
 
 DOC_PATTERN: str = r"(\/\*\*[^\/]*\*\/)"
 FUNCTION_HEADER_PATTERN: str = r"((?:\w+\s+)*\w+\s+(\w+)\((?:\s*\w+\s+\S+[,]*)+\))"
@@ -19,6 +19,7 @@ PATTERN: str = (
     + r")"
 )
 load_dotenv()
+logging.basicConfig(level=logging.DEBUG)
 
 db = psycopg2.connect(
     dbname=os.getenv("POSTGRES_DB"),
@@ -28,12 +29,17 @@ db = psycopg2.connect(
     port=os.getenv("POSTGRES_PORT"),
 )
 
+logging.info("Connected to database")
+
 cursor = db.cursor()
 cursor.execute(
     """
     CREATE SCHEMA IF NOT EXISTS functions;
 """
 )
+
+logging.info("Created schema")
+
 cursor.execute(
     """
     CREATE TABLE IF NOT EXISTS functions.function (
@@ -46,6 +52,7 @@ cursor.execute(
 	"""
 )
 
+logging.info("Created table")
 
 @dataclass
 class FunctionDoc:
@@ -164,3 +171,5 @@ wr = build_dir_doc("./")
 db.commit()
 cursor.close()
 db.close()
+
+logging.info("Disconnected from database")
