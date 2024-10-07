@@ -21,6 +21,8 @@ PATTERN: str = (
 load_dotenv()
 logging.basicConfig(level=logging.DEBUG)
 
+logging.info("Connecting to database...")
+
 db = psycopg2.connect(
     dbname=os.getenv("POSTGRES_DB"),
     user=os.getenv("POSTGRES_USER"),
