@@ -1,7 +1,5 @@
 #!/usr/bin/bash
 
-# client
-
 # backend
-cd doc/backend || exit
-go run main.go
+cd ./doc/backend && go run main.go
+

@@ -8,6 +8,7 @@ import (
 
 	"github.com/joho/godotenv"
 	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 	_ "github.com/lib/pq"
 )
 
@@ -50,6 +51,7 @@ func init_db() *sql.DB {
 func main() {
 	db := init_db()
 	e := echo.New()
+	e.Use(middleware.CORS())
 	e.POST("/queryFunctions/:userInput", func(c echo.Context) error {
 		var matches *sql.Rows = query_search_match(c.Param("userInput"), db)
 		var functions_name []string
