@@ -13,6 +13,7 @@ Edge	Edge_Init(Vertex src, Vertex dest, uint64_t weight)
 	edge->weight = weight;
 	return (edge);
 }
+
 void	Edge_Free(Generic edge)
 {
 	free(edge);

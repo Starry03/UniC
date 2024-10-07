@@ -1,7 +1,6 @@
 import regex as re
-from dataclasses import dataclass, asdict
+from dataclasses import dataclass
 import os
-import json
 import psycopg2
 from dotenv import load_dotenv
 import logging
@@ -51,10 +50,11 @@ cursor.execute(
         body TEXT,
         doc TEXT
     );
-	"""
+    """
 )
 
 logging.info("Created table")
+
 
 @dataclass
 class FunctionDoc:
@@ -71,13 +71,13 @@ class FileDoc:
 
     @staticmethod
     def generate_from_file(file: str) -> "FileDoc":
-        with open(file, "r") as f:
+        with open(file, "r", encoding="utf-8") as f:
             content: str = f.read()
             res: list = get_match(
                 PATTERN,
                 content,
             )
-            out: tuple[FunctionDoc] = tuple(
+            out: tuple[FunctionDoc, ...] = tuple(
                 [FunctionDoc(doc=m[0], name=m[2], header=m[1], body=m[3]) for m in res]
             )
         return FileDoc(name=file, functions=out)
@@ -140,7 +140,13 @@ def build_dir_doc(
                             INSERT INTO functions.function (category, name, header, body, doc)
                             VALUES (%s, %s, %s, %s, %s);
                             """,
-                            (category, function.name, function.header, function.body, function.doc),
+                            (
+                                category,
+                                function.name,
+                                function.header,
+                                function.body,
+                                function.doc,
+                            ),
                         )
                     except (
                         psycopg2.errors.UniqueViolation,
