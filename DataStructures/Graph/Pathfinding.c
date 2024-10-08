@@ -1,4 +1,3 @@
-#include "../../Utils/Dealloc/Dealloc.h"
 #include "../Dictionary/Dictionary.h"
 #include "../Heap/Heap.h"
 #include "Graph.h"
@@ -48,7 +47,8 @@ LinkedList	Dijkstra(Graph graph, Vertex src, Vertex dest)
 	if (!graph || !src || !dest)
 		return (NULL);
 	vertices = graph->adjacency_list;
-	hashmap = Dict_Init(LinkedList_Size(vertices), Vertex_CmpId, Vertex_Hash, NULL);
+	hashmap = Dict_Init(LinkedList_Size(vertices), Vertex_CmpId, Vertex_Hash,
+			NULL);
 	if (!hashmap)
 		return (NULL);
 	min_heap = Heap_Init(LinkedList_Size(vertices), Vertex_CmpDistance,

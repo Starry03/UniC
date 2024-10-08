@@ -6,6 +6,7 @@ build/
 /.venv
 **/.env
 test/
+*.sql
 
 # files
 CMakeLists.txt
