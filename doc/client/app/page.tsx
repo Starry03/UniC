@@ -53,7 +53,7 @@ export default function Home() {
           <Typography.Paragraph>{functionDoc.Header}</Typography.Paragraph>
           <>
           {functionDoc.Doc.split("@").slice(1).map((line) => (
-            <Typography.Paragraph key={line}>{line.trim().replace(/"(\*|\/)"/, "")}</Typography.Paragraph>
+            <Typography.Paragraph key={line}>{line.trim().replace(/[*\/]/g, "")}</Typography.Paragraph>
           ))}
           </>
         </Flex>
