@@ -51,7 +51,11 @@ export default function Home() {
         <Flex vertical align={"start"} justify="start">
           <Typography.Paragraph strong>{functionDoc.Name}</Typography.Paragraph>
           <Typography.Paragraph>{functionDoc.Header}</Typography.Paragraph>
-          <Typography.Paragraph>{functionDoc.Doc}</Typography.Paragraph>
+          <>
+          {functionDoc.Doc.split("@").slice(1).map((line) => (
+            <Typography.Paragraph key={line}>{line.trim().replace(/"(\*|\/)"/, "")}</Typography.Paragraph>
+          ))}
+          </>
         </Flex>
       ) : null}
     </Flex>
