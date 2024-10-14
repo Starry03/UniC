@@ -6,3 +6,12 @@ if [ $? == 0 ];
 else
 	echo "Documentation generation failed"
 fi
+
+echo "Building next-js"
+cd ./doc/client
+npm run build
+if [ $? == 0 ];
+	then echo "Next built successfully"
+else
+	echo "Next failed building"
+fi

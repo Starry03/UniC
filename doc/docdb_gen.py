@@ -85,7 +85,6 @@ def build_dir_doc(
         if file.split(".")[-1] not in extensions:
             continue
         file_doc: FileDoc = FileDoc.generate_from_file(eval_path)
-        print(file_doc)
         category: str = (
             file_doc.name.split("/")[-2] if file_doc.name.count("/") > 1 else "General"
         )
@@ -125,7 +124,6 @@ PATTERN: str = (
     + BRACKET_PATTERN
     + r")"
 )
-print(PATTERN)
 load_dotenv()
 logging.basicConfig(
     level=logging.INFO,

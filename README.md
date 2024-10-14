@@ -2,43 +2,45 @@
 
 ## Update info
 
-### Version 1.9.2
+### Version
+2.0
 
 ### Latest features & changes
 
 - doc generation
-
-### TO-DO
-
 - doc ui
 
 ## About
 
 General purpose library
 
-Feel free to use it, but please note:
-
-- it's not optimized for performance
-- it could be obviously improved
-
 ### Dependecies
 
 - gcc
 - make
-- python (doc)
+- doc (optional)
+	- python
+	- node
+	- postgresql
 
 ### Doc
+Documentation is provided on top of every function
+
+If you want to use the client for a better experience, check the dependencies
 
 ```sh
-# build postgres db
-bash ./doc_gen.sh
+# build postgres db and next-js
+bash ./docUiSetup.sh
 or
-chmod 777 ./doc_gen.sh && ./doc_gen.sh
+chmod 777 ./docUiSetup.sh && ./docUiSetup.sh
 ```
 
 #### Run UI
 
 ```sh
+bash ./docUiStart.sh
+or
+chmod 777 ./docUiStart.sh && ./docUiStart.sh
 ```
 
 ### Linking
@@ -52,7 +54,9 @@ make
 gcc ... <lib path>/UniC.a
 ```
 
-## Data structures
+## Content
+
+### Datastructures
 
 - Matrices
 - Vector
@@ -66,12 +70,12 @@ gcc ... <lib path>/UniC.a
 - Heap
 - Graph
 
-## Algorithms
+### Algorithms
 
 - Search
 - Sort
 
-## Libft
+### Libft
 
 Basic implementation
 
