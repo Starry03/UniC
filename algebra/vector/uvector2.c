@@ -1,7 +1,7 @@
-#include "UVector2.h"
+#include "uvector2.h"
 #include <stdlib.h>
 
-t_uvector2	UVector2_init(uint64_t x, uint64_t y)
+t_uvector2	uvector2_init(uint64_t x, uint64_t y)
 {
 	t_uvector2	vector;
 
@@ -12,7 +12,7 @@ t_uvector2	UVector2_init(uint64_t x, uint64_t y)
 	vector->y = y;
 	return (vector);
 }
-void	UVector2_free(t_uvector2 vector)
+void	uvector2_free(t_uvector2 vector)
 {
 	if (!vector)
 		return ;
