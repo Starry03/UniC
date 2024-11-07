@@ -9,7 +9,7 @@
 
 inline t_queue	queue_init(t_generic info)
 {
-	return (t_queue)linkedlist_init(info);
+	return ((t_queue)linkedlist_init(info));
 }
 
 inline void	queue_add(t_queue *queue, t_generic info)

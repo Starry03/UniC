@@ -1,11 +1,11 @@
 #include "stack.h"
 #include <stdlib.h>
 
-#define STACK_EMPTY (Stack)0
+#define STACK_EMPTY (t_stack)0
 
-inline Stack	stack_init(t_generic value)
+inline t_stack	stack_init(t_generic value)
 {
-	return (Stack)(linkedlist_init(value));
+	return (t_stack)(linkedlist_init(value));
 }
 
 /**
@@ -14,7 +14,7 @@ inline Stack	stack_init(t_generic value)
  * @param stack
  * @param value
  */
-inline void	stack_add(Stack stack, t_generic value)
+inline void	stack_add(t_stack stack, t_generic value)
 {
 	linkedlist_push((t_linkedlist *)&stack, value);
 }
@@ -27,7 +27,7 @@ inline void	stack_add(Stack stack, t_generic value)
  * @note does not deallocate the value, call stack_dealloc_element
  * @return Generic
  */
-t_generic	stack_poll(Stack *stack)
+t_generic	stack_poll(t_stack *stack)
 {
 	t_generic	out;
 
@@ -44,7 +44,7 @@ t_generic	stack_poll(Stack *stack)
  * @param stack
  * @param dealloc
  */
-void	stack_dealloc_element(Stack stack, t_deallocator dealloc)
+void	stack_dealloc_element(t_stack stack, t_deallocator dealloc)
 {
 	if (!stack)
 		return ;
@@ -53,7 +53,7 @@ void	stack_dealloc_element(Stack stack, t_deallocator dealloc)
 	free(stack);
 }
 
-inline void	stack_free(Stack *stack, void (*dealloc)(t_generic))
+inline void	stack_free(t_stack *stack, void (*dealloc)(t_generic))
 {
 	linkedlist_dealloc(*stack, dealloc);
 }
