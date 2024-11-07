@@ -17,7 +17,7 @@ typedef struct s_binary_treenode
 }								t_binary_treenode;
 
 typedef t_binary_treenode		*t_binarytree;
-# define BINARY_TREE_EMPTY (t_binarytree) 0
+# define BINARY_TREE_EMPTY (t_binarytree)0
 
 t_binarytree					treenode_init(void);
 
@@ -47,6 +47,7 @@ bool							binarytree_has_twonodes(t_binarytree tree);
 bool							binarytree_deletenode(t_binarytree *tree,
 									t_generic value);
 
-void							binarytree_free(t_binarytree tree, t_deallocator dealloc);
+void							binarytree_free(t_binarytree tree,
+									t_deallocator dealloc);
 
 #endif // BINARYTREE_H

@@ -1,6 +1,6 @@
 #include "graph.h"
-#include <stdlib.h>
 #include <assert.h>
+#include <stdlib.h>
 
 t_graph	graph_init(void (*dealloc_vertex)(t_generic), int (*cmp)(t_generic,
 			t_generic))
@@ -73,7 +73,7 @@ void	graph_remove_vertex(t_graph graph, t_vertex vertex)
 void	graph_remove_edge(t_vertex vertex, t_edge edge)
 {
 	t_linkedlist	edges;
-	t_edge		e;
+	t_edge			e;
 
 	edges = vertex->edges;
 	while (edges)

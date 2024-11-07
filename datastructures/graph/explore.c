@@ -11,11 +11,11 @@
  */
 t_vertex	graph_bfs(t_graph graph, t_vertex src, t_generic target)
 {
-	t_queue		queue;
-	t_queue		queue_el;
+	t_queue			queue;
+	t_queue			queue_el;
 	t_vertex		vertex;
 	t_vertex		dst;
-	t_edge		edge;
+	t_edge			edge;
 	t_linkedlist	edges;
 
 	vertex = NULL;
@@ -75,7 +75,7 @@ t_vertex	graph_dfs(t_graph graph)
 {
 	t_linkedlist	vertices;
 	t_vertex		vertex;
-	uint64_t	time;
+	uint64_t		time;
 
 	time = 0;
 	vertices = graph->adjacency_list;

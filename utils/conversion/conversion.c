@@ -1,15 +1,15 @@
 #include "conversion.h"
 #include <stdlib.h>
 
-t_string uintToString(uint64_t n, size_t bits)
+t_string	uintToString(uint64_t n, size_t bits)
 {
-	size_t i;
-	t_string str;
+	size_t		i;
+	t_string	str;
 
 	if (bits > 64)
-		return NULL;
+		return (NULL);
 	i = bits;
-	str = (t_string) malloc(sizeof(char) * (i + 1));
+	str = (t_string)malloc(sizeof(char) * (i + 1));
 	if (!str)
 		return (NULL);
 	str[i] = 0;

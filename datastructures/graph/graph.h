@@ -11,7 +11,7 @@
  */
 typedef struct s_graph
 {
-	t_linkedlist		adjacency_list;
+	t_linkedlist	adjacency_list;
 	int				(*cmp)(t_generic, t_generic);
 	void			(*dealloc_vertex)(t_generic);
 }					t_graph_;
@@ -36,7 +36,7 @@ typedef enum e_vertex_status
  */
 typedef struct s_vertex
 {
-	t_linkedlist		edges;
+	t_linkedlist	edges;
 	t_generic		value;
 	uint64_t		id;
 	uint64_t		distance;
@@ -83,12 +83,12 @@ t_vertex			graph_bfs(t_graph graph, t_vertex src, t_generic target);
 t_vertex			graph_dfs(t_graph graph);
 
 /* PATH FINDING */
-t_linkedlist			dijkstra(t_graph graph, t_vertex src, t_vertex dest);
+t_linkedlist		dijkstra(t_graph graph, t_vertex src, t_vertex dest);
 
 /* UTILS */
 void				vertex_init_single_source(t_graph graph, t_vertex src);
 bool				edge_relax(t_vertex src, t_vertex dest, uint64_t weight);
-t_linkedlist			build_path(t_vertex dest);
+t_linkedlist		build_path(t_vertex dest);
 int					vertex_cmp_distance(t_generic a, t_generic b);
 int					vertex_cmp_id(t_generic a, t_generic b);
 void				dijkstra_heapentry_free(t_generic entry);

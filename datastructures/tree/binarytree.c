@@ -123,10 +123,10 @@ bool	binarytree_deletenode(t_binarytree *tree, t_generic value)
  */
 void	binarytree_free(t_binarytree tree, t_deallocator dealloc)
 {
-    if (tree_is_empty(tree))
-        return;
-    binarytree_free(binarytree_left(tree), dealloc);
-    binarytree_free(binarytree_right(tree), dealloc);
-    dealloc(binarytree_value(tree));
-    free(tree);
+	if (tree_is_empty(tree))
+		return ;
+	binarytree_free(binarytree_left(tree), dealloc);
+	binarytree_free(binarytree_right(tree), dealloc);
+	dealloc(binarytree_value(tree));
+	free(tree);
 }

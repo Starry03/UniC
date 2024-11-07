@@ -3,12 +3,12 @@
 #include "graph.h"
 #include <stdlib.h>
 
-static void	Dijkstra_Init_MinHeap_Hashmap(t_heap min_heap, t_linkedlist vertices,
-		t_dict hashmap)
+static void	Dijkstra_Init_MinHeap_Hashmap(t_heap min_heap,
+		t_linkedlist vertices, t_dict hashmap)
 {
 	uint64_t		*dist;
 	t_heap_entry	entry;
-	t_vertex			vertex;
+	t_vertex		vertex;
 
 	if (!min_heap || !vertices || !hashmap)
 		return ;
@@ -30,17 +30,17 @@ static void	Dijkstra_Init_MinHeap_Hashmap(t_heap min_heap, t_linkedlist vertices
  */
 t_linkedlist	dijkstra(t_graph graph, t_vertex src, t_vertex dest)
 {
-	t_linkedlist		path;
+	t_linkedlist	path;
 	t_heap			min_heap;
 	t_dict			hashmap;
-	t_linkedlist		vertices;
-	t_vertex			vertex;
-	t_linkedlist		vertex_edges;
+	t_linkedlist	vertices;
+	t_vertex		vertex;
+	t_linkedlist	vertex_edges;
 	t_edge			edge;
 	uint64_t		*weight_ref;
 	t_heap_entry	entry;
 	t_heap_entry	entry_from_dict;
-	t_linkedlist		visited_entries;
+	t_linkedlist	visited_entries;
 
 	path = NULL;
 	visited_entries = NULL;

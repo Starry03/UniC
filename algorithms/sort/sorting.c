@@ -2,10 +2,10 @@
 // Created by andre on 4/19/2023.
 //
 
-#include "dataStructures/LinkedList/LinkedList.h"
-#include "sorting.h"
 #include "Utils/Logging/Logging.h"
 #include "Utils/types.h"
+#include "dataStructures/LinkedList/LinkedList.h"
+#include "sorting.h"
 #include <math.h>
 #include <string.h>
 
@@ -76,10 +76,11 @@ void	insertionsort(t_generic *array, size_t size, t_comparator cmp)
  * @param high: end of the sub-array
  * @param cmp
  */
-void	merge(t_generic *arr, size_t low, size_t mid, size_t high, t_comparator cmp)
+void	merge(t_generic *arr, size_t low, size_t mid, size_t high,
+		t_comparator cmp)
 {
 	const size_t	tempLength = high - low + 1;
-	t_generic			*temp[tempLength];
+	t_generic		*temp[tempLength];
 	size_t			left;
 	size_t			right;
 	size_t			tempCounter;
@@ -111,7 +112,7 @@ void	merge(t_generic *arr, size_t low, size_t mid, size_t high, t_comparator cmp
 }
 
 /**
- * @brief merge sort recursive aux funcion 
+ * @brief merge sort recursive aux funcion
  */
 void	mergesort_rec(t_generic *arr, size_t low, size_t high, t_comparator cmp)
 {
@@ -190,7 +191,7 @@ void	quicksort(int *array, size_t size)
  * @param size
  * @param k: max value in the array
  * @note array[i] >= 0
-*/
+ */
 void	countingsort(const int array[], int dest[], int size, int k)
 {
 	int	c[k + 1];
@@ -208,7 +209,7 @@ void	countingsort(const int array[], int dest[], int size, int k)
 		n_lower = c[array[j]] - 1;
 		dest[n_lower] = array[j];
 		c[array[j]] -= 1;
-		Log_intarray(dest, size, n_lower);
+		log_intarray(dest, size, n_lower);
 	}
 }
 

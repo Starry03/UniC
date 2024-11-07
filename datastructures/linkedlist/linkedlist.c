@@ -124,7 +124,8 @@ t_linkedlist	linkedlist_getnth(t_linkedlist list, size_t n)
 	return (list);
 }
 
-void	linkedlist_removenth(t_linkedlist *list, size_t n, t_deallocator dealloc)
+void	linkedlist_removenth(t_linkedlist *list, size_t n,
+		t_deallocator dealloc)
 {
 	if (!list || !*list)
 		return ;
@@ -149,7 +150,8 @@ size_t	linkedlist_size(t_linkedlist list)
 	return (size);
 }
 
-t_linkedlist	linkedList_insert(t_linkedlist *list, t_generic value, size_t index)
+t_linkedlist	linkedList_insert(t_linkedlist *list, t_generic value,
+		size_t index)
 {
 	t_linkedlist	c_node;
 	t_linkedlist	n_node;

@@ -31,7 +31,8 @@ t_double_linkedlist	double_linkedlist_insert(t_double_linkedlist *list,
 	return (node);
 }
 
-t_double_linkedlist	double_linkedlist_append(t_double_linkedlist list, t_generic info)
+t_double_linkedlist	double_linkedlist_append(t_double_linkedlist list,
+		t_generic info)
 {
 	t_double_linkedlist	last;
 
@@ -41,7 +42,8 @@ t_double_linkedlist	double_linkedlist_append(t_double_linkedlist list, t_generic
 	return (last->next);
 }
 
-t_double_linkedlist	double_linkedlist_push(t_double_linkedlist *list, t_generic info)
+t_double_linkedlist	double_linkedlist_push(t_double_linkedlist *list,
+		t_generic info)
 {
 	t_double_linkedlist	node;
 
@@ -51,7 +53,8 @@ t_double_linkedlist	double_linkedlist_push(t_double_linkedlist *list, t_generic 
 	return (node);
 }
 
-void	double_linkedlist_remove(t_double_linkedlist node, t_deallocator dealloc)
+void	double_linkedlist_remove(t_double_linkedlist node,
+		t_deallocator dealloc)
 {
 	t_double_linkedlist	next;
 	t_double_linkedlist	prev;
@@ -69,8 +72,8 @@ void	double_linkedlist_remove(t_double_linkedlist node, t_deallocator dealloc)
 	free(node);
 }
 
-void	double_linkedlist_removebyvalue(t_double_linkedlist list, t_comparator cmp,
-		t_generic info, t_deallocator dealloc)
+void	double_linkedlist_removebyvalue(t_double_linkedlist list,
+		t_comparator cmp, t_generic info, t_deallocator dealloc)
 {
 	t_double_linkedlist	node;
 
@@ -92,7 +95,8 @@ t_double_linkedlist	double_linkedlist_search(t_double_linkedlist list,
 	return (list);
 }
 
-t_double_linkedlist	double_linkedlist_getnth(t_double_linkedlist list, size_t index)
+t_double_linkedlist	double_linkedlist_getnth(t_double_linkedlist list,
+		size_t index)
 {
 	size_t	i;
 
@@ -154,7 +158,8 @@ size_t	double_linkedlist_getlength(t_double_linkedlist list)
 	return (length);
 }
 
-void	double_linkedlist_dealloc(t_double_linkedlist list, t_deallocator dealloc)
+void	double_linkedlist_dealloc(t_double_linkedlist list,
+		t_deallocator dealloc)
 {
 	t_double_linkedlist	next;
 

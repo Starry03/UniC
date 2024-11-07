@@ -47,11 +47,13 @@ t_complex	complex_sub(t_complex a, t_complex b)
 	c = complex_init(a->re - b->re, a->im - b->im);
 	return (c);
 }
+
 t_complex	complex_mul(t_complex a, t_complex b)
 {
 	return (complex_init(a->re * b->re - a->im * b->im, a->re * b->im + a->im
 			* b->re));
 }
+
 t_complex	complex_div(t_complex a, t_complex b)
 {
 	t_complex_type	mod;

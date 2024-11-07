@@ -7,21 +7,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static t_vector2	AllocateVector2(void)
+static t_vector2	allocate_vector2(void)
 {
-	return (t_vector2)malloc(sizeof(s_vector2));
+	return ((t_vector2)malloc(sizeof(t_vector2_)));
 }
 
-static t_vector3	AllocateVector3(void)
+static t_vector3	allocate_vector3(void)
 {
-	return (t_vector3)malloc(sizeof(Vector_3));
+	return ((t_vector3)malloc(sizeof(t_vector3_)));
 }
 
 t_vector2	vector2_init(t_vector_type x, t_vector_type y)
 {
 	t_vector2	vector;
 
-	vector = AllocateVector2();
+	vector = allocate_vector2();
 	if (!vector)
 		return (NULL);
 	vector->x = x;
@@ -33,7 +33,7 @@ t_vector3	vector3_init(t_vector_type x, t_vector_type y, t_vector_type z)
 {
 	t_vector3	vector;
 
-	vector = AllocateVector3();
+	vector = allocate_vector3();
 	if (!vector)
 		return (NULL);
 	vector->x = x;
@@ -99,7 +99,7 @@ t_vector3	vector3_normalized(t_vector3 v)
 {
 	const t_vector_type	module = vector3_module(v);
 
-	return vector3_init(v->x / module, v->y / module, v->z / module);
+	return (vector3_init(v->x / module, v->y / module, v->z / module));
 }
 
 void	vector2_print(t_vector2 v)

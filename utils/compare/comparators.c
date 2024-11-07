@@ -1,6 +1,6 @@
 #include "comparators.h"
-#include <string.h>
 #include <stdint.h>
+#include <string.h>
 
 int	cmp_string(t_generic a, t_generic b)
 {
@@ -15,8 +15,8 @@ int	cmp_string(t_generic a, t_generic b)
 
 int	cmp_int(t_generic a, t_generic b)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	if (!b && !a)
 		return (0);

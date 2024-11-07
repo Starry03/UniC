@@ -15,14 +15,14 @@ typedef struct s_vector2
 
 typedef t_vector2_	*t_vector2;
 
-typedef struct Vector_3
+typedef struct s_vector3
 {
 	t_vector_type	x;
 	t_vector_type	y;
 	t_vector_type	z;
-}					Vector_3;
+}					t_vector3_;
 
-typedef Vector_3	*t_vector3;
+typedef t_vector3_	*t_vector3;
 
 # define VECTOR2_ZERO vector2_init(0, 0)
 # define VECTOR2_UP vector2_init(0, 1)
@@ -74,4 +74,4 @@ void				vector2_free(t_vector2 v);
 
 void				vector3_free(t_vector3 v);
 
-#endif // STARRY_VECTOR_H
+#endif

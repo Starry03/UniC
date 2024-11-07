@@ -4,7 +4,7 @@
 t_vertex	vertex_init(t_generic value)
 {
 	static uint32_t	id = 0;
-	t_vertex			vertex;
+	t_vertex		vertex;
 
 	vertex = (t_vertex)malloc(sizeof(t_vertex_));
 	if (!vertex)

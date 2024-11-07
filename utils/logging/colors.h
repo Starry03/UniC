@@ -10,7 +10,8 @@
 
 /**
  * clearly stolen from somewhere
- * if you look for rgb colors, go to TermVision: https://github.com/Starry03/TermVision
+ * if you look for rgb colors,
+	go to TermVision: https://github.com/Starry03/TermVision
  */
 
 #ifndef COLORS_H

@@ -6,13 +6,13 @@
  */
 t_graph	get_example_graph(void)
 {
-	t_graph graph;
-	t_vertex v1;
-	t_vertex v2;
-	t_vertex v3;
-	t_vertex v4;
-	t_vertex v5;
-	t_vertex v6;
+	t_graph		graph;
+	t_vertex	v1;
+	t_vertex	v2;
+	t_vertex	v3;
+	t_vertex	v4;
+	t_vertex	v5;
+	t_vertex	v6;
 
 	graph = graph_init(NULL, Compare_String);
 	v1 = vertex_init("a");

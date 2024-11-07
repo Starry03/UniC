@@ -9,11 +9,11 @@
  */
 void	graph_generate_mermaid(t_graph graph, String filename, String direction)
 {
-	FILE		*file;
+	FILE			*file;
 	t_linkedlist	vertices;
 	t_vertex		vertex;
 	t_linkedlist	edges;
-	t_edge		edge;
+	t_edge			edge;
 
 	file = fopen(filename, "w");
 	if (!file)

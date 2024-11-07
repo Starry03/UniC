@@ -12,12 +12,12 @@
 
 typedef struct s_dictionary
 {
-	t_linkedlist			*buckets;
+	t_linkedlist		*buckets;
 	size_t				used;
 	size_t				size;
-	t_comparator			cmp;
-	t_hasher				hash_key;
-	t_deallocator			dealloc_key;
+	t_comparator		cmp;
+	t_hasher			hash_key;
+	t_deallocator		dealloc_key;
 	uint64_t			a;
 	uint64_t			b;
 	uint64_t			prime;
@@ -29,14 +29,14 @@ typedef struct s_dict_obj
 {
 	t_generic			key;
 	t_generic			value;
-	t_deallocator			dealloc_key;
-	t_deallocator			dealloc_value;
+	t_deallocator		dealloc_key;
+	t_deallocator		dealloc_value;
 }						t_dict_obj;
 
-typedef t_dict_obj		*Dict_obj;
+typedef t_dict_obj		*t_dict_obj;
 
-t_dict					dict_init(size_t size, t_comparator cmp, t_hasher hash_key,
-							t_deallocator dealloc_key);
+t_dict					dict_init(size_t size, t_comparator cmp,
+							t_hasher hash_key, t_deallocator dealloc_key);
 bool					dict_add(t_dict dict, t_generic key, t_generic value,
 							t_deallocator dealloc_value);
 void					*dict_get(t_dict dict, t_generic key);

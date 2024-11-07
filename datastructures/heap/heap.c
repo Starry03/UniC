@@ -40,7 +40,7 @@ void	heap_free(t_heap heap)
 {
 	size_t			i;
 	t_heap_entry	*entries;
-	t_deallocator		dealloc;
+	t_deallocator	dealloc;
 
 	if (!heap)
 		return ;

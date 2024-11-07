@@ -1,6 +1,6 @@
 #include "dealloc.h"
-#include <stdlib.h>
 #include <stdint.h>
+#include <stdlib.h>
 
 inline void	dealloc_int(t_generic addr)
 {
