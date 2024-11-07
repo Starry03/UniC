@@ -1,7 +1,7 @@
 #ifndef EXAMPLES_H
 # define EXAMPLES_H
-# include "DataStructures/Graph/Graph.h"
+# include "datastructures/graph/graph.h"
 
-Graph	get_example_graph(void);
+t_graph	get_example_graph(void);
 
 #endif
