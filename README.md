@@ -9,6 +9,7 @@
 
 - doc generation
 - doc ui
+- 42 norminette
 
 ## About
 
@@ -30,17 +31,17 @@ If you want to use the client for a better experience, check the dependencies
 
 ```sh
 # build postgres db and next-js
-bash ./docUiSetup.sh
+bash ./doc_uisetup.sh
 or
-chmod 777 ./docUiSetup.sh && ./docUiSetup.sh
+chmod 777 ./doc_uisetup.sh && ./doc_uisetup.sh
 ```
 
 #### Run UI
 
 ```sh
-bash ./docUiStart.sh
+bash ./doc_uistart.sh
 or
-chmod 777 ./docUiStart.sh && ./docUiStart.sh
+chmod 777 ./doc_uistart.sh && ./doc_uistart.sh
 ```
 
 ### Linking
