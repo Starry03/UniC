@@ -1,7 +1,7 @@
 #include "bst.h"
 #include <stdlib.h>
 
-t_bst	Bst_Init(t_generic key, t_generic info, t_comparator cmp)
+t_bst	nst_init(t_generic key, t_generic info, t_comparator cmp)
 {
 	t_bst	bst;
 

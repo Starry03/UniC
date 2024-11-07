@@ -5,7 +5,7 @@
 
 inline Stack	stack_init(t_generic value)
 {
-	return (Stack)(linkedList_init(value));
+	return (Stack)(linkedlist_init(value));
 }
 
 /**
@@ -16,7 +16,7 @@ inline Stack	stack_init(t_generic value)
  */
 inline void	stack_add(Stack stack, t_generic value)
 {
-	linkedList_push((t_linkedlist *)&stack, value);
+	linkedlist_push((t_linkedlist *)&stack, value);
 }
 
 /**

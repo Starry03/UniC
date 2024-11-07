@@ -12,18 +12,18 @@ typedef t_node	t_linkedlist;
 
 # define LINKEDLIST_EMPTY (t_linkedlist)0
 
-t_linkedlist	linkedList_init(t_generic value);
+t_linkedlist	linkedlist_init(t_generic value);
 
-void			linkedList_push(t_linkedlist *list, t_generic object);
+void			linkedlist_push(t_linkedlist *list, t_generic object);
 
-t_linkedlist	linkedList_append(t_linkedlist *list, t_generic value);
+t_linkedlist	linkedlist_append(t_linkedlist *list, t_generic value);
 
-t_linkedlist	linkedList_insert(t_linkedlist *list, t_generic value,
+t_linkedlist	linkedlist_insert(t_linkedlist *list, t_generic value,
 					size_t index);
 
-void			linkedList_remove(t_linkedlist *node, t_deallocator dealloc);
+void			linkedlist_remove(t_linkedlist *node, t_deallocator dealloc);
 
-void			linkedList_removebyvalue(t_linkedlist *list, t_generic value,
+void			linkedlist_removebyvalue(t_linkedlist *list, t_generic value,
 					t_deallocator dealloc, int (*cmp)(t_generic, t_generic));
 
 t_linkedlist	linkedlist_getnext(t_linkedlist list);

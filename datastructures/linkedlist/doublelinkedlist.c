@@ -3,7 +3,7 @@
 
 t_double_linkedlist	double_linkedlist_init(t_generic info)
 {
-	return (DoubleNode_Init(info));
+	return (doublenode_init(info));
 }
 
 t_double_linkedlist	double_linkedlist_insert(t_double_linkedlist *list,
@@ -20,7 +20,7 @@ t_double_linkedlist	double_linkedlist_insert(t_double_linkedlist *list,
 	if (index == LAST)
 		return (double_linkedlist_append(*list, info));
 	temp = double_linkedlist_getnth(*list, index);
-	node = DoubleNode_Init(info);
+	node = doublenode_init(info);
 	if (temp)
 		temp->prev = node;
 	node->next = temp;

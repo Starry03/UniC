@@ -128,7 +128,7 @@ static t_linkedlist	take_dict_objs(t_dict dict)
 			next = linkedlist_getnext(bucket);
 			free(bucket);
 			bucket = next;
-			linkedList_push(&list, obj);
+			linkedlist_push(&list, obj);
 		}
 		i++;
 	}
@@ -146,7 +146,7 @@ static void	soft_add(t_dict dict, t_dict_obj obj)
 
 	hash = hash_function(dict, dict->hash_key(obj->key, dict->size));
 	bucket = dict->buckets[hash];
-	linkedList_push(&bucket, obj);
+	linkedlist_push(&bucket, obj);
 	dict->buckets[hash] = bucket;
 	dict->used++;
 }
@@ -205,7 +205,7 @@ bool	dict_add(t_dict dict, t_generic key, t_generic value,
 	obj = Dict_Obj_Init(key, value, dict->dealloc_key, dealloc_value);
 	if (!obj)
 		return (false);
-	linkedList_push(buckets + hash, obj);
+	linkedlist_push(buckets + hash, obj);
 	dict->used++;
 	return (true);
 }
@@ -249,7 +249,7 @@ void	dict_remove(t_dict dict, t_generic key)
 	bucket = (dict->buckets)[hash];
 	while (((t_dict_obj)linkedlist_getinfo(bucket))->key != key)
 		bucket = linkedlist_getnext(bucket);
-	linkedList_remove(dict->buckets + hash, &Dict_Obj_Dealloc);
+	linkedlist_remove(dict->buckets + hash, &Dict_Obj_Dealloc);
 }
 
 /**

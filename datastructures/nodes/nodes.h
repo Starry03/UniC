@@ -37,6 +37,6 @@ typedef struct s_doublenode_
 
 typedef t_doublenode_		*t_doublenode;
 
-t_doublenode				DoubleNode_Init(t_generic info);
+t_doublenode				doublenode_init(t_generic info);
 
 #endif // NODES_H

@@ -35,12 +35,12 @@ void	graph_free(t_graph graph)
 
 void	graph_add_vertex(t_graph graph, t_vertex vertex)
 {
-	linkedList_push(&graph->adjacency_list, vertex);
+	linkedlist_push(&graph->adjacency_list, vertex);
 }
 
 void	graph_add_edge(t_vertex vertex, t_edge edge)
 {
-	linkedList_push(&vertex->edges, edge);
+	linkedlist_push(&vertex->edges, edge);
 }
 
 void	graph_add_double_edge(t_vertex vertex, t_edge edge)
@@ -64,7 +64,7 @@ void	graph_remove_vertex(t_graph graph, t_vertex vertex)
 		if (v->id == vertex->id)
 		{
 			vertex_free(graph, v);
-			linkedList_remove(&graph->adjacency_list, NULL);
+			linkedlist_remove(&graph->adjacency_list, NULL);
 			return ;
 		}
 		adj_list = adj_list->next;
@@ -81,7 +81,7 @@ void	graph_remove_edge(t_vertex vertex, t_edge edge)
 		e = (t_edge)edges->info;
 		if (e->dest->id == edge->dest->id)
 		{
-			linkedList_remove(&vertex->edges, edge_free);
+			linkedlist_remove(&vertex->edges, edge_free);
 			return ;
 		}
 		edges = edges->next;

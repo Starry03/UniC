@@ -76,7 +76,7 @@ t_linkedlist	dijkstra(t_graph graph, t_vertex src, t_vertex dest)
 			}
 			vertex_edges = linkedlist_getnext(vertex_edges);
 		}
-		linkedList_push(&visited_entries, entry);
+		linkedlist_push(&visited_entries, entry);
 	}
 	path = build_path(dest);
 	linkedlist_dealloc(visited_entries, dijkstra_heapentry_free);

@@ -76,7 +76,7 @@ t_linkedlist	build_path(t_vertex dest)
 	path = NULL;
 	while (dest)
 	{
-		linkedList_push(&path, dest);
+		linkedlist_push(&path, dest);
 		dest = dest->predecessor;
 	}
 	return (path);

@@ -5,16 +5,16 @@
 #include "linkedlist.h"
 #include <stdlib.h>
 
-static inline t_linkedlist	LinkedList_Alloc(void)
+static inline t_linkedlist	linkedlist_alloc(void)
 {
 	return (t_linkedlist)malloc(sizeof(t_node_));
 }
 
-t_linkedlist	linkedList_init(t_generic value)
+t_linkedlist	linkedlist_init(t_generic value)
 {
 	t_linkedlist	list;
 
-	list = LinkedList_Alloc();
+	list = linkedlist_alloc();
 	if (!list)
 		return (LINKEDLIST_EMPTY);
 	list->info = value;
@@ -22,23 +22,23 @@ t_linkedlist	linkedList_init(t_generic value)
 	return (list);
 }
 
-void	linkedList_push(t_linkedlist *list, t_generic object)
+void	linkedlist_push(t_linkedlist *list, t_generic object)
 {
 	t_linkedlist	node;
 
-	node = linkedList_init(object);
+	node = linkedlist_init(object);
 	node->next = *list;
 	*list = node;
 }
 
-t_linkedlist	linkedList_append(t_linkedlist *list, t_generic value)
+t_linkedlist	linkedlist_append(t_linkedlist *list, t_generic value)
 {
 	t_linkedlist	node;
 	t_linkedlist	last;
 
 	if (!list)
 		return (LINKEDLIST_EMPTY);
-	node = linkedList_init(value);
+	node = linkedlist_init(value);
 	last = linkedlist_getlast(*list);
 	if (!last)
 		*list = node;
@@ -47,7 +47,7 @@ t_linkedlist	linkedList_append(t_linkedlist *list, t_generic value)
 	return (node);
 }
 
-void	linkedList_remove(t_linkedlist *node, t_deallocator dealloc)
+void	linkedlist_remove(t_linkedlist *node, t_deallocator dealloc)
 {
 	t_linkedlist	tmp;
 
@@ -60,14 +60,14 @@ void	linkedList_remove(t_linkedlist *node, t_deallocator dealloc)
 	free(tmp);
 }
 
-void	linkedList_removebyvalue(t_linkedlist *list, t_generic value,
+void	linkedlist_removebyvalue(t_linkedlist *list, t_generic value,
 		t_deallocator dealloc, int (*cmp)(t_generic, t_generic))
 {
 	if (!list || !*list || !value)
 		return ;
 	while (*list && cmp(linkedlist_getinfo(*list), value) != 0)
 		list = &((*list)->next);
-	linkedList_remove(list, dealloc);
+	linkedlist_remove(list, dealloc);
 }
 
 t_linkedlist	linkedlist_getnode(t_linkedlist list, t_generic value)
@@ -134,7 +134,7 @@ void	linkedlist_removenth(t_linkedlist *list, size_t n,
 		list = &((*list)->next);
 		n--;
 	}
-	linkedList_remove(list, dealloc);
+	linkedlist_remove(list, dealloc);
 }
 
 size_t	linkedlist_size(t_linkedlist list)
@@ -150,7 +150,7 @@ size_t	linkedlist_size(t_linkedlist list)
 	return (size);
 }
 
-t_linkedlist	linkedList_insert(t_linkedlist *list, t_generic value,
+t_linkedlist	linkedlist_insert(t_linkedlist *list, t_generic value,
 		size_t index)
 {
 	t_linkedlist	c_node;
@@ -160,15 +160,15 @@ t_linkedlist	linkedList_insert(t_linkedlist *list, t_generic value,
 		return (LINKEDLIST_EMPTY);
 	if (index == START)
 	{
-		linkedList_push(list, value);
+		linkedlist_push(list, value);
 		return (*list);
 	}
 	if (index == LAST)
-		return (linkedList_append(list, value));
+		return (linkedlist_append(list, value));
 	c_node = linkedlist_getnth(*list, index - 1);
 	if (!c_node)
 		return (LINKEDLIST_EMPTY);
-	n_node = linkedList_init(value);
+	n_node = linkedlist_init(value);
 	n_node->next = c_node->next;
 	c_node->next = n_node;
 	return (n_node);

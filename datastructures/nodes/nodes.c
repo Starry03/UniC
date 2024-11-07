@@ -5,12 +5,12 @@
 #include "nodes.h"
 #include <stdlib.h>
 
-static t_node	EmptyNode(void)
+static t_node	empty_node(void)
 {
 	return ((t_node)NULL);
 }
 
-static t_node	Node_Allocate(void)
+static t_node	node_allocate(void)
 {
 	return (t_node)malloc(sizeof(t_node_));
 }
@@ -19,15 +19,15 @@ t_node	node_init(t_generic info)
 {
 	t_node	node;
 
-	node = Node_Allocate();
+	node = node_allocate();
 	if (!node)
-		return (EmptyNode());
+		return (empty_node());
 	node->info = info;
-	node->next = EmptyNode();
+	node->next = empty_node();
 	return (node);
 }
 
-t_doublenode	DoubleNode_Init(t_generic info)
+t_doublenode	doublenode_init(t_generic info)
 {
 	t_doublenode	node;
 
