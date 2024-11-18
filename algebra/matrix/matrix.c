@@ -2,7 +2,7 @@
 // Created by andre on 4/21/2023.
 //
 
-#include "Matrix.h"
+#include "matrix.h"
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -10,28 +10,28 @@
 #define SQUARE_ERROR "Matrix is not square"
 #define TWOBTWO_ERROR "Matrix is not 2x2"
 #define SARRUS_ERROR "Matrix is not 3x3"
-#define MATRIX_NULL (Matrix) NULL
+#define MATRIX_NULL (t_matrix) NULL
 
-static Mat_type	*InitRow(size_t len)
+static t_mat_type	*init_row(size_t len)
 {
-	return (Mat_type *)calloc(len, sizeof(Mat_type));
+	return (t_mat_type *)calloc(len, sizeof(t_mat_type));
 }
 
-static Mat_type	**InitTable(size_t y, size_t x)
+static t_mat_type	**init_table(size_t y, size_t x)
 {
-	Mat_type	**matrix;
+	t_mat_type	**matrix;
 
-	matrix = (Mat_type **)malloc(y * sizeof(Mat_type *));
+	matrix = (t_mat_type **)malloc(y * sizeof(t_mat_type *));
 	for (size_t i = 0; i < y; i++)
-		matrix[i] = InitRow(x);
+		matrix[i] = init_row(x);
 	return (matrix);
 }
 
-Matrix	Matrix_Init(size_t y, size_t x)
+t_matrix	matrix_init(size_t y, size_t x)
 {
-	Matrix	matrix;
+	t_matrix	matrix;
 
-	matrix = (Matrix)malloc(sizeof(Mat));
+	matrix = (t_matrix)malloc(sizeof(t_mat));
 	if (!matrix)
 		return (MATRIX_NULL);
 	matrix->table = InitTable(y, x);
@@ -40,9 +40,9 @@ Matrix	Matrix_Init(size_t y, size_t x)
 	return (matrix);
 }
 
-Matrix	Identity_matrix(size_t length, Mat_type value)
+t_matrix	identity_matrix(size_t length, t_mat_type value)
 {
-	Matrix	matrix;
+	t_matrix	matrix;
 
 	matrix = Matrix_Init(length, length);
 	for (size_t i = 0; i < length; i++)
@@ -51,38 +51,38 @@ Matrix	Identity_matrix(size_t length, Mat_type value)
 	return (matrix);
 }
 
-inline bool	KroneckerDelta(size_t i, size_t j)
+inline bool	kronecker_delta(size_t i, size_t j)
 {
 	return (i == j);
 }
 
-void	Matrix_SetValue(Matrix matrix, Mat_type value, size_t y, size_t x)
+void	matrix_setvalue(t_matrix matrix, t_mat_type value, size_t y, size_t x)
 {
 	if (!matrix)
 		return ;
 	matrix->table[y][x] = value;
 }
 
-Mat_type	*Matrix_GetRow(Matrix matrix, size_t n)
+t_mat_type	*matrix_getrow(t_matrix matrix, size_t n)
 {
 	if (!matrix)
 		return (NULL);
 	return (matrix->table[n]);
 }
 
-Mat_type	*Matrix_GetColumn(Matrix matrix, size_t n)
+t_mat_type	*matrix_getcolumn(t_matrix matrix, size_t n)
 {
-	Mat_type	*arr;
+	t_mat_type	*arr;
 
-	arr = InitRow(matrix->rows);
+	arr = init_row(matrix->rows);
 	for (size_t y = 0; y < matrix->rows; y++)
 		arr[y] = matrix->table[y][n];
-	return ((Mat_type *)arr);
+	return ((t_mat_type *)arr);
 }
 
-Matrix	Matrix_Sum(Matrix mat, Matrix mat2)
+t_matrix	matrix_sum(t_matrix mat, t_matrix mat2)
 {
-	Matrix	newMatrix;
+	t_matrix	newMatrix;
 
 	if (!mat || !mat2)
 		return (MATRIX_NULL);
@@ -99,9 +99,9 @@ Matrix	Matrix_Sum(Matrix mat, Matrix mat2)
 	return (newMatrix);
 }
 
-Matrix	Matrix_ScalarProduct(Matrix mat, Mat_type scalar)
+t_matrix	matrix_scalarproduct(t_matrix mat, t_mat_type scalar)
 {
-	Matrix	newMatrix;
+	t_matrix	newMatrix;
 
 	newMatrix = Matrix_Init(mat->rows, mat->cols);
 	for (size_t y = 0; y < mat->rows; y++)
@@ -110,9 +110,9 @@ Matrix	Matrix_ScalarProduct(Matrix mat, Mat_type scalar)
 	return (newMatrix);
 }
 
-Matrix	MatrixProduct(Matrix mat, Matrix mat2)
+t_matrix	matrix_product(t_matrix mat, t_matrix mat2)
 {
-	Matrix	newMatrix;
+	t_matrix	newMatrix;
 
 	newMatrix = Matrix_Init(mat->rows, mat2->cols);
 	if (mat->cols != mat2->rows)
@@ -129,13 +129,13 @@ Matrix	MatrixProduct(Matrix mat, Matrix mat2)
 
 // y: index, length: mat->rows
 // x: index, length: mat->cols
-Matrix	Matrix_Suppressed(Matrix mat, size_t y, size_t x)
+t_matrix	matrix_suppressed(t_matrix mat, size_t y, size_t x)
 {
 	const size_t	new_y = mat->rows - 1;
 	const size_t	new_x = mat->cols - 1;
 	size_t			x_count;
 	size_t			y_count;
-	Matrix			subMatrix;
+	t_matrix		subMatrix;
 
 	x_count = 0;
 	if (mat->rows < 2 && mat->cols < 2)
@@ -169,9 +169,9 @@ Matrix	Matrix_Suppressed(Matrix mat, size_t y, size_t x)
 	return (subMatrix);
 }
 
-Matrix	Matrix_Transpose(Matrix mat)
+t_matrix	matrix_transpose(t_matrix mat)
 {
-	Matrix	newMatrix;
+	t_matrix	newMatrix;
 
 	if (!mat)
 		return (MATRIX_NULL);
@@ -182,9 +182,9 @@ Matrix	Matrix_Transpose(Matrix mat)
 	return (newMatrix);
 }
 
-Mat_type	Matrix_TwoByTwoDet(Matrix mat)
+t_mat_type	matrix_twobytwo_det(t_matrix mat)
 {
-	Mat_type	**table;
+	t_mat_type	**table;
 	double		mainDiagonal;
 	double		secondaryDiagonal;
 
@@ -200,19 +200,19 @@ Mat_type	Matrix_TwoByTwoDet(Matrix mat)
 	return (mainDiagonal - secondaryDiagonal);
 }
 
-Mat_type	Matrix_SarrusDet(Matrix mat)
+t_mat_type	matrix_sarrus_det(t_matrix mat)
 {
-	const Mat_type	mainDiagonal = mat->table[0][0] * mat->table[1][1]
+	const t_mat_type	mainDiagonal = mat->table[0][0] * mat->table[1][1]
 			* mat->table[2][2];
-	const Mat_type	secondaryDiagonal = mat->table[0][1] * mat->table[1][2]
+	const t_mat_type	secondaryDiagonal = mat->table[0][1] * mat->table[1][2]
 			* mat->table[2][0];
-	const Mat_type	tertiaryDiagonal = mat->table[0][2] * mat->table[1][0]
+	const t_mat_type	tertiaryDiagonal = mat->table[0][2] * mat->table[1][0]
 			* mat->table[2][1];
-	const Mat_type	mainDiagonal2 = mat->table[0][2] * mat->table[1][1]
+	const t_mat_type	mainDiagonal2 = mat->table[0][2] * mat->table[1][1]
 			* mat->table[2][0];
-	const Mat_type	secondaryDiagonal2 = mat->table[0][0] * mat->table[1][2]
+	const t_mat_type	secondaryDiagonal2 = mat->table[0][0] * mat->table[1][2]
 			* mat->table[2][1];
-	const Mat_type	tertiaryDiagonal2 = mat->table[0][1] * mat->table[1][0]
+	const t_mat_type	tertiaryDiagonal2 = mat->table[0][1] * mat->table[1][0]
 			* mat->table[2][2];
 
 	if (!mat || mat->rows != 3 || mat->cols != 3)
@@ -231,10 +231,10 @@ Mat_type	Matrix_SarrusDet(Matrix mat)
  *
  * @return The determinant of the matrix
  */
-Mat_type	Matrix_LaplaceDet(Matrix mat)
+t_mat_type	matrix_laplace_det(t_matrix mat)
 {
-	Mat_type	det;
-	Matrix		subMatrix;
+	t_mat_type	det;
+	t_matrix	subMatrix;
 
 	if (!mat)
 		return (0);
@@ -259,7 +259,7 @@ Mat_type	Matrix_LaplaceDet(Matrix mat)
 	return (det);
 }
 
-void	Matrix_Fill(Matrix matrix, Mat_type value, size_t y0, size_t x0)
+void	matrix_fill(t_matrix matrix, t_mat_type value, size_t y0, size_t x0)
 {
 	size_t	x0_copy;
 
@@ -278,7 +278,7 @@ void	Matrix_Fill(Matrix matrix, Mat_type value, size_t y0, size_t x0)
 	}
 }
 
-void	Matrix_Print(Matrix matrix)
+void	matrix_print(t_matrix matrix)
 {
 	printf("Mat:\n");
 	for (size_t y = 0; y < matrix->rows; y++)
@@ -289,7 +289,7 @@ void	Matrix_Print(Matrix matrix)
 	}
 }
 
-void	Matrix_Free(Matrix matrix)
+void	matrix_free(t_matrix matrix)
 {
 	for (size_t i = 0; i < matrix->rows; i++)
 		free(matrix->table[i]);
@@ -297,23 +297,23 @@ void	Matrix_Free(Matrix matrix)
 	free(matrix);
 }
 
-Mat_type	Matrix_GetValue(Matrix matrix, size_t y, size_t x)
+t_mat_type	matrix_getvalue(t_matrix matrix, size_t y, size_t x)
 {
 	return (matrix->table[y][x]);
 }
 
-Matrix	Matrix_Inverse(Matrix mat)
+t_matrix	matrix_inverse(t_matrix mat)
 {
-	Matrix	newMatrix;
-	Matrix	sup;
+	t_matrix	newMatrix;
+	t_matrix	sup;
 
 	newMatrix = Matrix_Init(mat->cols, mat->rows);
 	for (size_t i = 0; i < newMatrix->cols; i++)
 		for (size_t j = 0; j < newMatrix->rows; j++)
 		{
-			sup = Matrix_Suppressed(mat, i, j);
-			Matrix_SetValue(newMatrix, Matrix_LaplaceDet(sup), i, j);
-			Matrix_Free(sup);
+			sup = matrix_suppressed(mat, i, j);
+			matrix_setvalue(newMatrix, matrix_laplace_det(sup), i, j);
+			matrix_free(sup);
 		}
 	return (newMatrix);
 }

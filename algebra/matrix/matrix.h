@@ -9,14 +9,14 @@
 # include <stddef.h>
 
 typedef double		t_mat_type;
-typedef struct
+typedef struct s_mat
 {
 	t_mat_type		**table;
 	size_t			cols;
 	size_t			rows;
-}					Mat;
+}					t_mat;
 
-typedef Mat			*t_matrix;
+typedef t_mat		*t_matrix;
 
 static t_mat_type	*init_row(size_t len);
 
