@@ -3,10 +3,6 @@
 
 # include "../linkedlist/linkedlist.h"
 
-/*
-	t_stack is a FIFO data structure that allows for the addition and removal of elements
-*/
-
 typedef t_linkedlist	t_stack;
 
 t_stack					stack_init(t_generic value);

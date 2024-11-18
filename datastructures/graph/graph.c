@@ -15,6 +15,7 @@ t_graph	graph_init(void (*dealloc_vertex)(t_generic), int (*cmp)(t_generic,
 	graph->dealloc_vertex = dealloc_vertex;
 	return (graph);
 }
+
 void	graph_free(t_graph graph)
 {
 	t_linkedlist	adj_list;
@@ -70,6 +71,7 @@ void	graph_remove_vertex(t_graph graph, t_vertex vertex)
 		adj_list = adj_list->next;
 	}
 }
+
 void	graph_remove_edge(t_vertex vertex, t_edge edge)
 {
 	t_linkedlist	edges;

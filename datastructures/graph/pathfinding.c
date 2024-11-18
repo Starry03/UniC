@@ -3,7 +3,7 @@
 #include "graph.h"
 #include <stdlib.h>
 
-static void	Dijkstra_Init_MinHeap_Hashmap(t_heap min_heap,
+static void	dijkstra_init_minheap_hashmap(t_heap min_heap,
 		t_linkedlist vertices, t_dict hashmap)
 {
 	uint64_t		*dist;
