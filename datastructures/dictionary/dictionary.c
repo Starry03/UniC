@@ -236,6 +236,17 @@ void	*dict_get(t_dict dict, t_generic key)
 }
 
 /**
+ * @brief Get all buckets from dict
+ *
+ * @param dict
+ * @return linked list
+ */
+t_linkedlist	dict_get_buckets(t_dict dict)
+{
+	return (*(dict->buckets));
+}
+
+/**
  * @brief Remove key and value from dict
  *
  * @param dict
