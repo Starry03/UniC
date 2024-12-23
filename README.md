@@ -2,14 +2,17 @@
 
 ## Update info
 
+- major refactor
+- headers moved into "unic" folder
+
 ### Version
-2.0
+2.1
 
 ### Latest features & changes
 
 - doc generation
 - doc ui
-- 42 norminette
+- 42 norminette (almost)
 
 ## About
 
