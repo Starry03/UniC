@@ -42,7 +42,7 @@ bool					dict_add(t_dict dict, t_generic key, t_generic value,
 void					*dict_get(t_dict dict, t_generic key);
 t_linkedlist			dict_get_buckets(t_dict dict);
 void					dict_remove(t_dict dict, t_generic key);
-void					dict_free(t_dict dict);
+void					dict_free(t_generic dict);
 void					dict_status(t_dict dict);
 
 #endif

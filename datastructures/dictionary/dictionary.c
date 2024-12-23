@@ -2,8 +2,8 @@
 // Created by andre on 10/11/2023.
 //
 
-# include "unic/hashfunctions.h"
-# include "unic/dictionary.h"
+#include "unic/dictionary.h"
+#include "unic/hashfunctions.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/random.h>
@@ -268,19 +268,20 @@ void	dict_remove(t_dict dict, t_generic key)
  *
  * @param dict
  */
-void	dict_free(t_dict dict)
+void	dict_free(t_generic dict)
 {
+	const t_dict	d = (t_dict)dict;
 	size_t			i;
 	t_linkedlist	bucket;
 
 	i = 0;
-	while (i < dict->size)
+	while (i < d->size)
 	{
-		bucket = ((dict->buckets)[i]);
+		bucket = ((d->buckets)[i]);
 		linkedlist_dealloc(bucket, &Dict_Obj_Dealloc);
 		i++;
 	}
-	free(dict->buckets);
+	free(d->buckets);
 	free(dict);
 }
 
