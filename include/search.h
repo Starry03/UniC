@@ -5,7 +5,7 @@
 #ifndef SEARCH_H
 # define SEARCH_H
 
-# include "../../utils/types.h"
+# include "types.h"
 # include <stdbool.h>
 # include <stddef.h>
 

@@ -1,4 +1,4 @@
-#include "../../algorithms/sort/sorting.h"
+#include "include/sorting.h"
 #include "heap.h"
 #include <stdio.h>
 #include <stdlib.h>

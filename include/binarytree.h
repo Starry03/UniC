@@ -5,7 +5,7 @@
 #ifndef BINARYTREE_H
 # define BINARYTREE_H
 
-# include "../../utils/types.h"
+# include "include/types.h"
 # include <stdbool.h>
 # include <stddef.h>
 

@@ -2,7 +2,7 @@
 // Created by andre on 10/11/2023.
 //
 
-#include "../../utils/hashing/hashfunctions.h"
+#include "include/hashfunctions.h"
 #include "dictionary.h"
 #include <stdio.h>
 #include <stdlib.h>

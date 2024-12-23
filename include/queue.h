@@ -5,7 +5,7 @@
 #ifndef QUEUE_H
 # define QUEUE_H
 
-# include "../linkedlist/linkedlist.h"
+# include "include/linkedlist.h"
 
 typedef t_linkedlist	t_queue;
 

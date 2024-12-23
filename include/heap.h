@@ -1,6 +1,6 @@
 #ifndef HEAP_H
 # define HEAP_H
-# include "../../utils/types.h"
+# include "include/types.h"
 # include <stdbool.h>
 # include <stddef.h>
 # define ENTRY_LEFT(i) (2 * i + 1)

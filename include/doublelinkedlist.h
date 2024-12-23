@@ -1,7 +1,7 @@
 #ifndef DOUBLELINKEDLIST_H
 # define DOUBLELINKEDLIST_H
 
-# include "../nodes/nodes.h"
+# include "include/nodes.h"
 # include <stddef.h>
 
 typedef t_doublenode	t_double_linkedlist;

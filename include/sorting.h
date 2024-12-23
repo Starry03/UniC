@@ -5,7 +5,7 @@
 #ifndef SORTING_H
 # define SORTING_H
 
-# include "utils/types.h"
+# include "include/types.h"
 # include <stdbool.h>
 # include <stddef.h>
 

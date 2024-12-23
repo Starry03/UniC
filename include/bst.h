@@ -1,4 +1,4 @@
-#include "binarytree.h"
+#include "include/binarytree.h"
 
 typedef struct s_bst
 {

@@ -1,7 +1,7 @@
 #ifndef GRAPH_H
 # define GRAPH_H
 
-# include "../linkedlist/linkedlist.h"
+# include "include/linkedlist.h"
 # include <stdbool.h>
 # include <stdint.h>
 

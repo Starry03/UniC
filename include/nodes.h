@@ -5,7 +5,7 @@
 #ifndef NODES_H
 # define NODES_H
 
-# include "../../utils/types.h"
+# include "include/types.h"
 
 /**
  * @brief Node structure

@@ -1,4 +1,4 @@
-#include "../queue/queue.h"
+#include "include/queue.h"
 #include "graph.h"
 #include <stdio.h>
 

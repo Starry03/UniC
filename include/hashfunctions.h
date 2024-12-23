@@ -5,7 +5,7 @@
 #ifndef HASHFUNCTIONS_H
 # define HASHFUNCTIONS_H
 
-# include "../types.h"
+# include "include/types.h"
 # include <stddef.h>
 # include <stdint.h>
 

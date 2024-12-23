@@ -1,5 +1,5 @@
-#include "../../utils/dealloc/dealloc.h"
-#include "../heap/heap.h"
+#include "include/dealloc.h"
+#include "include/heap.h"
 #include "graph.h"
 #include <limits.h>
 #include <stdlib.h>
