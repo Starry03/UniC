@@ -1,5 +1,5 @@
-#include "include/queue.h"
-#include "graph.h"
+# include "unic/queue.h"
+# include "unic/graph.h"
 #include <stdio.h>
 
 /**

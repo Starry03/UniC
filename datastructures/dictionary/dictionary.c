@@ -2,8 +2,8 @@
 // Created by andre on 10/11/2023.
 //
 
-#include "include/hashfunctions.h"
-#include "dictionary.h"
+# include "unic/hashfunctions.h"
+# include "unic/dictionary.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/random.h>

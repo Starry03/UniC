@@ -1,6 +1,6 @@
-#include "include/dealloc.h"
-#include "include/heap.h"
-#include "graph.h"
+#include "unic/graph.h"
+#include "unic/dealloc.h"
+#include "unic/heap.h"
 #include <limits.h>
 #include <stdlib.h>
 

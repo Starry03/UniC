@@ -5,7 +5,7 @@
 #ifndef NODES_H
 # define NODES_H
 
-# include "include/types.h"
+# include "unic/types.h"
 
 /**
  * @brief Node structure

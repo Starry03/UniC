@@ -1,6 +1,6 @@
-#include "include/dictionary.h"
-#include "include/heap.h"
-#include "include/graph.h"
+# include "unic/dictionary.h"
+# include "unic/graph.h"
+# include "unic/heap.h"
 #include <stdlib.h>
 
 static void	dijkstra_init_minheap_hashmap(t_heap min_heap,

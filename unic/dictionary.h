@@ -5,7 +5,7 @@
 #ifndef DICTIONARY_H
 # define DICTIONARY_H
 
-# include "include/linkedlist.h"
+# include "unic/linkedlist.h"
 # include <stdbool.h>
 # include <stddef.h>
 # include <stdint.h>

@@ -1,4 +1,4 @@
-#include "bst.h"
+#include "unic/bst.h"
 #include <stdlib.h>
 
 t_bst	nst_init(t_generic key, t_generic info, t_comparator cmp)

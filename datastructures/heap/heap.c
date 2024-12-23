@@ -1,5 +1,5 @@
-#include "include/sorting.h"
-#include "heap.h"
+# include "unic/sorting.h"
+#include "unic/heap.h"
 #include <stdio.h>
 #include <stdlib.h>
 

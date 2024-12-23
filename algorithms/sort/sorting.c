@@ -2,10 +2,10 @@
 // Created by andre on 4/19/2023.
 //
 
-#include "include/logging.h"
-#include "types.h"
-#include "linkedlist.h"
-#include "sorting.h"
+# include "unic/logging.h"
+# include "unic/types.h"
+# include "unic/linkedlist.h"
+# include "unic/sorting.h"
 #include <math.h>
 #include <string.h>
 

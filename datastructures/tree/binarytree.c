@@ -2,7 +2,7 @@
 // Created by andre on 5/14/2023.
 //
 
-#include "binarytree.h"
+#include "unic/binarytree.h"
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>

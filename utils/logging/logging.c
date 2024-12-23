@@ -2,8 +2,8 @@
 // Created by andre on 3/18/2024.
 //
 
-#include "colors.h"
-#include "logging.h"
+# include "unic/colors.h"
+# include "unic/logging.h"
 #include <stdio.h>
 
 void	log_intarray(int *arr, size_t size, size_t new_index)

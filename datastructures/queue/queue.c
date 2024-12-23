@@ -2,7 +2,7 @@
 // Created by andre on 5/5/2023.
 //
 
-#include "queue.h"
+#include "unic/queue.h"
 #include <stdlib.h>
 
 #define QUEUE_EMPTY (Queue)0

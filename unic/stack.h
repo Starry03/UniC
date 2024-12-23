@@ -1,7 +1,7 @@
 #ifndef STACK_H
 # define STACK_H
 
-# include "include/linkedlist.h"
+# include "unic/linkedlist.h"
 
 typedef t_linkedlist	t_stack;
 

@@ -2,7 +2,7 @@
 // Created by andre on 8/8/2023.
 //
 
-#include "linkedlist.h"
+#include "unic/linkedlist.h"
 #include <stdlib.h>
 
 static inline t_linkedlist	linkedlist_alloc(void)

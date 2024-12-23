@@ -2,7 +2,7 @@
 // Created by andre on 4/21/2023.
 //
 
-#include "matrix.h"
+# include "unic/matrix.h"
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>

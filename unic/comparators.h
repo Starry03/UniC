@@ -1,6 +1,6 @@
 #ifndef COMPARATORS_H
 # define COMPARATORS_H
-# include "include/types.h"
+# include "unic/types.h"
 
 int	cmp_string(t_generic a, t_generic b);
 int	cmp_int(t_generic a, t_generic b);

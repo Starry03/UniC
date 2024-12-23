@@ -2,7 +2,7 @@
 // Created by andre on 4/22/2023.
 //
 
-#include "vector.h"
+# include "unic/vector.h"
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>

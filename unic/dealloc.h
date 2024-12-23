@@ -1,7 +1,7 @@
 #ifndef DEALLOC_H
 # define DEALLOC_H
 
-# include "include/types.h"
+# include "unic/types.h"
 
 void	dealloc_int(t_generic addr);
 void	dealloc_uint64(t_generic addr);

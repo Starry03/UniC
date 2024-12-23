@@ -1,5 +1,5 @@
-#include "examples.h"
-#include "utils/compare/comparators.h"
+#include "unic/examples.h"
+# include "unic/comparators.h"
 
 /**
  * @return an example graph

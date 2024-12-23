@@ -5,7 +5,7 @@
 #ifndef LINKEDLIST_H
 # define LINKEDLIST_H
 
-# include "include/nodes.h"
+# include "unic/nodes.h"
 # include <stddef.h>
 
 typedef t_node	t_linkedlist;

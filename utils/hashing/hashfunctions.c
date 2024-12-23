@@ -2,7 +2,7 @@
 // Created by andre on 8/9/2023.
 //
 
-#include "hashfunctions.h"
+# include "unic/hashfunctions.h"
 
 #define MAGIC 0xdeadbeef
 

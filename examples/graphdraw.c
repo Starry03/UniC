@@ -1,8 +1,8 @@
-#include "Utils/compare/comparators.h"
-#include "datastructures/graph/graph.h"
-#include "datastructures/heap/heap.h"
-#include "examples.h"
-#include "utils/dealloc/dealloc.h"
+# include "unic/comparators.h"
+# include "unic/graph.h"
+# include "unic/heap.h"
+#include "unic/examples.h"
+# include "unic/dealloc.h"
 
 void	test_graph(void)
 {

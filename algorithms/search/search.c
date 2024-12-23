@@ -2,7 +2,7 @@
 // Created by andre on 4/18/2023.
 //
 
-#include "search.h"
+# include "unic/search.h"
 
 /**
  * @brief Linear search algorithm
