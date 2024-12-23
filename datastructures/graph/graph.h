@@ -97,7 +97,7 @@ size_t				vertex_hash(t_generic vertex, size_t capacity);
 /* UI UTILS */
 # define MERMAID_HORIZONAL "LR"
 # define MERMAID_VERTICAL "TD"
-void				graph_generate_mermaid(t_graph graph, String filename,
-						String direction);
+void				graph_generate_mermaid(t_graph graph, t_string filename,
+						t_string direction);
 
 #endif

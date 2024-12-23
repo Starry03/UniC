@@ -34,7 +34,7 @@ t_matrix	matrix_init(size_t y, size_t x)
 	matrix = (t_matrix)malloc(sizeof(t_mat));
 	if (!matrix)
 		return (MATRIX_NULL);
-	matrix->table = InitTable(y, x);
+	matrix->table = init_table(y, x);
 	matrix->cols = x;
 	matrix->rows = y;
 	return (matrix);
@@ -44,10 +44,10 @@ t_matrix	identity_matrix(size_t length, t_mat_type value)
 {
 	t_matrix	matrix;
 
-	matrix = Matrix_Init(length, length);
+	matrix = matrix_init(length, length);
 	for (size_t i = 0; i < length; i++)
 		for (size_t j = 0; j < length; j++)
-			Matrix_SetValue(matrix, KroneckerDelta(i, j) * value, i, j);
+			matrix_setvalue(matrix, kronecker_delta(i, j) * value, i, j);
 	return (matrix);
 }
 
@@ -86,7 +86,7 @@ t_matrix	matrix_sum(t_matrix mat, t_matrix mat2)
 
 	if (!mat || !mat2)
 		return (MATRIX_NULL);
-	newMatrix = Matrix_Init(mat->rows, mat->cols);
+	newMatrix = matrix_init(mat->rows, mat->cols);
 	if ((mat->rows != mat2->rows) || (mat->cols != mat2->cols))
 	{
 		printf("cannot be summed");
@@ -94,7 +94,7 @@ t_matrix	matrix_sum(t_matrix mat, t_matrix mat2)
 	}
 	for (size_t y = 0; y < mat->rows; y++)
 		for (size_t x = 0; x < mat->cols; x++)
-			Matrix_SetValue(newMatrix, mat->table[y][x] + mat2->table[y][x], y,
+			matrix_setvalue(newMatrix, mat->table[y][x] + mat2->table[y][x], y,
 				x);
 	return (newMatrix);
 }
@@ -103,10 +103,10 @@ t_matrix	matrix_scalarproduct(t_matrix mat, t_mat_type scalar)
 {
 	t_matrix	newMatrix;
 
-	newMatrix = Matrix_Init(mat->rows, mat->cols);
+	newMatrix = matrix_init(mat->rows, mat->cols);
 	for (size_t y = 0; y < mat->rows; y++)
 		for (size_t x = 0; x < mat->cols; x++)
-			Matrix_SetValue(newMatrix, mat->table[y][x] * scalar, y, x);
+			matrix_setvalue(newMatrix, mat->table[y][x] * scalar, y, x);
 	return (newMatrix);
 }
 
@@ -114,7 +114,7 @@ t_matrix	matrix_product(t_matrix mat, t_matrix mat2)
 {
 	t_matrix	newMatrix;
 
-	newMatrix = Matrix_Init(mat->rows, mat2->cols);
+	newMatrix = matrix_init(mat->rows, mat2->cols);
 	if (mat->cols != mat2->rows)
 	{
 		printf("Cannot be multiplied, incompatible dimensions");
@@ -149,14 +149,14 @@ t_matrix	matrix_suppressed(t_matrix mat, size_t y, size_t x)
 		return (mat);
 	}
 	x_count = 0, y_count = 0;
-	subMatrix = Matrix_Init(new_y, new_x);
+	subMatrix = matrix_init(new_y, new_x);
 	for (size_t i = 0; i < mat->rows && y_count < new_y; i++)
 	{
 		for (size_t j = 0; j < mat->cols; j++)
 		{
 			if (i != y && j != x)
 			{
-				Matrix_SetValue(subMatrix, mat->table[i][j], y_count,
+				matrix_setvalue(subMatrix, mat->table[i][j], y_count,
 					x_count++);
 				if (x_count >= new_x)
 				{
@@ -175,10 +175,10 @@ t_matrix	matrix_transpose(t_matrix mat)
 
 	if (!mat)
 		return (MATRIX_NULL);
-	newMatrix = Matrix_Init(mat->cols, mat->rows);
+	newMatrix = matrix_init(mat->cols, mat->rows);
 	for (size_t row = 0; row < mat->rows; row++)
 		for (size_t col = 0; col < mat->cols; col++)
-			Matrix_SetValue(newMatrix, mat->table[row][col], col, row);
+			matrix_setvalue(newMatrix, mat->table[row][col], col, row);
 	return (newMatrix);
 }
 
@@ -245,16 +245,16 @@ t_mat_type	matrix_laplace_det(t_matrix mat)
 		return (0);
 	}
 	if (mat->rows == 2)
-		return (Matrix_TwoByTwoDet(mat));
+		return (matrix_twobytwo_det(mat));
 	if (mat->rows == 3)
-		return (Matrix_SarrusDet(mat));
+		return (matrix_sarrus_det(mat));
 	det = 0;
 	for (size_t i = 0; i < mat->rows; i++)
 	{
-		subMatrix = Matrix_Suppressed(mat, 0, i);
-		det += mat->table[0][i] * Matrix_LaplaceDet(subMatrix) * (!(i & 1) ? 1 :
+		subMatrix = matrix_suppressed(mat, 0, i);
+		det += mat->table[0][i] * matrix_laplace_det(subMatrix) * (!(i & 1) ? 1 :
 				-1);
-		Matrix_Free(subMatrix);
+		matrix_free(subMatrix);
 	}
 	return (det);
 }
@@ -270,7 +270,7 @@ void	matrix_fill(t_matrix matrix, t_mat_type value, size_t y0, size_t x0)
 	{
 		while (x0 < matrix->cols)
 		{
-			Matrix_SetValue(matrix, value, y0, x0);
+			matrix_setvalue(matrix, value, y0, x0);
 			x0++;
 		}
 		y0++;
@@ -307,7 +307,7 @@ t_matrix	matrix_inverse(t_matrix mat)
 	t_matrix	newMatrix;
 	t_matrix	sup;
 
-	newMatrix = Matrix_Init(mat->cols, mat->rows);
+	newMatrix = matrix_init(mat->cols, mat->rows);
 	for (size_t i = 0; i < newMatrix->cols; i++)
 		for (size_t j = 0; j < newMatrix->rows; j++)
 		{

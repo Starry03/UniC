@@ -2,9 +2,9 @@
 // Created by andre on 4/19/2023.
 //
 
-#include "Utils/Logging/Logging.h"
-#include "Utils/types.h"
-#include "dataStructures/LinkedList/LinkedList.h"
+#include "utils/logging/logging.h"
+#include "utils/types.h"
+#include "datastructures/linkedlist/linkedlist.h"
 #include "sorting.h"
 #include <math.h>
 #include <string.h>

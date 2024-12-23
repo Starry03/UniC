@@ -3,7 +3,7 @@
 typedef struct s_bst
 {
 	t_comparator		cmp;
-	s_binary_treenode	*root;
+	t_binary_treenode	*root;
 }						t_bst_;
 
 typedef t_bst_			*t_bst;

@@ -15,7 +15,7 @@ typedef enum e_log_type
 	LOG_FATAL
 }		t_log_type;
 
-void	loggin_log(t_log_type type, const char *message);
+void	logging_log(t_log_type type, const char *message);
 void	log_intarray(int *arr, size_t size, size_t new_index);
 
 #endif // STARRY_CLIBRARY_LOGGING_H

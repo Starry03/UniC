@@ -25,7 +25,7 @@ static t_dict_obj	Dict_Obj_Init(t_generic key, t_generic value,
 {
 	t_dict_obj	obj;
 
-	obj = (t_dict_obj)malloc(sizeof(t_dict_obj));
+	obj = (t_dict_obj)malloc(sizeof(t_dict_obj_));
 	if (!obj)
 		return (NULL);
 	obj->key = key;

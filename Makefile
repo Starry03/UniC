@@ -1,4 +1,4 @@
-DIRS := Algebra Algorithms DataStructures libft Utils
+DIRS := algebra algorithms datastructures libft utils
 
 SRCS := $(shell find $(DIRS) -name '*.c')
 

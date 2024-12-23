@@ -1,5 +1,5 @@
 #include "../queue/queue.h"
-#include "Graph.h"
+#include "graph.h"
 #include <stdio.h>
 
 /**

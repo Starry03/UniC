@@ -59,7 +59,7 @@ t_linkedlist	dijkstra(t_graph graph, t_vertex src, t_vertex dest)
 		return (NULL);
 	}
 	vertex_init_single_source(graph, src);
-	Dijkstra_Init_MinHeap_Hashmap(min_heap, vertices, hashmap);
+	dijkstra_init_minheap_hashmap(min_heap, vertices, hashmap);
 	/* gready approach */
 	while ((entry = heap_pollmin(min_heap)))
 	{

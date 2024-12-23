@@ -5,7 +5,7 @@
 #ifndef DICTIONARY_H
 # define DICTIONARY_H
 
-# include "../../datastructures/linkedlist/linkedList.h"
+# include "../linkedlist/linkedlist.h"
 # include <stdbool.h>
 # include <stddef.h>
 # include <stdint.h>
@@ -31,9 +31,9 @@ typedef struct s_dict_obj
 	t_generic			value;
 	t_deallocator		dealloc_key;
 	t_deallocator		dealloc_value;
-}						t_dict_obj;
+}						t_dict_obj_;
 
-typedef t_dict_obj		*t_dict_obj;
+typedef t_dict_obj_		*t_dict_obj;
 
 t_dict					dict_init(size_t size, t_comparator cmp,
 							t_hasher hash_key, t_deallocator dealloc_key);

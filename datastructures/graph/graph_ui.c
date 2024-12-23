@@ -7,7 +7,7 @@
  * @param filename (generate or replace)
  * @param direction (MERMAID_VERTICAL or MERMAID_HORIZONAL)
  */
-void	graph_generate_mermaid(t_graph graph, String filename, String direction)
+void	graph_generate_mermaid(t_graph graph, t_string filename, t_string direction)
 {
 	FILE			*file;
 	t_linkedlist	vertices;
@@ -26,15 +26,15 @@ void	graph_generate_mermaid(t_graph graph, String filename, String direction)
 		vertex = (t_vertex)linkedlist_getinfo(vertices);
 		edges = vertex->edges;
 		if (!edges)
-			fprintf(file, "%zu((%s))\n", vertex->id, (String)vertex->value);
+			fprintf(file, "%zu((%s))\n", vertex->id, (t_string)vertex->value);
 		else
 		{
 			while (edges)
 			{
 				edge = (t_edge)linkedlist_getinfo(edges);
 				fprintf(file, "%zu((%s)) -- %zu --> %zu((%s))\n", edge->src->id,
-					(String)edge->src->value, edge->weight, edge->dest->id,
-					(String)edge->dest->value);
+					(t_string)edge->src->value, edge->weight, edge->dest->id,
+					(t_string)edge->dest->value);
 				edges = linkedlist_getnext(edges);
 			}
 		}
