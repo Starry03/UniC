@@ -23,7 +23,7 @@ void	log_intarray(int *arr, size_t size, size_t new_index)
 	printf("]\n");
 }
 
-void	log(t_log_type type, const char *message)
+void	loggin_log(t_log_type type, const char *message)
 {
 	switch (type)
 	{
