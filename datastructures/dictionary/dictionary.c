@@ -243,6 +243,8 @@ void	*dict_get(t_dict dict, t_generic key)
  */
 t_linkedlist	dict_get_buckets(t_dict dict)
 {
+	if (!dict)
+		return (NULL);
 	return (*(dict->buckets));
 }
 
@@ -292,14 +294,14 @@ void	dict_free(t_generic dict)
  */
 void	dict_status(t_dict dict)
 {
-	t_linkedlist	bucket;
+	// t_linkedlist	bucket;
 
 	printf("Number of buckets used: %zu\n", dict->size);
 	printf("Number of elements: %zu\n", dict->used);
 	printf("Load factor: %f\n", (double)dict->used / dict->size);
-	for (size_t i = 0; i < dict->size; i++)
-	{
-		bucket = dict->buckets[i];
-		printf("Bucket %zu: %zu elements\n", i, linkedlist_size(bucket));
-	}
+	// for (size_t i = 0; i < dict->size; i++)
+	// {
+	// 	bucket = dict->buckets[i];
+	// 	printf("Bucket %zu: %zu elements\n", i, linkedlist_size(bucket));
+	// }
 }
