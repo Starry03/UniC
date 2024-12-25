@@ -1,4 +1,4 @@
-# include "unic/comparators.h"
+#include "unic/comparators.h"
 #include <stdint.h>
 #include <string.h>
 
@@ -33,6 +33,21 @@ int	cmp_int(t_generic a, t_generic b)
 	return (1);
 }
 
+int	cmp_uint16(t_generic a, t_generic b)
+{
+	if (!b && !a)
+		return (0);
+	if (!a)
+		return (-1);
+	if (!b)
+		return (1);
+	if (*(uint16_t *)a < *(uint16_t *)b)
+		return (-1);
+	if (*(uint16_t *)a > *(uint16_t *)b)
+		return (1);
+	return (0);
+}
+
 int	cmp_uint64(t_generic a, t_generic b)
 {
 	if (!b && !a)
@@ -41,5 +56,9 @@ int	cmp_uint64(t_generic a, t_generic b)
 		return (-1);
 	if (!b)
 		return (1);
-	return (*(uint64_t *)a - *(uint64_t *)b);
+	if (*(uint64_t *)a < *(uint64_t *)b)
+		return (-1);
+	if (*(uint64_t *)a > *(uint64_t *)b)
+		return (1);
+	return (0);
 }

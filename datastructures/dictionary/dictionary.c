@@ -253,16 +253,24 @@ t_linkedlist	*dict_get_buckets(t_dict dict)
  *
  * @param dict
  * @param key
+ *
+ * @return if key was removed
  */
-void	dict_remove(t_dict dict, t_generic key)
+bool	dict_remove(t_dict dict, t_generic key)
 {
 	const size_t	hash = hash_function(dict, dict->hash_key(key, dict->size));
 	t_linkedlist	bucket;
 
+	if (!dict || !dict->used)
+		return (false);
+	if (!dict_get(dict, key))
+		return (false);
 	bucket = (dict->buckets)[hash];
-	while (((t_dict_obj)linkedlist_getinfo(bucket))->key != key)
+	while (!dict->cmp(((t_dict_obj)linkedlist_getinfo(bucket))->key, key))
 		bucket = linkedlist_getnext(bucket);
 	linkedlist_remove(dict->buckets + hash, &Dict_Obj_Dealloc);
+	dict->used--;
+	return (true);
 }
 
 /**
@@ -295,7 +303,6 @@ void	dict_free(t_generic dict)
 void	dict_status(t_dict dict)
 {
 	// t_linkedlist	bucket;
-
 	printf("Number of buckets used: %zu\n", dict->size);
 	printf("Number of elements: %zu\n", dict->used);
 	printf("Load factor: %f\n", (double)dict->used / dict->size);
