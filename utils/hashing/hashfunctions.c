@@ -13,7 +13,7 @@ static size_t	normalize(size_t bytes, size_t size)
 
 size_t	hash_int(t_generic key, size_t size)
 {
-	return (hash_generic(*(size_t)key, size));
+	return (hash_generic(*(size_t *)key, size));
 }
 
 size_t	hash_string(t_generic key, size_t size)

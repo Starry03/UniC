@@ -241,11 +241,11 @@ void	*dict_get(t_dict dict, t_generic key)
  * @param dict
  * @return linked list
  */
-t_linkedlist	dict_get_buckets(t_dict dict)
+t_linkedlist	*dict_get_buckets(t_dict dict)
 {
 	if (!dict)
 		return (NULL);
-	return (*(dict->buckets));
+	return (dict->buckets);
 }
 
 /**
