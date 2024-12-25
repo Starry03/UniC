@@ -4,6 +4,7 @@
 
 - major refactor
 - headers moved into "unic" folder
+- lib name changed to "unic" (makefile & link affected)
 
 ### Version
 2.1
@@ -32,6 +33,10 @@ Documentation is provided on top of every function
 
 If you want to use the client for a better experience, check the dependencies
 
+NOTE: doc tool was made just for "fun" and trying something new like databases, it's kinda useless unless you like the way it works
+
+NOTE 2: doc dependencies are quite heavy and have a shitty ecosystem (node expecially) so if you come across troubles, just use the doc provided in the code, is literally the same
+
 ```sh
 # build postgres db and next-js
 bash ./doc_uisetup.sh
@@ -55,7 +60,15 @@ cd <lib path>
 # compile library
 make
 # link library
-gcc ... <lib path>/UniC.a
+gcc ... <unic_path>/unic.a -I<unic_path>/unic -I<unic_path>/libft
+```
+
+#### Makefile template
+
+```make
+unic_path=
+unic_lib=$(unic_path)/unic.a
+unic_includes=-I$(unic_path)/unic -I$(unic_path)/libft
 ```
 
 ## Content
