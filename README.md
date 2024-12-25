@@ -60,7 +60,7 @@ cd <lib path>
 # compile library
 make
 # link library
-gcc ... <unic_path>/unic.a -I<unic_path>/unic -I<unic_path>/libft
+gcc ... <unic_path>/unic.a -I<unic_path>
 ```
 
 #### Makefile template
@@ -68,10 +68,13 @@ gcc ... <unic_path>/unic.a -I<unic_path>/unic -I<unic_path>/libft
 ```make
 unic_path=
 unic_lib=$(unic_path)/unic.a
-unic_includes=-I$(unic_path)/unic -I$(unic_path)/libft
+unic_includes=-I$(unic_path)
 ```
 
 ## Content
+
+- libft
+- unic
 
 ### Datastructures
 
