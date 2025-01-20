@@ -266,7 +266,8 @@ bool	dict_remove(t_dict dict, t_generic key)
 	if (!dict_get(dict, key))
 		return (false);
 	bucket = (dict->buckets)[hash];
-	while (!dict->cmp(((t_dict_obj)linkedlist_getinfo(bucket))->key, key))
+	while (linkedlist_getinfo(bucket)
+		&& dict->cmp(((t_dict_obj)linkedlist_getinfo(bucket))->key, key))
 		bucket = linkedlist_getnext(bucket);
 	linkedlist_remove(dict->buckets + hash, &Dict_Obj_Dealloc);
 	dict->used--;
