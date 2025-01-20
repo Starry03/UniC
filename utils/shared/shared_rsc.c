@@ -35,9 +35,11 @@ void	shared_rsc_post(t_shared_rsc rsc)
 }
 void	shared_rsc_free(t_shared_rsc rsc)
 {
-	sem_destroy(rsc->sem);
-	free(rsc->sem);
+	shared_rsc_wait(rsc);
 	if (rsc->dealloc)
 		rsc->dealloc(rsc->data);
+	shared_rsc_post(rsc);
+	sem_destroy(rsc->sem);
+	free(rsc->sem);
 	free(rsc);
 }
