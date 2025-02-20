@@ -182,3 +182,35 @@ t_linkedlist	linkedlist_getlast(t_linkedlist list)
 		list = list->next;
 	return (list);
 }
+
+/**
+ * @brief Sorts a linked list using the bubble sort algorithm.
+ *
+ * @attention not tested
+ */
+#include <stdio.h>
+void	linkedlist_sort(t_linkedlist *list, t_comparator cmp)
+{
+	t_linkedlist	i;
+	t_linkedlist	j;
+	t_generic		tmp;
+
+	if (!list || !*list || !cmp)
+		return ;
+	i = *list;
+	while (i)
+	{
+		j = i->next;
+		while (j)
+		{
+			if (cmp(i->info, j->info) > 0)
+			{
+				tmp = i->info;
+				i->info = j->info;
+				j->info = tmp;
+			}
+			j = j->next;
+		}
+		i = i->next;
+	}
+}
