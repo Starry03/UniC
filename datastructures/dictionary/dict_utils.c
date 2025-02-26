@@ -6,11 +6,12 @@
 /*   By: starry <starry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 19:44:11 by starry            #+#    #+#             */
-/*   Updated: 2025/02/26 23:41:45 by starry           ###   ########.fr       */
+/*   Updated: 2025/02/26 23:43:55 by starry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "unic/dictionary.h"
+#include "unic/hashfunctions.h"
 #include <stdlib.h>
 
 /**

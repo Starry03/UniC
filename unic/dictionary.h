@@ -6,7 +6,7 @@
 /*   By: starry <starry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 19:46:01 by starry            #+#    #+#             */
-/*   Updated: 2025/02/26 19:49:47 by starry           ###   ########.fr       */
+/*   Updated: 2025/02/26 23:43:26 by starry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ bool					dict_remove(t_dict dict, t_generic key);
 bool					dict_has_breached_load_factor(t_dict dict);
 void					dict_realloc(t_dict dict);
 size_t					dict_hash_function(t_dict dict, size_t hashed_key);
+t_linkedlist			*dict_alloc_buckets(size_t size);
 void					dict_free(t_generic dict);
 
 #endif

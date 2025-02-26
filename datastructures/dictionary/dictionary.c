@@ -6,7 +6,7 @@
 /*   By: starry <starry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 19:54:03 by starry            #+#    #+#             */
-/*   Updated: 2025/02/26 19:54:05 by starry           ###   ########.fr       */
+/*   Updated: 2025/02/26 23:43:11 by starry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static inline t_dict	dict_alloc(void)
 	return (t_dict)malloc(sizeof(t_dictionary));
 }
 
-static t_linkedlist	*dict_alloc_buckets(size_t size)
+t_linkedlist	*dict_alloc_buckets(size_t size)
 {
 	t_linkedlist	*buckets;
 	size_t			i;
