@@ -1,9 +1,4 @@
-//
-// Created by andre on 4/22/2023.
-//
-
-#ifndef STARRY_VECTOR_H
-# define STARRY_VECTOR_H
+#pragma once
 
 typedef double		t_vector_type;
 
@@ -73,5 +68,3 @@ void				vector3_print(t_vector3 v);
 void				vector2_free(t_vector2 v);
 
 void				vector3_free(t_vector3 v);
-
-#endif

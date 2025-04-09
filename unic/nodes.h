@@ -1,9 +1,4 @@
-//
-// Created by andre on 8/8/2023.
-//
-
-#ifndef NODES_H
-# define NODES_H
+#pragma once
 
 # include "unic/types.h"
 
@@ -38,5 +33,3 @@ typedef struct s_doublenode_
 typedef t_doublenode_		*t_doublenode;
 
 t_doublenode				doublenode_init(t_generic info);
-
-#endif // NODES_H

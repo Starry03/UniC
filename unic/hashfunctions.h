@@ -1,9 +1,4 @@
-//
-// Created by andre on 8/9/2023.
-//
-
-#ifndef HASHFUNCTIONS_H
-# define HASHFUNCTIONS_H
+#pragma once
 
 # include "unic/types.h"
 # include <stddef.h>
@@ -25,5 +20,3 @@ size_t	hash_generic(size_t bytes, size_t size);
 
 size_t	hash_universal(size_t key, uint64_t a, uint64_t b, uint64_t p,
 			size_t size);
-
-#endif // STARRY_CLIBRARY_HASHFUNCTIONS_H

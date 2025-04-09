@@ -1,9 +1,4 @@
-//
-// Created by andre on 4/13/2023.
-//
-
-#ifndef MATRIX_H
-# define MATRIX_H
+#pragma once
 
 # include <stdbool.h>
 # include <stddef.h>
@@ -61,5 +56,3 @@ void				matrix_fill(t_matrix matrix, t_mat_type value, size_t y0,
 void				matrix_print(t_matrix matrix);
 
 void				matrix_free(t_matrix matrix);
-
-#endif

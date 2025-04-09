@@ -1,9 +1,4 @@
-//
-// Created by andre on 5/5/2023.
-//
-
-#ifndef QUEUE_H
-# define QUEUE_H
+#pragma once
 
 # include "unic/linkedlist.h"
 
@@ -15,5 +10,3 @@ t_queue					queue_poll(t_queue *queue);
 void					queue_deallocelement(t_queue queue,
 							t_deallocator dealloc);
 void					queue_dealloc(t_queue *queue, t_deallocator dealloc);
-
-#endif // QUEUE_H

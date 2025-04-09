@@ -12,7 +12,7 @@ class FunctionDoc:
     name: str
     header: str
     body: str
-    
+
     def __str__(self) -> str:
         return self.name
 

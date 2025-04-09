@@ -1,6 +1,4 @@
-#ifndef STACK_H
-# define STACK_H
-
+#pragma once
 # include "unic/linkedlist.h"
 
 typedef t_linkedlist	t_stack;
@@ -11,5 +9,3 @@ t_generic				stack_poll(t_stack *stack);
 void					stack_dealloc_element(t_stack stack,
 							t_deallocator dealloc);
 void					stack_free(t_stack *stack, void (*dealloc)(t_generic));
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef GRAPH_H
-# define GRAPH_H
+#pragma once
 
 # include "unic/linkedlist.h"
 # include <stdbool.h>
@@ -99,5 +98,3 @@ size_t				vertex_hash(t_generic vertex, size_t capacity);
 # define MERMAID_VERTICAL "TD"
 void				graph_generate_mermaid(t_graph graph, t_string filename,
 						t_string direction);
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef SHARED_RSC_H
-# define SHARED_RSC_H
+#pragma once
 
 # include "unic/types.h"
 # include <semaphore.h>
@@ -18,5 +17,3 @@ t_shared_rsc			shared_rsc_init(t_generic data, t_deallocator dealloc);
 void					shared_rsc_wait(t_shared_rsc rsc);
 void					shared_rsc_post(t_shared_rsc rsc);
 void					shared_rsc_free(t_shared_rsc rsc);
-
-#endif

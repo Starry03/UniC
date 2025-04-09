@@ -1,5 +1,4 @@
-#ifndef COMPLEX_H
-# define COMPLEX_H
+#pragma once
 
 typedef double		t_complex_type;
 
@@ -18,5 +17,3 @@ t_complex			complex_add(t_complex a, t_complex b);
 t_complex			complex_sub(t_complex a, t_complex b);
 t_complex			complex_mul(t_complex a, t_complex b);
 t_complex			complex_div(t_complex a, t_complex b);
-
-#endif

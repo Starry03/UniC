@@ -1,3 +1,5 @@
+#pragma once
+
 # include "unic/binarytree.h"
 
 typedef struct s_bst

@@ -14,7 +14,7 @@ t_graph	get_example_graph(void)
 	t_vertex	v5;
 	t_vertex	v6;
 
-	graph = graph_init(NULL, Compare_String);
+	graph = graph_init(NULL, cmp_string);
 	v1 = vertex_init("a");
 	v2 = vertex_init("b");
 	v3 = vertex_init("c");

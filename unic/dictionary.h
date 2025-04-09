@@ -1,17 +1,4 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   dictionary.h                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: starry <starry@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/26 19:46:01 by starry            #+#    #+#             */
-/*   Updated: 2025/02/26 23:43:26 by starry           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#ifndef DICTIONARY_H
-# define DICTIONARY_H
+#pragma once
 
 # include "unic/linkedlist.h"
 # include <stdbool.h>
@@ -66,5 +53,3 @@ void					dict_realloc(t_dict dict);
 size_t					dict_hash_function(t_dict dict, size_t hashed_key);
 t_linkedlist			*dict_alloc_buckets(size_t size);
 void					dict_free(t_generic dict);
-
-#endif

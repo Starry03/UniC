@@ -6,13 +6,14 @@
 /*   By: starry <starry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 19:44:11 by starry            #+#    #+#             */
-/*   Updated: 2025/02/26 23:43:55 by starry           ###   ########.fr       */
+/*   Updated: 2025/04/09 21:41:51 by starry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "unic/dictionary.h"
-#include "unic/hashfunctions.h"
+#include "unic/linkedlist.h"
 #include <stdlib.h>
+#include "unic/hashfunctions.h"
 
 /**
  * @brief Takes all dict_objs from dict

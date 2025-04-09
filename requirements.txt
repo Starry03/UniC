@@ -1,3 +1,4 @@
-psycopg2-binary==2.9.9
-python-dotenv==1.0.1
-regex==2024.9.11
+dotenv==0.9.9
+psycopg2-binary==2.9.10
+python-dotenv==1.1.0
+regex==2024.11.6

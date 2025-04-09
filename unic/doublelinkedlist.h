@@ -1,5 +1,4 @@
-#ifndef DOUBLELINKEDLIST_H
-# define DOUBLELINKEDLIST_H
+#pragma once
 
 # include "unic/nodes.h"
 # include <stddef.h>
@@ -34,5 +33,3 @@ t_double_linkedlist		double_linkedlist_getinfo(t_double_linkedlist list);
 size_t					double_linkedlist_getlength(t_double_linkedlist list);
 void					double_linkedlist_dealloc(t_double_linkedlist list,
 							t_deallocator dealloc);
-
-#endif

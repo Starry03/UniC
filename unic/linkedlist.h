@@ -1,9 +1,4 @@
-//
-// Created by andre on 8/8/2023.
-//
-
-#ifndef LINKEDLIST_H
-# define LINKEDLIST_H
+#pragma once
 
 # include "unic/nodes.h"
 # include <stddef.h>
@@ -44,5 +39,3 @@ void			linkedlist_dealloc(t_linkedlist head, t_deallocator dealloc);
 size_t			linkedlist_size(t_linkedlist list);
 
 void			linkedlist_sort(t_linkedlist *list, t_comparator cmp);
-
-#endif // LINKEDLIST_H

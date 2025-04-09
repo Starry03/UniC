@@ -25,6 +25,7 @@ General purpose library
 - make
 - doc (optional)
 	- python
+	- go
 	- node
 	- postgresql
 

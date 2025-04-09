@@ -1,5 +1,5 @@
-#ifndef TYPES_H
-# define TYPES_H
+#pragma once
+
 # include <limits.h>
 # include <stddef.h>
 
@@ -17,5 +17,3 @@ typedef size_t	(*t_hasher)(t_generic, size_t);
 /* index position */
 # define START 0
 # define LAST ULLONG_MAX
-
-#endif

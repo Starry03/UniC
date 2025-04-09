@@ -1,9 +1,4 @@
-//
-// Created by andre on 5/14/2023.
-//
-
-#ifndef BINARYTREE_H
-# define BINARYTREE_H
+#pragma once
 
 # include "unic/types.h"
 # include <stdbool.h>
@@ -49,5 +44,3 @@ bool							binarytree_deletenode(t_binarytree *tree,
 
 void							binarytree_free(t_binarytree tree,
 									t_deallocator dealloc);
-
-#endif // BINARYTREE_H

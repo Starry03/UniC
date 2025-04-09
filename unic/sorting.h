@@ -1,9 +1,4 @@
-//
-// Created by andre on 4/19/2023.
-//
-
-#ifndef SORTING_H
-# define SORTING_H
+#pragma once
 
 # include "unic/types.h"
 # include <stdbool.h>
@@ -32,5 +27,3 @@ void	radixsort(int *array, size_t size);
 void	bucketsort(t_generic *array, int size);
 
 void	heapsort(int *arr, size_t size);
-
-#endif // STARRY_SORTING_H

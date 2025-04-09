@@ -1,5 +1,5 @@
-#ifndef HEAP_H
-# define HEAP_H
+#pragma once
+
 # include "unic/types.h"
 # include <stdbool.h>
 # include <stddef.h>
@@ -47,5 +47,3 @@ void					heap_increase(t_heap heap, size_t index);
 void					heap_decrease(t_heap heap, size_t index);
 void					heap_replacekey(t_heap heap, t_heap_entry entry,
 							t_generic key, t_deallocator dealloc);
-
-#endif
