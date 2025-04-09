@@ -2,18 +2,19 @@
 
 ## Update info
 
-- major refactor
-- headers moved into "unic" folder
-- lib name changed to "unic" (makefile & link affected)
+-   major refactor
+-   headers moved into "unic" folder
+-   lib name changed to "unic" (makefile & link affected)
 
 ### Version
+
 2.1
 
 ### Latest features & changes
 
-- doc generation
-- doc ui
-- 42 norminette (almost)
+-   doc generation
+-   doc ui
+-   42 norminette (almost)
 
 ## About
 
@@ -21,15 +22,41 @@ General purpose library
 
 ### Dependecies
 
-- gcc
-- make
-- doc (optional)
-	- python
-	- go
-	- node
-	- postgresql
+-   gcc
+-   make
+-   doc (optional)
+    -   python
+    -   go
+    -   node
+    -   postgresql
+
+### CMakeLists.txt
+
+```
+
+```
+
+### Stone age linking
+
+```sh
+# go inside UniC path
+cd <lib path>
+# compile library
+make
+# link library
+gcc ... <unic_path>/unic.a -I<unic_path>
+```
+
+#### Makefile template
+
+```make
+unic_path=
+unic_lib=$(unic_path)/unic.a
+unic_includes=-I$(unic_path)
+```
 
 ### Doc
+
 Documentation is provided on top of every function
 
 If you want to use the client for a better experience, check the dependencies
@@ -53,48 +80,29 @@ or
 chmod 777 ./doc_uistart.sh && ./doc_uistart.sh
 ```
 
-### Linking
-
-```sh
-# go inside UniC path
-cd <lib path>
-# compile library
-make
-# link library
-gcc ... <unic_path>/unic.a -I<unic_path>
-```
-
-#### Makefile template
-
-```make
-unic_path=
-unic_lib=$(unic_path)/unic.a
-unic_includes=-I$(unic_path)
-```
-
 ## Content
 
-- libft
-- unic
+-   libft
+-   unic
 
 ### Datastructures
 
-- Matrices
-- Vector
-- Node
-- Linked list
-- Double linked list
-- Queue
-- Stack
-- Binary tree
-- Dictionary (Hash map)
-- Heap
-- Graph
+-   Matrices
+-   Vector
+-   Node
+-   Linked list
+-   Double linked list
+-   Queue
+-   Stack
+-   Binary tree
+-   Dictionary (Hash map)
+-   Heap
+-   Graph
 
 ### Algorithms
 
-- Search
-- Sort
+-   Search
+-   Sort
 
 ### Libft
 
@@ -106,7 +114,7 @@ Compile the library before running any example
 
 ### Graph
 
-- Generate a graphical representation of the graph using [mermaid](https://github.com/mermaid-js/mermaid)
+-   Generate a graphical representation of the graph using [mermaid](https://github.com/mermaid-js/mermaid)
 
 ```make
 make graphdraw
