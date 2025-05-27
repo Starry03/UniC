@@ -1,15 +1,19 @@
 # folders
-cmake-build-debug
 .idea
 .vscode
-build/
+
+# doc
 /.venv
 **/.env
 test/
 *.sql
+test/
+
+# cmake
+build/
+cmake-build-debug
 
 # files
-CMakeLists.txt
 *.xml
 *.iml
 run.shmain.c
@@ -19,5 +23,6 @@ run.shmain.c
 main.c
 main
 
+# examples
 examples/*
 !examples/*.[ch]

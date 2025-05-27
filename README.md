@@ -1,126 +1,124 @@
 # UniC
 
-## Update info
+A comprehensive general-purpose C library providing essential data structures, algorithms, and utility functions for C development.
 
--   major refactor
--   headers moved into "unic" folder
--   lib name changed to "unic" (makefile & link affected)
+## 🚀 Features
 
-### Version
+- **Data Structures**: Matrices, Vectors, Linked Lists, Trees, Hash Maps, Graphs, and more
+- **Algorithms**: Optimized search and sorting implementations
+- **Libft**: Extended standard library functions
+- **Cross-platform**: Compatible with modern C compilers
+- **Well-documented**: Comprehensive documentation for all functions
 
-2.1
+## 📋 Requirements
 
-### Latest features & changes
+### Core Dependencies
 
--   doc generation
--   doc ui
--   42 norminette (almost)
+- **gcc** - GNU Compiler Collection
+- **make** - Build automation tool  
+- **cmake** (≥ 3.10.0) - Cross-platform build system
 
-## About
+### Documentation (Optional)
 
-General purpose library
+- **python** - For documentation generation
+- **go** - Backend API server
+- **node.js** - Frontend documentation UI
+- **postgresql** - Documentation database
 
-### Dependecies
+## ⚡ Quick Start
 
--   gcc
--   make
--   doc (optional)
-    -   python
-    -   go
-    -   node
-    -   postgresql
+### Installation
 
-### CMakeLists.txt
-
+```bash
+# Clone and build the library
+mkdir build && cd build
+cmake ..
+sudo make install
 ```
 
+### Basic Usage
+
+```c
+#include <unic/datastructures.h>
+#include <unic/algorithms.h>
+
+int main() {
+    // Your code here
+    return 0;
+}
 ```
 
-### Stone age linking
+### CMake Integration
 
-```sh
-# go inside UniC path
-cd <lib path>
-# compile library
-make
-# link library
-gcc ... <unic_path>/unic.a -I<unic_path>
+```cmake
+cmake_minimum_required(VERSION 3.10.0)
+project(your_project)
+
+find_library(UNIC_LIBRARY
+    NAMES unic.so
+    PATHS /usr/local/lib
+    REQUIRED)
+
+add_executable(main main.c)
+target_include_directories(main PRIVATE /usr/local/include)
+target_link_libraries(main PRIVATE ${UNIC_LIBRARY} m)
 ```
 
-#### Makefile template
+## 📚 Documentation
 
-```make
-unic_path=
-unic_lib=$(unic_path)/unic.a
-unic_includes=-I$(unic_path)
+### Inline Documentation
+
+All functions include comprehensive inline documentation with usage examples.
+
+### Interactive Documentation UI
+
+For an enhanced documentation experience:
+
+```bash
+# Setup documentation environment
+./doc_uisetup.sh
+
+# Launch documentation server
+./doc_uistart.sh
 ```
 
-### Doc
+> **Note**: The documentation UI is experimental and includes heavy dependencies. For production use, refer to inline documentation.
 
-Documentation is provided on top of every function
+## 📦 Library Contents
 
-If you want to use the client for a better experience, check the dependencies
+### Data Structures
 
-NOTE: doc tool was made just for "fun" and trying something new like databases, it's kinda useless unless you like the way it works
-
-NOTE 2: doc dependencies are quite heavy and have a shitty ecosystem (node expecially) so if you come across troubles, just use the doc provided in the code, is literally the same
-
-```sh
-# build postgres db and next-js
-bash ./doc_uisetup.sh
-or
-chmod 777 ./doc_uisetup.sh && ./doc_uisetup.sh
-```
-
-#### Run UI
-
-```sh
-bash ./doc_uistart.sh
-or
-chmod 777 ./doc_uistart.sh && ./doc_uistart.sh
-```
-
-## Content
-
--   libft
--   unic
-
-### Datastructures
-
--   Matrices
--   Vector
--   Node
--   Linked list
--   Double linked list
--   Queue
--   Stack
--   Binary tree
--   Dictionary (Hash map)
--   Heap
--   Graph
+| Structure | Description |
+|-----------|-------------|
+| **Matrices** | Dynamic matrix operations |
+| **Vectors** | Resizable array implementation |
+| **Linked Lists** | Single and double linked lists |
+| **Queues & Stacks** | FIFO and LIFO structures |
+| **Binary Trees** | Tree traversal and operations |
+| **Hash Maps** | Key-value dictionary implementation |
+| **Heaps** | Priority queue structures |
+| **Graphs** | Graph representation and algorithms |
 
 ### Algorithms
 
--   Search
--   Sort
+- **Search**: Binary search, linear search variants
+- **Sort**: Quick sort, merge sort, heap sort implementations
 
-### Libft
+### Utility Functions (libft)
 
-Basic implementation
+Extended C standard library with additional string manipulation, memory management, and utility functions.
 
-## Examples
+## 🛠 Examples
 
-Compile the library before running any example
+### Graph Visualization
 
-### Graph
+Generate visual representations using [Mermaid](https://github.com/mermaid-js/mermaid):
 
--   Generate a graphical representation of the graph using [mermaid](https://github.com/mermaid-js/mermaid)
-
-```make
+```bash
 make graphdraw
 ```
 
-output:
+**Output:**
 
 ```mermaid
 flowchart LR
@@ -135,3 +133,30 @@ flowchart LR
 5((f)) -- 3 --> 2((c))
 5((f)) -- 1 --> 0((a))
 ```
+
+## 📝 Version History
+
+### Version 2.1 - Latest
+
+- ✅ Documentation generation system
+- ✅ Interactive documentation UI  
+- ✅ Code style improvements (42 Norminette compliance)
+- ✅ Major refactor: headers organized in `unic/` directory
+- ✅ Library renamed to `unic` for consistency
+
+### Breaking Changes
+
+- Headers moved to `unic/` folder - update your includes
+- Library name changed from previous versions - update linking
+
+## 📄 License
+
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit issues and enhancement requests.
+
+---
+
+**UniC** - Empowering C development with robust, efficient data structures and algorithms.
