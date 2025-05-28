@@ -39,7 +39,6 @@ sudo make install
 ### Basic Usage
 
 ```c
-#include <unic/datastructures.h>
 #include <unic/algorithms.h>
 
 int main() {
