@@ -6,4 +6,4 @@
 
 float fsqrt(float x);
 
-double dsqrt(float x);
+double dsqrt(const double x);
